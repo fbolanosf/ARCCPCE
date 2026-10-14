@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARCCPCE | Asociación Regional Centroamericana y Caribe de Profesionales de la Ciencia Enfermería</title>
+  <meta name="description" content="Página oficial de ARCCPCE. Asociación civil regional con sede en San José, Costa Rica. Unidos transformamos la ciencia enfermera para el bienestar de nuestras comunidades.">
+  
+  <!-- Favicon con Logo Oficial -->
+  <link rel="icon" type="image/jpeg" href="assets/images/logo.jpeg">
+
+  <!-- Tipografías Google Fonts: Montserrat (Títulos) & Inter (Lectura) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            crBlue: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              200: '#bae0fd',
+              500: '#0284c7',
+              700: '#0369a1',
+              800: '#002b7f', // Azul Patrio
+              900: '#001d57',
+            },
+            crRed: {
+              50: '#fef2f2',
+              100: '#fee2e2',
+              500: '#ef4444',
+              600: '#ce1126', // Rojo Patrio
+              700: '#b91c1c',
+            },
+            crGold: {
+              400: '#eab308',
+              500: '#c49a45',
+              600: '#a1792c',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Montserrat', 'sans-serif'],
+            serifTitle: ['Playfair Display', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Estilos Personalizados -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans selection:bg-crBlue-500 selection:text-white">
+
+  <!-- ==================== BARRA SUPERIOR DE CONTACTO Y SEDE (LUMINOSA Y PATRIA) ==================== -->
+  <div class="bg-crBlue-800 text-white text-xs py-2 px-4 shadow-sm">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center space-x-3 sm:space-x-4">
+        <span class="flex items-center gap-1.5 font-medium"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-crGold-400"></i> Sede: San José, Costa Rica</span>
+        <span class="text-white/40 hidden md:inline">•</span>
+        <span class="hidden md:flex items-center gap-1.5 text-slate-200"><i data-lucide="calendar" class="w-3.5 h-3.5 text-crGold-400"></i> Fundada el 19 de Marzo de 2026</span>
+      </div>
+      <div class="flex items-center flex-wrap justify-center gap-3 sm:gap-4">
+        <a href="mailto:arccpce@gmail.com" class="flex items-center gap-1 text-slate-100 hover:text-crGold-400 font-medium transition-colors">
+          <i data-lucide="mail" class="w-3.5 h-3.5 text-crGold-400"></i>
+          <span>arccpce@gmail.com</span>
+        </a>
+        <span class="text-white/40 hidden sm:inline">•</span>
+        <a href="https://wa.me/50672370244?text=Hola%20ARCCPCE,%20deseo%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-emerald-300 hover:text-emerald-200 font-bold transition-colors">
+          <i data-lucide="message-circle" class="w-3.5 h-3.5 text-emerald-300"></i>
+          <span>+506 7237-0244</span>
+        </a>
+        <span class="text-white/40 hidden sm:inline">•</span>
+        <a href="https://www.facebook.com/profile.php?id=61576498572279" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-slate-100 hover:text-crGold-400 transition-colors">
+          <i data-lucide="facebook" class="w-3.5 h-3.5 text-sky-300"></i>
+          <span class="hidden md:inline">Facebook Oficial</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== NAVEGACIÓN PRINCIPAL ==================== -->
+  <header id="mainNav" class="sticky top-0 z-40 glass-nav transition-all duration-300 py-3.5 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <!-- Logo y Nombre -->
+      <a href="#inicio" class="flex items-center gap-3.5 group">
+        <img src="assets/images/logo.jpeg" alt="Logo Oficial ARCCPCE" class="h-14 w-auto rounded-full ring-2 ring-crBlue-500/30 shadow-sm group-hover:scale-105 transition-transform duration-300">
+        <div>
+          <span class="block text-xl sm:text-2xl font-black font-display tracking-tight text-crBlue-800 leading-none">ARCCPCE</span>
+          <span class="block text-[10px] sm:text-[11px] font-semibold text-slate-600 uppercase tracking-wider mt-0.5 max-w-xs sm:max-w-md truncate">
+            Asociación Regional Centroamericana y Caribe de Profesionales de la Ciencia Enfermería
+          </span>
+        </div>
+      </a>
+
+      <!-- Menú Escritorio -->
+      <nav class="hidden lg:flex items-center space-x-7 text-sm font-semibold text-slate-700">
+        <a href="#inicio" class="hover:text-crBlue-800 transition-colors">Inicio</a>
+        <a href="#acerca" class="hover:text-crBlue-800 transition-colors">Identidad</a>
+        <a href="#mision-vision" class="hover:text-crBlue-800 transition-colors">Misión y Visión</a>
+        <a href="#fines" class="hover:text-crBlue-800 transition-colors">Fines Estatutarios</a>
+        <a href="#galeria" class="hover:text-crBlue-800 transition-colors">Galería y Actos</a>
+        <a href="#alianzas" class="hover:text-crBlue-800 transition-colors">Alianzas</a>
+        <a href="#contacto" class="bg-gradient-to-r from-crBlue-800 to-crBlue-700 hover:from-crBlue-900 hover:to-crBlue-800 text-white font-bold px-4.5 py-2 rounded-lg shadow-sm hover:shadow transition-all flex items-center gap-2">
+          <i data-lucide="user-plus" class="w-4 h-4 text-crGold-400"></i> Afíliate
+        </a>
+      </nav>
+
+      <!-- Botón Móvil -->
+      <div class="lg:hidden flex items-center">
+        <button id="mobileMenuBtn" aria-label="Abrir Menú" class="p-2 text-slate-700 hover:text-crBlue-800 focus:outline-none">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menú Desplegable Móvil -->
+    <div id="mobileMenu" class="hidden lg:hidden px-4 pt-3 pb-5 bg-white border-t border-slate-100 shadow-xl space-y-2">
+      <a href="#inicio" class="block px-3 py-2 rounded-md text-base font-semibold text-slate-700 hover:bg-crBlue-50 hover:text-crBlue-800">Inicio</a>
+      <a href="#acerca" class="block px-3 py-2 rounded-md text-base font-semibold text-slate-700 hover:bg-crBlue-50 hover:text-crBlue-800">Identidad</a>
+      <a href="#mision-vision" class="block px-3 py-2 rounded-md text-base font-semibold text-slate-700 hover:bg-crBlue-50 hover:text-crBlue-800">Misión y Visión</a>
+      <a href="#fines" class="block px-3 py-2 rounded-md text-base font-semibold text-slate-700 hover:bg-crBlue-50 hover:text-crBlue-800">Fines Estatutarios</a>
+      <a href="#galeria" class="block px-3 py-2 rounded-md text-base font-semibold text-slate-700 hover:bg-crBlue-50 hover:text-crBlue-800">Galería y Actos</a>
+      <a href="#alianzas" class="block px-3 py-2 rounded-md text-base font-semibold text-slate-700 hover:bg-crBlue-50 hover:text-crBlue-800">Alianzas</a>
+      <a href="#contacto" class="block text-center mt-2 bg-crBlue-800 text-white px-4 py-2.5 rounded-lg font-bold shadow">Afíliate Ahora</a>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION LUMINOSA, MODERNA Y ELEGANTE ==================== -->
+  <section id="inicio" class="relative hero-light-gradient text-slate-900 pt-16 pb-20 overflow-hidden border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Columna de Texto -->
+        <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+          
+          <!-- Insignia Regional con Acento Patrio -->
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-crBlue-800 text-xs sm:text-sm font-bold shadow-sm">
+            <span class="w-2.5 h-2.5 rounded-full bg-crRed-600 animate-pulse"></span>
+            Asociación Civil Regional • Sede San José, Costa Rica
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl lg:text-5xl font-extrabold font-display leading-tight text-slate-900">
+            Asociación Regional Centroamericana y Caribe de Profesionales de la <span class="text-crBlue-800">Ciencia Enfermería</span>
+          </h1>
+
+          <!-- Argumento con Dato Duro Integrado (OMS) -->
+          <div class="bg-white/90 backdrop-blur-sm p-4 rounded-xl border-l-4 border-crBlue-800 border-y border-r border-slate-200 shadow-sm text-left">
+            <p class="text-slate-700 text-sm sm:text-base italic font-serifTitle leading-relaxed">
+              "Unidos transformamos la ciencia enfermera para el bienestar de nuestras comunidades y el futuro de nuestra región."
+            </p>
+            <div class="mt-2.5 flex flex-wrap items-center gap-2 text-xs">
+              <span class="stat-pill stat-pill-blue">
+                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Respaldo Global OMS:
+              </span>
+              <span class="text-slate-600 font-medium">
+                La enfermería representa el <strong>59% de toda la fuerza laboral en salud</strong> y sostiene más del <strong>80% de la continuidad clínica</strong>.
+              </span>
+            </div>
+          </div>
+
+          <p class="text-slate-600 text-base leading-relaxed max-w-2xl">
+            Integrando a líderes, científicos y profesionales del cuidado en Costa Rica, Centroamérica y el Caribe para fortalecer el liderazgo transformacional, la salud pública, la innovación y la dignificación gremial.
+          </p>
+
+          <!-- Chips de Banderas en Tonos Claros -->
+          <div class="pt-1">
+            <p class="text-xs text-crBlue-800 font-bold uppercase tracking-wider mb-2.5">Integración Mesoamericana y Caribeña:</p>
+            <div class="flex flex-wrap gap-2 justify-center lg:justify-start">
+              <span class="flag-chip-light">🇨🇷 Costa Rica</span>
+              <span class="flag-chip-light">🇬🇹 Guatemala</span>
+              <span class="flag-chip-light">🇸🇻 El Salvador</span>
+              <span class="flag-chip-light">🇭🇳 Honduras</span>
+              <span class="flag-chip-light">🇳🇮 Nicaragua</span>
+              <span class="flag-chip-light">🇵🇦 Panamá</span>
+              <span class="flag-chip-light">🏝️ Caribe</span>
+            </div>
+          </div>
+
+          <!-- Botones de Acción Luminosos -->
+          <div class="flex flex-col sm:flex-row gap-4 pt-3 justify-center lg:justify-start">
+            <a href="#fines" class="inline-flex items-center justify-center gap-2 bg-crBlue-800 hover:bg-crBlue-900 text-white font-bold px-7 py-3.5 rounded-xl shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all text-sm sm:text-base">
+              <i data-lucide="compass" class="w-5 h-5 text-crGold-400"></i>
+              Explorar Fines Estatutarios
+            </a>
+            <a href="https://wa.me/50672370244?text=Hola%20ARCCPCE,%20deseo%20m%C3%A1s%20informaci%C3%B3n%20sobre%20la%20asociaci%C3%B3n" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3.5 rounded-xl shadow-md transition-all text-sm sm:text-base">
+              <i data-lucide="message-circle" class="w-5 h-5"></i>
+              WhatsApp Directo
+            </a>
+            <a href="#galeria" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-100 border border-slate-300 text-slate-700 font-bold px-6 py-3.5 rounded-xl shadow-sm transition-all text-sm sm:text-base">
+              <i data-lucide="camera" class="w-5 h-5 text-crBlue-700"></i>
+              Galería Solemne
+            </a>
+          </div>
+        </div>
+
+        <!-- Columna de Imagen / Emblema Luminoso -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative max-w-md w-full">
+            <div class="absolute -inset-1 bg-gradient-to-r from-crBlue-200 via-sky-100 to-rose-100 rounded-3xl blur-lg opacity-70"></div>
+            <div class="relative bg-white p-6 rounded-2xl shadow-xl border border-slate-200 flex flex-col items-center text-center">
+              <img src="assets/images/logo.jpeg" alt="Emblema Oficial ARCCPCE" class="w-64 h-64 object-contain rounded-xl drop-shadow-sm">
+              <div class="mt-4 border-t border-slate-100 pt-4 w-full">
+                <span class="text-xs font-bold text-crBlue-800 tracking-wider uppercase block">Lema Fundacional</span>
+                <p class="text-sm text-slate-700 font-serifTitle italic mt-1 text-center font-medium">
+                  "Unidos por el conocimiento, comprometidos con la vida"
+                </p>
+                <div class="mt-3 flex items-center justify-center gap-2 text-xs text-crBlue-800 font-bold bg-crBlue-50 border border-crBlue-100 py-1.5 px-3 rounded-full">
+                  <i data-lucide="shield-check" class="w-4 h-4 text-crRed-600"></i> Registrada como Asociación Civil
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PILARES RECTORES ==================== -->
+  <section class="bg-white py-10 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-6">
+        <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500">Pilares Fundamentales de la Ciencia Enfermera</h3>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <!-- Pilar 1 -->
+        <div class="flex items-center gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-crBlue-500 transition-all group">
+          <div class="w-10 h-10 rounded-lg bg-sky-100 flex items-center justify-center text-crBlue-800 group-hover:scale-110 transition-transform">
+            <i data-lucide="microscope" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-800 text-sm">Ciencia</h4>
+            <p class="text-xs text-slate-500">Evidencia clínica</p>
+          </div>
+        </div>
+
+        <!-- Pilar 2 -->
+        <div class="flex items-center gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-amber-500 transition-all group">
+          <div class="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center text-amber-700 group-hover:scale-110 transition-transform">
+            <i data-lucide="trending-up" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-800 text-sm">Liderazgo</h4>
+            <p class="text-xs text-slate-500">Transformacional</p>
+          </div>
+        </div>
+
+        <!-- Pilar 3 -->
+        <div class="flex items-center gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-crBlue-500 transition-all group">
+          <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-crBlue-800 group-hover:scale-110 transition-transform">
+            <i data-lucide="users" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-800 text-sm">Colaboración</h4>
+            <p class="text-xs text-slate-500">Solidaridad regional</p>
+          </div>
+        </div>
+
+        <!-- Pilar 4 -->
+        <div class="flex items-center gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-rose-500 transition-all group">
+          <div class="w-10 h-10 rounded-lg bg-rose-100 flex items-center justify-center text-crRed-600 group-hover:scale-110 transition-transform">
+            <i data-lucide="heart-pulse" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-800 text-sm">Salud</h4>
+            <p class="text-xs text-slate-500">Bienestar integral</p>
+          </div>
+        </div>
+
+        <!-- Pilar 5 -->
+        <div class="flex items-center gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-emerald-500 transition-all group">
+          <div class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-700 group-hover:scale-110 transition-transform">
+            <i data-lucide="leaf" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-800 text-sm">Sostenibilidad</h4>
+            <p class="text-xs text-slate-500">Cuidado ambiental</p>
+          </div>
+        </div>
+
+        <!-- Pilar 6 -->
+        <div class="flex items-center gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-cyan-500 transition-all group">
+          <div class="w-10 h-10 rounded-lg bg-cyan-100 flex items-center justify-center text-cyan-800 group-hover:scale-110 transition-transform">
+            <i data-lucide="cpu" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-800 text-sm">Innovación</h4>
+            <p class="text-xs text-slate-500">Transformación digital</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ACERCA DE LA ASOCIACIÓN (CON ARGUMENTOS SÓLIDOS Y DATOS DUROS) ==================== -->
+  <section id="acerca" class="py-20 bg-slate-50 subtle-grid">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-6 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-slate-200 text-crBlue-800 text-xs font-bold uppercase tracking-wider shadow-sm">
+            <i data-lucide="building" class="w-3.5 h-3.5 text-crRed-600"></i> Identidad e Incidencia Regional
+          </div>
+
+          <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 leading-tight">
+            Voz, ciencia y liderazgo de la enfermería centroamericana y caribeña
+          </h2>
+
+          <p class="text-slate-600 leading-relaxed text-base">
+            La <strong>Asociación Regional Centroamericana y Caribe de Profesionales de la Ciencia Enfermería (ARCCPCE)</strong> nace formalmente el <strong>19 de marzo de 2026</strong> como una asociación civil sin fines de lucro radicada en San José, Costa Rica, con el propósito histórico de unificar y potenciar la práctica científica y el liderazgo del gremio de enfermería en toda el área mesoamericana y del Caribe.
+          </p>
+
+          <!-- Cuadro de Argumentación Sólida con Datos Verificables OPS/OMS -->
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
+              <span class="text-xs font-bold uppercase tracking-wider text-crBlue-800 flex items-center gap-1.5">
+                <i data-lucide="bar-chart-2" class="w-4 h-4 text-crBlue-600"></i> La Realidad Sanitaria que Enfrentamos
+              </span>
+              <span class="text-[11px] font-semibold text-slate-500">Datos Verificables OPS / CIE</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <div class="bg-sky-50/70 p-3 rounded-xl border border-sky-100">
+                <span class="block font-black text-crBlue-800 text-lg">44.3 vs 70.6</span>
+                <span class="font-bold text-slate-700 block mt-0.5">Por 10,000 habitantes en la región</span>
+                <p class="text-slate-500 text-[11px] mt-1 leading-snug">
+                  América Latina promedia 44.3 enfermeros/10k hab., por debajo de la meta de 70.6 recomendada por la OPS para Cobertura Universal.
+                </p>
+              </div>
+
+              <div class="bg-rose-50/70 p-3 rounded-xl border border-rose-100">
+                <span class="block font-black text-crRed-600 text-lg">3 a 13 / 10k</span>
+                <span class="font-bold text-slate-700 block mt-0.5">En zonas rurales de Centroamérica</span>
+                <p class="text-slate-500 text-[11px] mt-1 leading-snug">
+                  Déficit crítico agravado por la migración internacional: 1 de cada 7 enfermeros trabaja fuera de su país de origen.
+                </p>
+              </div>
+            </div>
+
+            <p class="text-xs text-slate-600 leading-relaxed pt-1">
+              Frente a un déficit global proyectado de <strong>5.8 millones de profesionales</strong>, ARCCPCE surge para evitar la fuga de talentos, generar investigación propia y defender condiciones laborales y salariales dignas.
+            </p>
+          </div>
+
+          <p class="text-slate-600 leading-relaxed text-sm">
+            Respaldada por destacados catedráticos, juristas, investigadores y líderes de la salud pública, la asociación articula esfuerzos transfronterizos con organismos de integración como COMISCA, SICA, FEPPEN, la Organización Panamericana de la Salud (OPS) y el Consejo Internacional de Enfermeras (CIE).
+          </p>
+        </div>
+
+        <!-- Banner / Fotografía Destacada -->
+        <div class="lg:col-span-6">
+          <div class="relative group cursor-pointer" onclick="openModal('assets/images/asamblea-general.jpeg', 'Asamblea General Extraordinaria y Firma de Acta Constitutiva de ARCCPCE en el Colegio de Abogados de Costa Rica.')">
+            <div class="overflow-hidden rounded-2xl shadow-xl border-4 border-white bg-slate-200">
+              <img src="assets/images/asamblea-general.jpeg" alt="Asamblea Constitutiva ARCCPCE" class="w-full h-96 object-cover object-center group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md text-slate-800 p-4 rounded-xl border border-slate-200 shadow-lg">
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-xs font-bold text-crRed-600 uppercase tracking-wider">Acto Solemne de Instalación</p>
+                  <p class="text-sm font-bold text-crBlue-800 mt-0.5">Colegio de Abogados y Abogadas de Costa Rica • San José</p>
+                </div>
+                <span class="p-2 bg-crBlue-50 text-crBlue-800 rounded-lg"><i data-lucide="zoom-in" class="w-4 h-4"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MISIÓN Y VISIÓN ==================== -->
+  <section id="mision-vision" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-crBlue-800 text-xs font-bold tracking-widest uppercase bg-crBlue-50 px-3.5 py-1 rounded-full border border-crBlue-100">
+          Dirección Estratégica
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 mt-3">
+          Misión, Visión y Valores Fundamentales
+        </h2>
+        <p class="text-slate-500 mt-3 text-base">
+          Los principios directrices que orientan cada una de nuestras iniciativas científicas, académicas y gremiales.
+        </p>
+      </div>
+
+      <!-- Tarjetas de Misión y Visión con diseño luminoso -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <!-- Visión -->
+        <div class="feature-card bg-gradient-to-br from-sky-50/60 to-white p-8 rounded-2xl relative">
+          <div class="w-14 h-14 rounded-2xl bg-crBlue-800 text-white flex items-center justify-center mb-6 shadow-md shadow-crBlue-800/20">
+            <i data-lucide="eye" class="w-7 h-7 text-crGold-400"></i>
+          </div>
+          <h3 class="text-2xl font-bold font-display text-slate-900 mb-4">Nuestra Visión</h3>
+          <p class="text-slate-700 leading-relaxed text-base">
+            Que la <strong>Asociación Regional Centroamericana y Caribe de Profesionales de la Ciencia Enfermería</strong> sea un referente regional en el impulso de acciones colaborativas científico-educativas, así como en el fortalecimiento de un <strong>liderazgo transformacional</strong> y una <strong>gobernanza sólida</strong> en las diversas áreas del quehacer de la Enfermería. Todo ello orientado a la promoción de la salud humana y ambiental, la prevención de enfermedades crónicas no transmisibles y la integración ética, equitativa y responsable de la <strong>transformación digital</strong> como motor de innovación, inclusión y fortalecimiento de las capacidades profesionales en la región.
+          </p>
+        </div>
+
+        <!-- Misión -->
+        <div class="feature-card bg-gradient-to-br from-blue-50/60 to-white p-8 rounded-2xl relative">
+          <div class="w-14 h-14 rounded-2xl bg-crBlue-700 text-white flex items-center justify-center mb-6 shadow-md shadow-crBlue-700/20">
+            <i data-lucide="target" class="w-7 h-7 text-white"></i>
+          </div>
+          <h3 class="text-2xl font-bold font-display text-slate-900 mb-4">Nuestra Misión</h3>
+          <p class="text-slate-700 leading-relaxed text-base">
+            Impulsar el desarrollo de la Enfermería en Centroamérica y el Caribe mediante la <strong>colaboración científica y educativa</strong>, el fortalecimiento del <strong>liderazgo y la gobernanza</strong>, y la promoción de la <strong>salud integral</strong>, la <strong>sostenibilidad ambiental</strong>, la prevención de enfermedades crónicas no transmisibles y la adopción ética de la <strong>transformación digital</strong>, contribuyendo al bienestar de las personas y comunidades de la región.
+          </p>
+        </div>
+      </div>
+
+      <!-- Valores Institucionales (5 Valores) -->
+      <div>
+        <h3 class="text-xl font-bold font-display text-slate-900 text-center mb-8">Nuestros Valores Institucionales</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+          <!-- Valor 1 -->
+          <div class="bg-slate-50 hover:bg-white p-5 rounded-xl border border-slate-200 hover:border-crBlue-500 text-center transition-all hover:shadow-md group">
+            <div class="w-12 h-12 rounded-full bg-blue-100 text-crBlue-800 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+              <i data-lucide="handshake" class="w-6 h-6"></i>
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm">Colaboración y Solidaridad Regional</h4>
+            <p class="text-xs text-slate-500 mt-2">Unidad gremial y trabajo mancomunado entre países hermanos.</p>
+          </div>
+
+          <!-- Valor 2 -->
+          <div class="bg-slate-50 hover:bg-white p-5 rounded-xl border border-slate-200 hover:border-crBlue-500 text-center transition-all hover:shadow-md group">
+            <div class="w-12 h-12 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+              <i data-lucide="flag" class="w-6 h-6"></i>
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm">Liderazgo Transformacional</h4>
+            <p class="text-xs text-slate-500 mt-2">Capacidad propositiva en la toma de decisiones sanitarias.</p>
+          </div>
+
+          <!-- Valor 3 -->
+          <div class="bg-slate-50 hover:bg-white p-5 rounded-xl border border-slate-200 hover:border-crBlue-500 text-center transition-all hover:shadow-md group">
+            <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+              <i data-lucide="globe" class="w-6 h-6"></i>
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm">Compromiso con la Salud y Sostenibilidad</h4>
+            <p class="text-xs text-slate-500 mt-2">Protección de la vida humana y del medio ambiente.</p>
+          </div>
+
+          <!-- Valor 4 -->
+          <div class="bg-slate-50 hover:bg-white p-5 rounded-xl border border-slate-200 hover:border-crBlue-500 text-center transition-all hover:shadow-md group">
+            <div class="w-12 h-12 rounded-full bg-rose-100 text-crRed-600 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+              <i data-lucide="scale" class="w-6 h-6"></i>
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm">Ética, Equidad e Inclusión</h4>
+            <p class="text-xs text-slate-500 mt-2">Justicia social, respeto profesional y trato igualitario.</p>
+          </div>
+
+          <!-- Valor 5 -->
+          <div class="bg-slate-50 hover:bg-white p-5 rounded-xl border border-slate-200 hover:border-crBlue-500 text-center transition-all hover:shadow-md group">
+            <div class="w-12 h-12 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+              <i data-lucide="lightbulb" class="w-6 h-6"></i>
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm">Innovación y Desarrollo</h4>
+            <p class="text-xs text-slate-500 mt-2">Capacitación continua y adopción de tecnologías.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FINES ESTATUTARIOS (CON EVIDENCIA ENRIQUECIDA) ==================== -->
+  <section id="fines" class="py-20 bg-slate-50 border-y border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-crRed-600 text-xs font-bold tracking-widest uppercase bg-rose-50 px-3.5 py-1 rounded-full border border-rose-200">
+          Marco Normativo Oficial
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 mt-3">
+          Los 8 Fines Estatutarios de ARCCPCE
+        </h2>
+        <p class="text-slate-500 mt-3 text-base">
+          Compromisos concretos inscritos en nuestra acta fundacional, respaldados por la evidencia y recomendaciones de la OMS y el Consejo Internacional de Enfermeras.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Fin 1 -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4 hover:border-crBlue-400 transition-all">
+          <div class="w-10 h-10 rounded-xl bg-crBlue-50 text-crBlue-800 font-display font-black flex items-center justify-center flex-shrink-0 text-lg border border-crBlue-100">
+            1
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-900 text-base mb-1">Integración y Alianzas Estratégicas</h4>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Integrar acciones colaborativas con una diversidad de actores de enfermería tanto estratégicos como comprometidos con la profesión, su desarrollo en la gestión del cuidado de la salud, la prevención y promoción de la salud y el ambiente.
+            </p>
+          </div>
+        </div>
+
+        <!-- Fin 2 -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4 hover:border-crBlue-400 transition-all">
+          <div class="w-10 h-10 rounded-xl bg-crBlue-50 text-crBlue-800 font-display font-black flex items-center justify-center flex-shrink-0 text-lg border border-crBlue-100">
+            2
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-900 text-base mb-1">Políticas de Salud Inclusivas</h4>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Abogar por políticas de salud inclusivas, promoviendo la participación activa de enfermeras y enfermeros en la toma de decisiones políticas y ministeriales de alto nivel, posicionando líderes de enfermería en espacios de gobernanza pública.
+            </p>
+          </div>
+        </div>
+
+        <!-- Fin 3 -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4 hover:border-crBlue-400 transition-all">
+          <div class="w-10 h-10 rounded-xl bg-crBlue-50 text-crBlue-800 font-display font-black flex items-center justify-center flex-shrink-0 text-lg border border-crBlue-100">
+            3
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-900 text-base mb-1">Activismo Sociopolítico y Comunitario</h4>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Estimular la participación de los profesionales de enfermería en procesos políticos, sociales y comunitarios, promoviendo el activismo sociopolítico como herramienta para el cambio social y la reducción de las brechas de cobertura en salud.
+            </p>
+          </div>
+        </div>
+
+        <!-- Fin 4 -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4 hover:border-crBlue-400 transition-all">
+          <div class="w-10 h-10 rounded-xl bg-crBlue-50 text-crBlue-800 font-display font-black flex items-center justify-center flex-shrink-0 text-lg border border-crBlue-100">
+            4
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-900 text-base mb-1">Puentes de Cooperación Internacional</h4>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Extender puentes de colaboración con entidades gubernamentales en los espacios nacionales de la región centroamericana y Caribe por ejemplo con COMISCA, SICA, GPECAC, a nivel de Latinoamérica con la FEPPEN e internacionales con el CIE y la OPS/OMS.
+            </p>
+          </div>
+        </div>
+
+        <!-- Fin 5 -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4 hover:border-crBlue-400 transition-all">
+          <div class="w-10 h-10 rounded-xl bg-crBlue-50 text-crBlue-800 font-display font-black flex items-center justify-center flex-shrink-0 text-lg border border-crBlue-100">
+            5
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-900 text-base mb-1">Cooperación Universitaria y Buenas Prácticas</h4>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Fomentar la cooperación y el trabajo conjunto entre asociaciones, facultades de medicina/enfermería y organismos de salud de la región, para el intercambio de experiencias, conocimientos y homologación de competencias avanzadas.
+            </p>
+          </div>
+        </div>
+
+        <!-- Fin 6 (Con Dato Duro de Dignificación y Retención) -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4 hover:border-crBlue-400 transition-all">
+          <div class="w-10 h-10 rounded-xl bg-crBlue-50 text-crBlue-800 font-display font-black flex items-center justify-center flex-shrink-0 text-lg border border-crBlue-100">
+            6
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-1 flex-wrap">
+              <h4 class="font-bold text-slate-900 text-base">Dignificación y Condiciones Laborales</h4>
+              <span class="stat-pill stat-pill-amber">Impacto en Retención</span>
+            </div>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Abogar por la mejora sustantiva de las condiciones laborales, salariales y de seguridad para los profesionales de enfermería, promoviendo la dignificación de la profesión, frenando la migración forzada y reconociendo el impacto de la ciencia enfermera en la salud pública.
+            </p>
+          </div>
+        </div>
+
+        <!-- Fin 7 (Con Dato Duro de Investigación y APS) -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4 hover:border-crBlue-400 transition-all">
+          <div class="w-10 h-10 rounded-xl bg-crBlue-50 text-crBlue-800 font-display font-black flex items-center justify-center flex-shrink-0 text-lg border border-crBlue-100">
+            7
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-1 flex-wrap">
+              <h4 class="font-bold text-slate-900 text-base">Investigación Abierta Basada en Evidencia</h4>
+              <span class="stat-pill stat-pill-teal">Práctica Avanzada</span>
+            </div>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Impulsar la investigación abierta y basada en la evidencia y la innovación en la ciencia enfermera, promoviendo la difusión de conocimiento clínico que contribuya a la mejora directa de la salud en los niveles hospitalario y de Atención Primaria de Salud (APS).
+            </p>
+          </div>
+        </div>
+
+        <!-- Fin 8 (Con Dato Duro de Transformación Digital) -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4 hover:border-crBlue-400 transition-all">
+          <div class="w-10 h-10 rounded-xl bg-crBlue-50 text-crBlue-800 font-display font-black flex items-center justify-center flex-shrink-0 text-lg border border-crBlue-100">
+            8
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-1 flex-wrap">
+              <h4 class="font-bold text-slate-900 text-base">Capacitación en Liderazgo y Digitalización</h4>
+              <span class="stat-pill stat-pill-blue">Gobernanza Sanitaria</span>
+            </div>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Capacitar a enfermeras y enfermeros en liderazgo transformacional, gobernanza, telemedicina, salud digital ética, políticas públicas de salud y participación activa en organismos internacionales.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== GALERÍA INSTITUCIONAL Y EVENTOS ==================== -->
+  <section id="galeria" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-crBlue-800 text-xs font-bold tracking-widest uppercase bg-crBlue-50 px-3.5 py-1 rounded-full border border-crBlue-100">
+          Memoria Histórica y Fotográfica
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 mt-3">
+          Galería de Actividades y Sesiones Solemnes
+        </h2>
+        <p class="text-slate-500 mt-3 text-base">
+          Momentos destacados de la constitución oficial de ARCCPCE en San José, Costa Rica. Haga clic en cualquier fotografía para ampliar.
+        </p>
+      </div>
+
+      <!-- Grid de Imágenes de la Galería -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Foto 1 -->
+        <div class="group relative overflow-hidden rounded-2xl shadow-md cursor-pointer bg-slate-100 border border-slate-200" onclick="openModal('assets/images/asamblea-general.jpeg', 'Asamblea General Constitutiva de ARCCPCE con delegaciones y colegiados de la región.')">
+          <img src="assets/images/asamblea-general.jpeg" alt="Asamblea General" class="w-full h-64 object-cover object-center group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-white">
+            <span class="text-xs text-crGold-400 font-semibold uppercase">Instalación Oficial</span>
+            <p class="text-sm font-bold">Asamblea General Constitutiva</p>
+          </div>
+        </div>
+
+        <!-- Foto 2 -->
+        <div class="group relative overflow-hidden rounded-2xl shadow-md cursor-pointer bg-slate-100 border border-slate-200" onclick="openModal('assets/images/mesa-directiva.jpeg', 'Mesa de Presidencia y Junta Directiva durante la Primera Asamblea Extraordinaria en San José.')">
+          <img src="assets/images/mesa-directiva.jpeg" alt="Mesa Directiva" class="w-full h-64 object-cover object-center group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-white">
+            <span class="text-xs text-crGold-400 font-semibold uppercase">Gobernanza</span>
+            <p class="text-sm font-bold">Mesa de Presidencia y Directiva</p>
+          </div>
+        </div>
+
+        <!-- Foto 3 -->
+        <div class="group relative overflow-hidden rounded-2xl shadow-md cursor-pointer bg-slate-100 border border-slate-200" onclick="openModal('assets/images/delegaciones-regionales.jpeg', 'Representantes y delegados centroamericanos con sus respectivas acreditaciones oficiales.')">
+          <img src="assets/images/delegaciones-regionales.jpeg" alt="Delegaciones Regionales" class="w-full h-64 object-cover object-center group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-white">
+            <span class="text-xs text-crGold-400 font-semibold uppercase">Integración Centroamericana</span>
+            <p class="text-sm font-bold">Acreditación de Delegaciones Regionales</p>
+          </div>
+        </div>
+
+        <!-- Foto 4 -->
+        <div class="group relative overflow-hidden rounded-2xl shadow-md cursor-pointer bg-slate-100 border border-slate-200" onclick="openModal('assets/images/juramentacion.jpeg', 'Momento solemne de toma de juramento de los miembros directivos de ARCCPCE.')">
+          <img src="assets/images/juramentacion.jpeg" alt="Juramentación" class="w-full h-64 object-cover object-center group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-white">
+            <span class="text-xs text-crGold-400 font-semibold uppercase">Compromiso Estatutario</span>
+            <p class="text-sm font-bold">Juramentación de la Junta Directiva</p>
+          </div>
+        </div>
+
+        <!-- Foto 5 -->
+        <div class="group relative overflow-hidden rounded-2xl shadow-md cursor-pointer bg-slate-100 border border-slate-200" onclick="openModal('assets/images/estandarte-banderas.jpeg', 'Estandarte oficial de ARCCPCE flanqueado por las banderas de Costa Rica, El Salvador, Guatemala, Honduras y Nicaragua.')">
+          <img src="assets/images/estandarte-banderas.jpeg" alt="Estandarte y Banderas" class="w-full h-64 object-cover object-center group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-white">
+            <span class="text-xs text-crGold-400 font-semibold uppercase">Símbolos Patrios</span>
+            <p class="text-sm font-bold">Estandarte y Banderas Centroamericanas</p>
+          </div>
+        </div>
+
+        <!-- Foto 6 -->
+        <div class="group relative overflow-hidden rounded-2xl shadow-md cursor-pointer bg-slate-100 border border-slate-200" onclick="openModal('assets/images/equipo-clinico.jpeg', 'Sesión técnica de trabajo en instalaciones de salud y enfermería profesional.')">
+          <img src="assets/images/equipo-clinico.jpeg" alt="Equipo Clínico" class="w-full h-64 object-cover object-center group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-white">
+            <span class="text-xs text-crGold-400 font-semibold uppercase">Práctica y Gestión</span>
+            <p class="text-sm font-bold">Sesión Técnica y Clínica</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ALIANZAS Y REDES INTERNACIONALES (FONDO CLARO, ELEGANTE Y LUMINOSO) ==================== -->
+  <section id="alianzas" class="py-20 bg-slate-50 border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="text-crBlue-800 text-xs font-bold uppercase tracking-wider bg-crBlue-100/70 px-3.5 py-1.5 rounded-full border border-crBlue-200">
+          Red de Colaboración e Incidencia
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 mt-4">
+          Vínculos Regionales e Internacionales
+        </h2>
+        <p class="text-slate-600 text-sm sm:text-base mt-3 leading-relaxed">
+          Espacios de articulación y organismos oficiales con los cuales ARCCPCE establece puentes de cooperación mutua para potenciar la ciencia enfermera, la gobernanza y las políticas de salud pública en Centroamérica y el Caribe.
+        </p>
+      </div>
+
+      <!-- Grid con Logotipos Oficiales en Tarjetas Blancas y Luminosas -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        <!-- 1. COMISCA -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-crBlue-500 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center text-center group">
+          <div class="w-24 h-24 mb-4 rounded-xl bg-slate-50 p-2 border border-slate-200/80 flex items-center justify-center group-hover:scale-105 transition-transform shadow-inner">
+            <img src="assets/logos/comisca.svg" alt="Logotipo Oficial COMISCA" class="w-full h-full object-contain">
+          </div>
+          <span class="text-crBlue-800 font-display font-black text-lg tracking-wider">COMISCA</span>
+          <span class="text-xs text-slate-800 font-bold mt-1">Consejo de Ministros de Salud</span>
+          <span class="text-[11px] text-slate-500 mt-0.5 leading-tight">Centroamérica y Rep. Dominicana</span>
+          <div class="mt-3 pt-3 border-t border-slate-100 w-full text-[10px] text-crBlue-700 uppercase font-bold bg-sky-50 py-1 rounded-md">
+            Políticas Sanitarias
+          </div>
+        </div>
+
+        <!-- 2. SICA -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-crBlue-500 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center text-center group">
+          <div class="w-24 h-24 mb-4 rounded-xl bg-slate-50 p-2 border border-slate-200/80 flex items-center justify-center group-hover:scale-105 transition-transform shadow-inner">
+            <img src="assets/logos/sica.svg" alt="Logotipo Oficial SICA" class="w-full h-full object-contain">
+          </div>
+          <span class="text-crBlue-800 font-display font-black text-lg tracking-wider">SICA</span>
+          <span class="text-xs text-slate-800 font-bold mt-1">Sistema Integración Centroamericana</span>
+          <span class="text-[11px] text-slate-500 mt-0.5 leading-tight">Marco Regional Común</span>
+          <div class="mt-3 pt-3 border-t border-slate-100 w-full text-[10px] text-crBlue-700 uppercase font-bold bg-sky-50 py-1 rounded-md">
+            Integración Regional
+          </div>
+        </div>
+
+        <!-- 3. OPS / OMS -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-crBlue-500 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center text-center group">
+          <div class="w-24 h-24 mb-4 rounded-xl bg-slate-50 p-2 border border-slate-200/80 flex items-center justify-center group-hover:scale-105 transition-transform shadow-inner">
+            <img src="assets/logos/ops.svg" alt="Logotipo Oficial OPS / OMS" class="w-full h-full object-contain">
+          </div>
+          <span class="text-crBlue-800 font-display font-black text-lg tracking-wider">OPS / OMS</span>
+          <span class="text-xs text-slate-800 font-bold mt-1">Organización Panamericana Salud</span>
+          <span class="text-[11px] text-slate-500 mt-0.5 leading-tight">Salud Pública de las Américas</span>
+          <div class="mt-3 pt-3 border-t border-slate-100 w-full text-[10px] text-crBlue-700 uppercase font-bold bg-sky-50 py-1 rounded-md">
+            Salud Global
+          </div>
+        </div>
+
+        <!-- 4. CIE / ICN -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-crBlue-500 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center text-center group">
+          <div class="w-24 h-24 mb-4 rounded-xl bg-slate-50 p-2 border border-slate-200/80 flex items-center justify-center group-hover:scale-105 transition-transform shadow-inner">
+            <img src="assets/logos/cie.svg" alt="Logotipo Oficial CIE / ICN" class="w-full h-full object-contain">
+          </div>
+          <span class="text-crBlue-800 font-display font-black text-lg tracking-wider">CIE</span>
+          <span class="text-xs text-slate-800 font-bold mt-1">Consejo Internacional Enfermeras</span>
+          <span class="text-[11px] text-slate-500 mt-0.5 leading-tight">Voz Global de la Enfermería</span>
+          <div class="mt-3 pt-3 border-t border-slate-100 w-full text-[10px] text-crBlue-700 uppercase font-bold bg-sky-50 py-1 rounded-md">
+            Gremio Internacional
+          </div>
+        </div>
+
+        <!-- 5. FEPPEN -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-crBlue-500 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center text-center group">
+          <div class="w-24 h-24 mb-4 rounded-xl bg-slate-50 p-2 border border-slate-200/80 flex items-center justify-center group-hover:scale-105 transition-transform shadow-inner">
+            <img src="assets/logos/feppen.svg" alt="Logotipo Oficial FEPPEN" class="w-full h-full object-contain">
+          </div>
+          <span class="text-crBlue-800 font-display font-black text-lg tracking-wider">FEPPEN</span>
+          <span class="text-xs text-slate-800 font-bold mt-1">Federación Panamericana</span>
+          <span class="text-[11px] text-slate-500 mt-0.5 leading-tight">Profesionales de Enfermería</span>
+          <div class="mt-3 pt-3 border-t border-slate-100 w-full text-[10px] text-crBlue-700 uppercase font-bold bg-sky-50 py-1 rounded-md">
+            Red Latinoamericana
+          </div>
+        </div>
+
+        <!-- 6. GPECAC -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-crBlue-500 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center text-center group">
+          <div class="w-24 h-24 mb-4 rounded-xl bg-slate-50 p-2 border border-slate-200/80 flex items-center justify-center group-hover:scale-105 transition-transform shadow-inner">
+            <img src="assets/logos/gpecac.svg" alt="Logotipo Oficial GPECAC" class="w-full h-full object-contain">
+          </div>
+          <span class="text-crBlue-800 font-display font-black text-lg tracking-wider">GPECAC</span>
+          <span class="text-xs text-slate-800 font-bold mt-1">Grupo de Profesionales</span>
+          <span class="text-[11px] text-slate-500 mt-0.5 leading-tight">Centroamérica y el Caribe</span>
+          <div class="mt-3 pt-3 border-t border-slate-100 w-full text-[10px] text-crBlue-700 uppercase font-bold bg-sky-50 py-1 rounded-md">
+            Cooperación Subregional
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FORMULARIO DE AFILIACIÓN Y CONTACTO ==================== -->
+  <section id="contacto" class="py-20 bg-white border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <!-- Columna de Información -->
+        <div class="lg:col-span-5 space-y-6">
+          <span class="text-crBlue-800 text-xs font-bold tracking-widest uppercase bg-crBlue-50 px-3.5 py-1 rounded-full border border-crBlue-100">
+            Únete a la Asociación
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 leading-tight">
+            Afiliación Profesional y Consultas Institucionales
+          </h2>
+          <p class="text-slate-600 text-base leading-relaxed">
+            Si eres profesional de enfermería en Costa Rica, Centroamérica o el Caribe, o representas a una institución académica, de salud o investigación interesada en colaborar, ponte en contacto con nosotros.
+          </p>
+
+          <div class="space-y-4 pt-2">
+            <!-- Correo Oficial -->
+            <div class="flex items-start gap-3.5 p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="w-10 h-10 rounded-xl bg-crBlue-50 text-crBlue-800 flex items-center justify-center flex-shrink-0 border border-crBlue-100">
+                <i data-lucide="mail" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm">Correo Electrónico Oficial</h4>
+                <a href="mailto:arccpce@gmail.com" class="text-crBlue-800 hover:text-crBlue-900 font-bold text-sm underline">
+                  arccpce@gmail.com
+                </a>
+                <p class="text-xs text-slate-500 mt-0.5">Atención para afiliaciones, convenios y consultas.</p>
+              </div>
+            </div>
+
+            <!-- WhatsApp Oficial -->
+            <div class="flex items-start gap-3.5 p-3 rounded-xl bg-emerald-50/70 border border-emerald-200">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center flex-shrink-0 shadow-sm">
+                <i data-lucide="message-circle" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm">Canal Directo de WhatsApp</h4>
+                <a href="https://wa.me/50672370244?text=Hola%20ARCCPCE,%20deseo%20consultar%20sobre%20afiliaciones%20y%20actividades" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-emerald-700 hover:text-emerald-800 font-bold text-sm underline">
+                  +506 7237 0244 <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                </a>
+                <p class="text-xs text-slate-600 mt-0.5">Mensajería ágil e interacción directa con la secretaría.</p>
+              </div>
+            </div>
+
+            <!-- Sede Legal -->
+            <div class="flex items-start gap-3.5 p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="w-10 h-10 rounded-xl bg-crBlue-50 text-crBlue-800 flex items-center justify-center flex-shrink-0 border border-crBlue-100">
+                <i data-lucide="map-pin" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm">Sede Legal</h4>
+                <p class="text-slate-600 text-sm">San José, República de Costa Rica</p>
+              </div>
+            </div>
+
+            <!-- Facebook Oficial -->
+            <div class="flex items-start gap-3.5 p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="w-10 h-10 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="facebook" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm">Facebook Oficial</h4>
+                <a href="https://www.facebook.com/profile.php?id=61576498572279" target="_blank" rel="noopener noreferrer" class="text-crBlue-800 hover:text-crBlue-900 font-semibold text-sm underline flex items-center gap-1">
+                  facebook.com/profile.php?id=61576498572279 <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Infografía Preview -->
+          <div class="pt-2">
+            <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Carta y Fines Oficiales:</p>
+            <div class="rounded-xl overflow-hidden border border-slate-200 shadow-sm cursor-pointer group bg-slate-50" onclick="openModal('assets/images/infografia.jpeg', 'Infografía y Carta de Principios Oficial de ARCCPCE.')">
+              <img src="assets/images/infografia.jpeg" alt="Infografía Oficial" class="w-full h-36 object-cover object-top group-hover:scale-105 transition-transform duration-300">
+              <div class="bg-white p-2.5 text-center text-xs font-bold text-crBlue-800 flex items-center justify-center gap-1.5 border-t border-slate-200">
+                <i data-lucide="zoom-in" class="w-4 h-4 text-crRed-600"></i> Clic para ver infografía completa en alta resolución
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulario -->
+        <div class="lg:col-span-7">
+          <div class="bg-slate-50/70 p-8 sm:p-10 rounded-2xl shadow-lg border border-slate-200">
+            <h3 class="text-xl font-bold font-display text-slate-900 mb-2">Formulario de Afiliación y Contacto</h3>
+            <p class="text-sm text-slate-500 mb-6">Complete sus datos para solicitar su incorporación a ARCCPCE o realizar una consulta oficial.</p>
+
+            <form id="membershipForm" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Nombre Completo *</label>
+                  <input type="text" required placeholder="Ej. Licda. María González" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-crBlue-500 text-sm bg-white">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Correo Electrónico *</label>
+                  <input type="email" required placeholder="ejemplo@correo.com" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-crBlue-500 text-sm bg-white">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">País de Ejercicio *</label>
+                  <select required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-crBlue-500 text-sm bg-white">
+                    <option value="">Seleccione su país...</option>
+                    <option value="CR">Costa Rica</option>
+                    <option value="GT">Guatemala</option>
+                    <option value="SV">El Salvador</option>
+                    <option value="HN">Honduras</option>
+                    <option value="NI">Nicaragua</option>
+                    <option value="PA">Panamá</option>
+                    <option value="CAR">Caribe / Otro país</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Teléfono / WhatsApp</label>
+                  <input type="tel" placeholder="+506 ...." class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-crBlue-500 text-sm bg-white">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Especialidad o Área de Desempeño</label>
+                <input type="text" placeholder="Ej. Cuidados Críticos, Salud Pública, Docencia, Gestión Hospitalaria" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-crBlue-500 text-sm bg-white">
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Mensaje o Interés de Participación *</label>
+                <textarea rows="4" required placeholder="Indique brevemente cómo desea colaborar o qué información requiere de la asociación..." class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-crBlue-500 text-sm bg-white"></textarea>
+              </div>
+
+              <div class="pt-2">
+                <button type="submit" class="w-full bg-gradient-to-r from-crBlue-800 to-crBlue-700 hover:from-crBlue-900 hover:to-crBlue-800 text-white font-bold py-3.5 px-6 rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
+                  <i data-lucide="send" class="w-4 h-4 text-crGold-400"></i> Enviar Solicitud de Afiliación
+                </button>
+              </div>
+
+              <!-- Mensaje de éxito -->
+              <div id="formSuccess" class="hidden p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-600 flex-shrink-0"></i>
+                <span>¡Gracias por su interés! Su solicitud ha sido registrada exitosamente. La secretaría general de ARCCPCE se comunicará a la brevedad.</span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PIE DE PÁGINA (LUMINOSO Y PATRIO) ==================== -->
+  <footer class="bg-crBlue-900 text-slate-200 pt-16 pb-12 border-t-4 border-crRed-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-crBlue-800">
+        <!-- Logo y Resumen -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="flex items-center gap-3">
+            <img src="assets/images/logo.jpeg" alt="Logo ARCCPCE" class="h-14 w-auto rounded-full ring-2 ring-crGold-400">
+            <div>
+              <span class="block text-2xl font-black font-display text-white">ARCCPCE</span>
+              <span class="block text-xs font-bold text-crGold-400 uppercase tracking-wider">San José, Costa Rica</span>
+            </div>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed max-w-sm">
+            Asociación Regional Centroamericana y Caribe de Profesionales de la Ciencia Enfermería. Comprometidos con el desarrollo científico, la gobernanza y la salud integral de nuestras naciones.
+          </p>
+          <div class="space-y-1.5 pt-1 text-xs">
+            <p class="flex items-center gap-2">
+              <i data-lucide="mail" class="w-4 h-4 text-crGold-400"></i>
+              <a href="mailto:arccpce@gmail.com" class="text-slate-200 hover:text-white underline">arccpce@gmail.com</a>
+            </p>
+            <p class="flex items-center gap-2">
+              <i data-lucide="message-circle" class="w-4 h-4 text-emerald-400"></i>
+              <a href="https://wa.me/50672370244" target="_blank" rel="noopener noreferrer" class="text-emerald-300 hover:text-white font-semibold">+506 7237-0244</a>
+            </p>
+          </div>
+          <div class="flex space-x-3 pt-2">
+            <a href="https://www.facebook.com/profile.php?id=61576498572279" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-crBlue-800 hover:bg-sky-600 text-white flex items-center justify-center transition-colors" title="Facebook Oficial">
+              <i data-lucide="facebook" class="w-5 h-5"></i>
+            </a>
+            <a href="https://wa.me/50672370244" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-crBlue-800 hover:bg-emerald-600 text-white flex items-center justify-center transition-colors" title="Chat WhatsApp">
+              <i data-lucide="message-circle" class="w-5 h-5"></i>
+            </a>
+            <a href="mailto:arccpce@gmail.com" class="w-9 h-9 rounded-lg bg-crBlue-800 hover:bg-crGold-500 hover:text-slate-900 text-white flex items-center justify-center transition-colors" title="Enviar Correo">
+              <i data-lucide="mail" class="w-5 h-5"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Enlaces Rápidos -->
+        <div class="lg:col-span-3 space-y-3">
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider font-display">Secciones</h4>
+          <ul class="space-y-2 text-sm text-slate-300">
+            <li><a href="#inicio" class="hover:text-crGold-400 transition-colors">Inicio</a></li>
+            <li><a href="#acerca" class="hover:text-crGold-400 transition-colors">Identidad Institucional</a></li>
+            <li><a href="#mision-vision" class="hover:text-crGold-400 transition-colors">Misión y Visión</a></li>
+            <li><a href="#fines" class="hover:text-crGold-400 transition-colors">Fines Estatutarios</a></li>
+            <li><a href="#galeria" class="hover:text-crGold-400 transition-colors">Galería Fotográfica</a></li>
+            <li><a href="#alianzas" class="hover:text-crGold-400 transition-colors">Alianzas</a></li>
+            <li><a href="#contacto" class="hover:text-crGold-400 transition-colors">Afiliación y Contacto</a></li>
+          </ul>
+        </div>
+
+        <!-- Cobertura Regional -->
+        <div class="lg:col-span-4 space-y-3">
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider font-display">Sede y Alcance</h4>
+          <p class="text-sm text-slate-300">
+            <strong>Sede Legal:</strong> San José, República de Costa Rica.
+          </p>
+          <p class="text-sm text-slate-300">
+            <strong>Alcance:</strong> Costa Rica, Guatemala, El Salvador, Honduras, Nicaragua, Panamá y países del Caribe.
+          </p>
+          <div class="p-3.5 rounded-xl bg-crBlue-800/80 border border-crBlue-700 mt-4 text-xs text-slate-200">
+            <span class="text-crGold-400 font-bold block mb-1">Fundación:</span>
+            Inscrita y celebrada formalmente el 19 de marzo de 2026 en el Auditorio Ortiz del Colegio de Abogados y Abogadas de Costa Rica.
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-400 gap-4">
+        <p>© 2026 ARCCPCE. Todos los derechos reservados. Asociación Civil sin fines de lucro.</p>
+        <p class="flex items-center gap-1 text-slate-300">
+          Unidos por el conocimiento, comprometidos con la vida.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODAL LIGHTBOX PARA FOTOGRAFÍAS ==================== -->
+  <div id="imageModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop">
+    <div class="relative max-w-4xl w-full bg-white rounded-2xl overflow-hidden shadow-2xl border border-slate-300 flex flex-col max-h-[90vh]">
+      <button id="modalClose" aria-label="Cerrar modal" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center transition-all">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+      <div class="p-2 sm:p-4 flex items-center justify-center overflow-auto flex-1 bg-slate-100">
+        <img id="modalImage" src="" alt="Fotografía ARCCPCE ampliada" class="max-h-[75vh] w-auto max-w-full rounded-lg object-contain shadow-md">
+      </div>
+      <div class="p-4 bg-white text-slate-800 border-t border-slate-200 text-center text-sm font-semibold">
+        <span id="modalCaption"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón Flotante Interactivo de WhatsApp -->
+  <aside aria-label="Contacto por WhatsApp" class="fixed bottom-6 right-6 z-50 flex items-center group">
+    <div class="hidden sm:block mr-3 bg-white text-slate-800 text-xs font-bold py-2 px-3.5 rounded-xl shadow-xl border border-slate-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+      ¿Consultas o Afiliación? ¡Escríbenos por WhatsApp!
+    </div>
+    <a href="https://wa.me/50672370244?text=Hola%20ARCCPCE,%20deseo%20informaci%C3%B3n%20sobre%20la%20asociaci%C3%B3n" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       aria-label="Abrir chat de WhatsApp con ARCCPCE" 
+       class="relative w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center shadow-xl hover:scale-110 active:scale-95 transition-all duration-300 ring-4 ring-emerald-400/30">
+      <!-- Pulso animado -->
+      <span class="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping"></span>
+      <i data-lucide="message-circle" class="w-7 h-7 relative z-10"></i>
+    </a>
+  </aside>
+
+  <!-- Scripts -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

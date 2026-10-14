@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="100%" height="100%">
+  <!-- PAHO / OPS Blue Disc -->
+  <circle cx="80" cy="80" r="76" fill="#005a9c" />
+  <circle cx="80" cy="80" r="70" fill="none" stroke="#68b4e7" stroke-width="2" />
+  <!-- Western Hemisphere Continents Outline Symbol -->
+  <circle cx="80" cy="65" r="30" fill="#004377" stroke="#ffffff" stroke-width="1.5" />
+  <!-- Americas stylized contour -->
+  <path d="M 76 43 Q 84 46 82 54 Q 85 58 80 64 Q 78 72 84 76 Q 84 84 79 90" fill="none" stroke="#f6c244" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Rod of Asclepius with Snake -->
+  <line x1="80" y1="38" x2="80" y2="92" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 77 44 Q 84 47 78 52 Q 74 57 82 63 Q 86 69 77 75 Q 74 81 83 87" fill="none" stroke="#f6c244" stroke-width="2" stroke-linecap="round"/>
+  <!-- Acronym & Subtitle -->
+  <text x="80" y="112" font-family="'Montserrat', 'Arial Black', sans-serif" font-size="18" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="1">OPS / OMS</text>
+  <text x="80" y="125" font-family="Arial, sans-serif" font-size="7" font-weight="bold" fill="#68b4e7" text-anchor="middle">ORGANIZACIÓN PANAMERICANA</text>
+  <text x="80" y="136" font-family="Arial, sans-serif" font-size="7" font-weight="bold" fill="#ffffff" text-anchor="middle">DE LA SALUD</text>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="100%" height="100%">
+  <!-- FEPPEN Teal/Wine Academic Disc -->
+  <circle cx="80" cy="80" r="76" fill="#144b53" />
+  <circle cx="80" cy="80" r="70" fill="none" stroke="#258f9e" stroke-width="2.5" />
+  <!-- Stylized Americas Silhouette with Caring Hands -->
+  <path d="M 52 75 C 52 65 65 58 80 58 C 95 58 108 65 108 75 C 108 86 95 94 80 94 C 65 94 52 86 52 75 Z" fill="#ffffff" opacity="0.1" />
+  <!-- Hands holding a heart/globe -->
+  <path d="M 64 78 C 68 83 74 85 80 85 C 86 85 92 83 96 78 C 94 83 88 88 80 88 C 72 88 66 83 64 78 Z" fill="#258f9e" />
+  <!-- Open Book of Knowledge -->
+  <path d="M 62 68 Q 72 63 80 66 Q 88 63 98 68 L 98 78 Q 88 73 80 76 Q 72 73 62 78 Z" fill="#ffffff" stroke="#c49a45" stroke-width="1.5" />
+  <!-- Cross of Nursing Care -->
+  <rect x="77" y="47" width="6" height="15" fill="#e06d53" rx="1.5"/>
+  <rect x="72.5" y="51.5" width="15" height="6" fill="#e06d53" rx="1.5"/>
+  <!-- Acronym & Title -->
+  <text x="80" y="113" font-family="'Montserrat', 'Arial Black', sans-serif" font-size="18" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="1.5">FEPPEN</text>
+  <text x="80" y="125" font-family="Arial, sans-serif" font-size="6.5" font-weight="bold" fill="#7ed5df" text-anchor="middle">FEDERACIÓN PANAMERICANA</text>
+  <text x="80" y="136" font-family="Arial, sans-serif" font-size="6.5" font-weight="bold" fill="#dfb75c" text-anchor="middle">DE ENFERMERÍA</text>
+</svg>

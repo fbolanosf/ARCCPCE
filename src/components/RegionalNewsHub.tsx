@@ -1,0 +1,409 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import {
+  Newspaper,
+  BookOpen,
+  Play,
+  X,
+  ExternalLink,
+  ChevronRight,
+  TrendingUp,
+  FileText,
+  Activity,
+  Globe2,
+  Calendar,
+  Sparkles,
+  Facebook,
+  RefreshCw,
+} from "lucide-react";
+import type { NewsItem } from "@/app/api/news/route";
+
+const DEFAULT_NEWS: NewsItem[] = [
+  {
+    id: "fb-1",
+    title: "Constitución Oficial y Juramentación de la Junta Directiva de ARCCPCE",
+    summary:
+      "La Asociación Regional Centroamericana y Caribe de Profesionales de la Ciencia Enfermería inicia formalmente su misión histórica de articulación gremial, científica y sociopolítica desde San José, Costa Rica para toda la región.",
+    category: "facebook",
+    sourceName: "Página Oficial de Facebook ARCCPCE",
+    url: "https://www.facebook.com/profile.php?id=61576498572279",
+    date: "2026-03-24",
+    imageUrl: "/assets/images/equipo-clinico.jpeg",
+    featured: true,
+  },
+  {
+    id: "fb-2",
+    title: "Discurso Presidencial: Visibilizar la Ciencia Enfermera en la Toma de Decisiones",
+    summary:
+      "Publicación íntegra de las palabras del Dr. José Eduardo Carvajal Ovando destacando la urgencia de incidir en las políticas públicas de salud y defender la autonomía profesional de las enfermeras y enfermeros.",
+    category: "facebook",
+    sourceName: "Página Oficial de Facebook ARCCPCE",
+    url: "https://www.facebook.com/profile.php?id=61576498572279",
+    date: "2026-03-22",
+    imageUrl: "/assets/images/discurso-presidencia.jpeg",
+  },
+  {
+    id: "ops-1",
+    title: "OPS insta a invertir en el liderazgo y condiciones laborales de la enfermería en Centroamérica y el Caribe",
+    summary:
+      "El informe regional de la OPS enfatiza que la enfermería representa más del 56% de la fuerza laboral sanitaria y es la piedra angular para alcanzar la Cobertura Universal de Salud en la región mesoamericana.",
+    category: "ops",
+    sourceName: "Organización Panamericana de la Salud (OPS/OMS)",
+    url: "https://www.paho.org/es/temas/enfermeria",
+    date: "2026-03-20",
+  },
+  {
+    id: "scielo-1",
+    title: "Competencias de Práctica Avanzada en Enfermería para la Atención Primaria en Mesoamérica",
+    summary:
+      "Estudio sobre la implementación del rol de enfermería de práctica avanzada (EPA) y los marcos normativos necesarios para reducir la brecha resolutiva en zonas rurales y periféricas.",
+    category: "scielo",
+    sourceName: "Revista Latino-Americana de Enfermagem (SciELO)",
+    url: "https://www.scielo.br/j/rlae/",
+    date: "2026-03-18",
+    doi: "10.1590/1518-8345.6821.3990",
+  },
+  {
+    id: "scielo-2",
+    title: "Evidencia Científica y Gestión del Cuidado en la Práctica Clínica Hospitalaria",
+    summary:
+      "Investigación indexada sobre protocolos de seguridad del paciente, farmacovigilancia y liderazgo de enfermería en unidades de cuidados intensivos y atención comunitaria.",
+    category: "scielo",
+    sourceName: "Revista Brasileira de Enfermagem (SciELO)",
+    url: "https://www.scielo.br/j/reben/",
+    date: "2026-03-16",
+    doi: "10.1590/0034-7167-2025-0142",
+  },
+  {
+    id: "ops-2",
+    title: "Informe Mundial sobre la Enfermería: Cobertura Sanitaria Universal y Datos Globales",
+    summary:
+      "Hoja informativa oficial de la OMS/OPS con directrices estratégicas globales sobre la dotación de personal, retención en zonas rurales y educación de calidad para el gremio.",
+    category: "ops",
+    sourceName: "Organización Mundial de la Salud (OMS)",
+    url: "https://www.who.int/es/news-room/fact-sheets/detail/nursing-and-midwifery",
+    date: "2026-03-14",
+  },
+  {
+    id: "video-1",
+    title: "Transformación Digital y Tele-enfermería: Innovación en Comunidades Remotas",
+    summary:
+      "Seminario regional sobre herramientas de teleconsulta, monitorización remota de pacientes crónicos y registros clínicos electrónicos coordinados por profesionales de la ciencia enfermera.",
+    category: "video",
+    sourceName: "OPS TV / Canal Regional de Salud",
+    url: "https://www.youtube.com/watch?v=6ZfuNTqbHE8",
+    videoId: "6ZfuNTqbHE8",
+    date: "2026-03-10",
+  },
+];
+
+type CategoryFilter = "all" | "facebook" | "ops" | "scielo" | "video";
+
+export default function RegionalNewsHub() {
+  const [filter, setFilter] = useState<CategoryFilter>("all");
+  const [news, setNews] = useState<NewsItem[]>(DEFAULT_NEWS);
+  const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch("/api/news")
+      .then((res) => res.json())
+      .then((res) => {
+        if (res && res.data && Array.isArray(res.data) && res.data.length > 0) {
+          setNews(res.data);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveVideoId(null);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  const filteredNews = news.filter((item) => {
+    if (filter === "all") return true;
+    return item.category === filter;
+  });
+
+  const featuredItem = filteredNews.find((item) => item.featured) || filteredNews[0];
+  const gridItems = filteredNews.filter((item) => item.id !== featuredItem?.id);
+
+  return (
+    <section id="actualidad" className="py-20 bg-gradient-to-b from-white via-sky-50/40 to-slate-50 text-slate-800 border-y border-slate-200 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Cabecera de la Sección Luminosa */}
+        <div className="text-center max-w-3xl mx-auto mb-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-[#002b7f] text-xs font-bold uppercase tracking-wider mb-3 shadow-sm">
+            <Activity className="w-4 h-4 text-[#ce1126]" />
+            Vigilancia del Conocimiento y Práctica Clínica
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-slate-900">
+            Centro de Inteligencia y Actualidad Sanitaria
+          </h2>
+          <p className="text-slate-600 text-sm sm:text-base mt-3 leading-relaxed">
+            Actualización diaria de publicaciones oficiales de <strong>ARCCPCE en Facebook</strong>, directrices estratégicas de la <strong>OPS/OMS</strong> y literatura indexada en <strong>SciELO</strong> para toda la región.
+          </p>
+        </div>
+
+        {/* Ticker / Barra de Indicadores Rápidos con Notificación de Actualización Diaria */}
+        <div className="mb-10 bg-white border border-slate-200/90 shadow-sm rounded-2xl p-4 sm:p-5 flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-sky-50 border border-sky-100 flex items-center justify-center text-[#002b7f] shrink-0">
+              <TrendingUp className="w-5 h-5 text-[#002b7f]" />
+            </div>
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 block">
+                Métricas Clave OPS Regional
+              </span>
+              <span className="text-xs sm:text-sm text-slate-800 font-bold">
+                59% Fuerza Sanitaria Global <span className="text-slate-400 font-normal">•</span> 80% Cuidados en APS <span className="text-slate-400 font-normal">•</span> 7 Países Articulados
+              </span>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3 flex-wrap">
+            <a
+              href="https://www.facebook.com/profile.php?id=61576498572279"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-xs font-bold text-white bg-[#1877f2] hover:bg-[#166fe5] px-3.5 py-2 rounded-xl shadow-sm transition-all"
+            >
+              <Facebook className="w-4 h-4" />
+              <span>Seguir en Facebook</span>
+            </a>
+          </div>
+        </div>
+
+        {/* Pestañas de Filtro Interactivas con Facebook */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
+          {[
+            { id: "all", label: "Todos los Contenidos", icon: Newspaper },
+            { id: "facebook", label: "Publicaciones Facebook ARCCPCE", icon: Facebook },
+            { id: "ops", label: "Noticias OPS/OMS", icon: Globe2 },
+            { id: "scielo", label: "Investigación SciELO", icon: BookOpen },
+            { id: "video", label: "Webinars & Videos", icon: Play },
+          ].map((tab) => {
+            const Icon = tab.icon;
+            const isSelected = filter === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setFilter(tab.id as CategoryFilter)}
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 border ${
+                  isSelected
+                    ? "bg-[#002b7f] text-white border-[#002b7f] shadow-md shadow-[#002b7f]/20 scale-105"
+                    : "bg-white text-slate-700 border-slate-200 hover:border-sky-300 hover:text-[#002b7f] shadow-sm"
+                }`}
+              >
+                <Icon className={`w-4 h-4 ${tab.id === 'facebook' && !isSelected ? 'text-[#1877f2]' : ''}`} />
+                <span>{tab.label}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Bento Grid Elegante Luminoso */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+          {/* Tarjeta Destacada Principal (Bento Grande - 7 Columnas) */}
+          {featuredItem && (
+            <div className="lg:col-span-7 bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-sky-300 transition-all duration-300 group">
+              <div>
+                {featuredItem.imageUrl && (
+                  <div className="relative w-full h-56 sm:h-64 rounded-2xl overflow-hidden mb-6 border border-slate-200">
+                    <Image
+                      src={featuredItem.imageUrl}
+                      alt={featuredItem.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                )}
+
+                <div className="flex items-center gap-3 text-xs text-slate-500 mb-3">
+                  <span className="font-bold text-[#002b7f]">{featuredItem.sourceName}</span>
+                  <span>•</span>
+                  <span className="flex items-center gap-1 font-medium">
+                    <Calendar className="w-3.5 h-3.5 text-slate-400" /> {featuredItem.date}
+                  </span>
+                </div>
+
+                <h3 className="text-xl sm:text-2xl font-bold font-display text-slate-900 mb-3 group-hover:text-[#002b7f] transition-colors leading-snug">
+                  {featuredItem.title}
+                </h3>
+
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+                  {featuredItem.summary}
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <span className="text-xs text-slate-500 font-semibold flex items-center gap-1">
+                  <Sparkles className="w-3.5 h-3.5 text-[#c49a45]" /> Cobertura Sanitaria Regional
+                </span>
+                <a
+                  href={featuredItem.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-white bg-[#002b7f] hover:bg-[#001d57] px-4 py-2.5 rounded-xl transition-all shadow-sm"
+                >
+                  <span>{featuredItem.category === 'facebook' ? 'Ver Publicación en Facebook' : 'Leer Documento Oficial'}</span>
+                  <ExternalLink className="w-4 h-4 text-sky-200" />
+                </a>
+              </div>
+            </div>
+          )}
+
+          {/* Columna Derecha: Tarjetas Secundarias (Bento Lateral - 5 Columnas) */}
+          <div className="lg:col-span-5 flex flex-col justify-between gap-4">
+            {gridItems.slice(0, 3).map((item) => {
+              const isVideo = item.category === "video";
+              const isSciELO = item.category === "scielo";
+              const isFacebook = item.category === "facebook";
+
+              return (
+                <div
+                  key={item.id}
+                  className="bg-white rounded-2xl border border-slate-200/90 p-5 hover:border-sky-300 hover:shadow-md transition-all duration-300 flex flex-col justify-between group shadow-sm"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className={`text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md border flex items-center gap-1 ${
+                        isFacebook
+                          ? "bg-blue-50 text-[#1877f2] border-blue-200"
+                          : item.category === "ops"
+                          ? "bg-sky-50 text-[#002b7f] border-sky-200"
+                          : item.category === "scielo"
+                          ? "bg-amber-50 text-[#c49a45] border-amber-200"
+                          : "bg-emerald-50 text-emerald-700 border-emerald-200"
+                      }`}>
+                        {isFacebook && <Facebook className="w-3 h-3 text-[#1877f2]" />}
+                        {isFacebook && "Publicación Facebook"}
+                        {item.category === "ops" && "Directriz OPS/OMS"}
+                        {item.category === "scielo" && "Investigación SciELO"}
+                        {item.category === "video" && "Webinar & Formación"}
+                      </span>
+                      <span className="text-[11px] text-slate-500 flex items-center gap-1 font-medium">
+                        <Calendar className="w-3 h-3 text-slate-400" /> {item.date}
+                      </span>
+                    </div>
+
+                    <h4 className="font-bold text-slate-900 text-sm mb-2 group-hover:text-[#002b7f] transition-colors line-clamp-2 leading-snug">
+                      {item.title}
+                    </h4>
+
+                    <p className="text-xs text-slate-600 leading-relaxed line-clamp-2 mb-3">
+                      {item.summary}
+                    </p>
+
+                    {item.doi && (
+                      <div className="text-[11px] font-mono text-slate-500 mb-3 flex items-center gap-1">
+                        <FileText className="w-3 h-3 text-[#002b7f]" /> DOI: <span className="text-slate-700 font-semibold">{item.doi}</span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                    <span className="text-[11px] text-slate-500 font-medium truncate max-w-[180px]">
+                      {item.sourceName}
+                    </span>
+
+                    {isVideo && item.videoId ? (
+                      <button
+                        onClick={() => setActiveVideoId(item.videoId || null)}
+                        className="inline-flex items-center gap-1 text-xs font-bold text-white bg-[#002b7f] hover:bg-[#001d57] px-3 py-1.5 rounded-lg transition-all shadow-sm"
+                      >
+                        <Play className="w-3.5 h-3.5 fill-current text-sky-200" />
+                        <span>Ver Sesión</span>
+                      </button>
+                    ) : (
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-xs font-bold text-[#002b7f] hover:text-[#0284c7] transition-colors"
+                      >
+                        <span>{isFacebook ? "Abrir Post" : isSciELO ? "Acceder al Paper" : "Detalles"}</span>
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* CTA Inferior con Acceso Directo a Afiliación */}
+        <div className="mt-10 bg-white border border-slate-200 shadow-sm p-6 sm:p-7 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-5">
+          <div className="text-left">
+            <h4 className="font-bold text-slate-900 text-base">
+              ¿Deseas divulgar una investigación clínica o experiencia gremial?
+            </h4>
+            <p className="text-xs sm:text-sm text-slate-600 mt-1">
+              El Comité Científico de ARCCPCE evalúa proyectos académicos y publicaciones de toda Centroamérica y el Caribe.
+            </p>
+          </div>
+          <a
+            href="#afiliacion"
+            onClick={(e) => {
+              e.preventDefault();
+              const target = document.getElementById("afiliacion") || document.getElementById("contacto");
+              if (target) {
+                target.scrollIntoView({ behavior: "smooth" });
+              } else {
+                window.location.hash = "contacto";
+              }
+            }}
+            className="w-full sm:w-auto bg-[#002b7f] hover:bg-[#001d57] text-white font-bold text-xs sm:text-sm py-3 px-6 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 shrink-0 cursor-pointer"
+          >
+            <span>Postular investigación al Comité</span>
+            <ChevronRight className="w-4 h-4 text-sky-200" />
+          </a>
+        </div>
+      </div>
+
+      {/* Modal de Video Flotante Seguro */}
+      {activeVideoId && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 animate-in fade-in duration-200"
+          onClick={() => setActiveVideoId(null)}
+        >
+          <div
+            className="relative w-full max-w-4xl bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between p-4 border-b border-slate-200 bg-slate-50">
+              <span className="text-xs font-bold text-[#002b7f] uppercase tracking-wider flex items-center gap-2">
+                <Play className="w-4 h-4 fill-current text-[#002b7f]" /> Transmisión Oficial ARCCPCE / OPS
+              </span>
+              <button
+                onClick={() => setActiveVideoId(null)}
+                className="p-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-600 hover:text-slate-900 border border-slate-200 transition-colors"
+                aria-label="Cerrar reproductor"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="relative w-full aspect-video bg-black">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${activeVideoId}?autoplay=1&rel=0`}
+                title="Reproductor de Video Regional"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full border-0"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}

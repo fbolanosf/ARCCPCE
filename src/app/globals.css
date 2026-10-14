@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cr-blue: #002b7f;
+  --cr-blue-vibrant: #0284c7;
+  --cr-red: #ce1126;
+  --cr-gold: #c49a45;
+  --bg-fresh: #f8fafc;
+}
+
+body {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+/* Glassmorphism luminoso para cabecera */
+.glass-nav-light {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 4px 20px -2px rgba(0, 43, 127, 0.06);
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}

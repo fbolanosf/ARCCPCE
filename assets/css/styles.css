@@ -1,0 +1,133 @@
+/* ==========================================================================
+   ARCCPCE - Estilos Institucionales Oficiales
+   Paleta: Azul Sereno Centroamericano, Blanco Puro, Acento Rojo/Coral Costa Rica, Oro Cálido
+   Diseño: Moderno, Elegante, Luminoso, No Sombrío
+   ========================================================================== */
+
+:root {
+  --cr-blue: #002b7f;
+  --cr-blue-light: #1b4b9b;
+  --cr-sky: #0284c7;
+  --cr-red: #ce1126;
+  --cr-red-soft: #e53e3e;
+  --brand-gold: #c49a45;
+  --brand-gold-light: #fef9c3;
+  --teal-soft: #0d9488;
+  --bg-main: #f8fafc;
+  --card-bg: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --card-shadow: 0 4px 20px -2px rgba(0, 43, 127, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+  --card-hover-shadow: 0 16px 32px -4px rgba(0, 43, 127, 0.12), 0 6px 12px -2px rgba(0, 0, 0, 0.05);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Fondos Luminosos y Gradientes Modernos */
+.hero-light-gradient {
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(2, 132, 199, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(206, 17, 38, 0.07) 0%, transparent 40%),
+    radial-gradient(circle at 50% 10%, rgba(196, 154, 69, 0.1) 0%, transparent 50%),
+    linear-gradient(180deg, #f0f7ff 0%, #ffffff 60%, #f8fafc 100%);
+}
+
+.subtle-grid {
+  background-color: #ffffff;
+  background-image: radial-gradient(#cbd5e1 0.8px, transparent 0.8px);
+  background-size: 24px 24px;
+}
+
+/* Tarjetas */
+.feature-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--card-shadow);
+  border: 1px solid #e2e8f0;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-hover-shadow);
+  border-color: #bae6fd;
+}
+
+/* Glass Navbar */
+.glass-nav {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 2px 15px -3px rgba(0, 43, 127, 0.07);
+}
+
+/* Chips de banderas */
+.flag-chip-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  color: #1e293b;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.flag-chip-light:hover {
+  transform: translateY(-2px);
+  border-color: #0284c7;
+  color: #002b7f;
+  box-shadow: 0 4px 10px rgba(2, 132, 199, 0.15);
+}
+
+/* Insignia de dato duro incrustado */
+.stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.stat-pill-blue {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+}
+
+.stat-pill-amber {
+  background: #fef3c7;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+.stat-pill-red {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+.stat-pill-teal {
+  background: #ccfbf1;
+  color: #0f766e;
+  border: 1px solid #99f6e4;
+}
+
+/* Lightbox Modal */
+.modal-backdrop {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: rgba(15, 23, 42, 0.75);
+}
