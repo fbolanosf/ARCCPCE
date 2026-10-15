@@ -8,6 +8,7 @@ import DigitalPassportCard from "@/components/DigitalPassportCard";
 import MentorshipDirectory from "@/components/MentorshipDirectory";
 import RegionalNewsHub from "@/components/RegionalNewsHub";
 import TechnicalCommittees from "@/components/TechnicalCommittees";
+import FoundingMembers from "@/components/FoundingMembers";
 import {
   MapPin,
   Calendar,
@@ -155,7 +156,7 @@ export default function HomePage() {
             <a href="#acerca" className="hover:text-[#002b7f] transition-colors">Identidad</a>
             <a href="#mision-vision" className="hover:text-[#002b7f] transition-colors">Misión</a>
             <a href="#fines" className="hover:text-[#002b7f] transition-colors">Fines</a>
-            <a href="#mentoria" className="hover:text-[#002b7f] transition-colors">Mentoría</a>
+            <a href="#socios-fundadores" className="hover:text-[#002b7f] transition-colors">Fundadores</a>
             <a href="#galeria" className="hover:text-[#002b7f] transition-colors">Galería</a>
             <a href="#alianzas" className="hover:text-[#002b7f] transition-colors">Alianzas</a>
           </nav>
@@ -178,7 +179,7 @@ export default function HomePage() {
             <a href="#acerca" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 font-semibold">Identidad Institucional</a>
             <a href="#mision-vision" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 font-semibold">Misión y Visión</a>
             <a href="#fines" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 font-semibold">Fines Estatutarios</a>
-            <a href="#mentoria" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 font-semibold">Red de Mentoría</a>
+            <a href="#socios-fundadores" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 font-semibold">Socios Fundadores</a>
             <a href="#galeria" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 font-semibold">Galería Solemne</a>
             <a href="#alianzas" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 font-semibold">Vínculos Regionales</a>
             <a href="#contacto" onClick={() => setMobileMenuOpen(false)} className="block text-center mt-3 bg-[#002b7f] text-white font-bold py-2.5 rounded-xl shadow">Afíliate Ahora</a>
@@ -683,8 +684,9 @@ export default function HomePage() {
       {/* ==================== CENTRO DE INTELIGENCIA Y ACTUALIDAD SANITARIA ==================== */}
       <RegionalNewsHub />
 
-      {/* ==================== IDEA C: RED DE MENTORÍA ==================== */}
-      <MentorshipDirectory />
+      {/* ==================== SOCIOS FUNDADORES OFICIALES (19 DE MARZO DE 2026) ==================== */}
+      <div id="mentoria" className="scroll-mt-24" />
+      <FoundingMembers />
 
       {/* ==================== COMITÉS TÉCNICOS REGIONALES ==================== */}
       <TechnicalCommittees />
