@@ -1,0 +1,5 @@
+# Robots.txt oficial para ARCCPCE
+User-agent: *
+Allow: /
+
+Sitemap: https://arccpce.pages.dev/sitemap.xml

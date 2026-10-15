@@ -11,6 +11,7 @@ import FoundingMembers from "@/components/FoundingMembers";
 import BoardOfDirectors from "@/components/BoardOfDirectors";
 import ExpertCouncils from "@/components/ExpertCouncils";
 import ClinicalCareStation from "@/components/ClinicalCareStation";
+import SharePortalCard from "@/components/SharePortalCard";
 import { generateMembershipCertificate, MembershipCertificateData } from "@/utils/generateMembershipCertificate";
 import {
   MapPin,
@@ -1109,6 +1110,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ==================== CÓDIGO QR Y DIFUSIÓN REGIONAL DEL PORTAL ==================== */}
+      <SharePortalCard />
+
       {/* ==================== FOOTER (AZUL PATRIO ELEGANTE) ==================== */}
       <footer className="bg-[#001d57] text-slate-300 pt-16 pb-12 border-t-4 border-[#ce1126]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-xs">
@@ -1129,10 +1133,12 @@ export default function HomePage() {
               <span className="font-bold uppercase tracking-wider text-white">Navegación</span>
               <ul className="space-y-1">
                 <li><a href="#observatorio" className="hover:text-[#eab308]">Micro-Observatorio</a></li>
+                <li><a href="#estacion-clinica" className="hover:text-[#eab308]">Herramientas Clínicas</a></li>
                 <li><a href="#junta-directiva" className="hover:text-[#eab308]">Mesa Directiva</a></li>
                 <li><a href="#socios-fundadores" className="hover:text-[#eab308]">Socios Fundadores</a></li>
+                <li><a href="#consejo-expertos" className="hover:text-[#eab308]">Consejos de Expertos</a></li>
                 <li><a href="#comites" className="hover:text-[#eab308]">Comités Técnicos</a></li>
-                <li><a href="#fines" className="hover:text-[#eab308]">Fines Estatutarios</a></li>
+                <li><a href="#compartir" className="hover:text-[#eab308]">Código QR & Compartir</a></li>
                 <li><a href="#contacto" className="hover:text-[#eab308]">Afiliación & Contacto</a></li>
               </ul>
             </div>
