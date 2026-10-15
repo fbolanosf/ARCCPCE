@@ -53,7 +53,7 @@ async function getLogoDataUrl(): Promise<string | null> {
 }
 
 // Dibujado vectorial exacto de banderas centroamericanas y del Caribe (proporción 3:2)
-export function drawVectorFlag(doc: jsPDF, countryName: string, x: number, y: number, w: number = 15, h: number = 10): void {
+export function drawVectorFlag(doc: jsPDF, countryName: string, x: number, y: number, w: number = 14, h: number = 8.5): void {
   const norm = countryName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
 
   // Borde fino exterior para delimitar la bandera
@@ -70,7 +70,7 @@ export function drawVectorFlag(doc: jsPDF, countryName: string, x: number, y: nu
     doc.setFillColor(255, 255, 255); doc.rect(x, y + h1, w, h1, 'F');
     doc.setFillColor(206, 17, 38); doc.rect(x, y + h1 * 2, w, h1 * 2, 'F');
     doc.setFillColor(255, 255, 255); doc.rect(x, y + h1 * 4, w, h1 * 4, 'F');
-    doc.setFillColor(0, 43, 127); doc.rect(x, y + h1 * 5, w, h1 * 5, 'F');
+    doc.setFillColor(0, 43, 127); doc.rect(x, y + h1 * 5, w, h1, 'F');
   } else if (norm.includes('guatemala')) {
     // Azul celeste - Blanco - Azul celeste vertical
     const w1 = w / 3;
@@ -82,19 +82,19 @@ export function drawVectorFlag(doc: jsPDF, countryName: string, x: number, y: nu
     const h1 = h / 3;
     doc.setFillColor(15, 71, 175); doc.rect(x, y, w, h1, 'F');
     doc.setFillColor(255, 255, 255); doc.rect(x, y + h1, w, h1, 'F');
-    doc.setFillColor(15, 71, 175); doc.rect(x, y + h1 * 2, w, h1 * 2, 'F');
+    doc.setFillColor(15, 71, 175); doc.rect(x, y + h1 * 2, w, h1, 'F');
   } else if (norm.includes('honduras')) {
     // Azul turquesa - Blanco - Azul turquesa
     const h1 = h / 3;
     doc.setFillColor(0, 115, 207); doc.rect(x, y, w, h1, 'F');
     doc.setFillColor(255, 255, 255); doc.rect(x, y + h1, w, h1, 'F');
-    doc.setFillColor(0, 115, 207); doc.rect(x, y + h1 * 2, w, h1 * 2, 'F');
+    doc.setFillColor(0, 115, 207); doc.rect(x, y + h1 * 2, w, h1, 'F');
   } else if (norm.includes('nicaragua')) {
     // Azul - Blanco - Azul horizontal
     const h1 = h / 3;
     doc.setFillColor(0, 103, 197); doc.rect(x, y, w, h1, 'F');
     doc.setFillColor(255, 255, 255); doc.rect(x, y + h1, w, h1, 'F');
-    doc.setFillColor(0, 103, 197); doc.rect(x, y + h1 * 2, w, h1 * 2, 'F');
+    doc.setFillColor(0, 103, 197); doc.rect(x, y + h1 * 2, w, h1, 'F');
   } else if (norm.includes('panama')) {
     // Cuadrantes: Blanco con estrella / Rojo / Azul / Blanco con estrella
     const wHalf = w / 2;
@@ -110,7 +110,7 @@ export function drawVectorFlag(doc: jsPDF, countryName: string, x: number, y: nu
     doc.setFillColor(0, 45, 98); doc.rect(x, y, wHalf, hHalf, 'F');
     doc.setFillColor(206, 17, 38); doc.rect(x + wHalf, y, wHalf, hHalf, 'F');
     doc.setFillColor(206, 17, 38); doc.rect(x, y + hHalf, wHalf, hHalf, 'F');
-    doc.setFillColor(0, 45, 98); doc.rect(x + wHalf, y, wHalf, hHalf, 'F');
+    doc.setFillColor(0, 45, 98); doc.rect(x + wHalf, y + hHalf, wHalf, hHalf, 'F');
     // Cruz blanca central
     doc.setFillColor(255, 255, 255);
     doc.rect(x + wHalf - 1, y, 2, h, 'F');
@@ -174,30 +174,31 @@ export async function createCertificateDoc(data: MembershipCertificateData): Pro
   doc.rect(13, 13, pageWidth - 26, pageHeight - 26);
 
   // ==========================================
-  // 2. LOGOTIPO INSTITUCIONAL PROTAGÓNICO Y MÁS GRANDE
-  // Ancho: 42 mm x Alto: 35.9 mm (proporción nativa de 1670x1428)
-  // Posición: Y = 15 mm a Y = 50.9 mm
+  // 2. LOGOTIPO INSTITUCIONAL PROTAGÓNICO Y CENTRADO
+  // Dimensiones: 38.6 mm x 33 mm (proporción nativa de 1670x1428)
+  // Posición: Y = 15.0 mm a Y = 48.0 mm
   // ==========================================
-  let logoBottomY = 15;
+  let logoBottomY = 15.0;
 
   if (logoDataUrl) {
-    const logoW = 42;
-    const logoH = 35.9;
-    const logoY = 15;
+    const logoW = 38.6;
+    const logoH = 33.0;
+    const logoY = 15.0;
     doc.addImage(logoDataUrl, 'JPEG', pageWidth / 2 - logoW / 2, logoY, logoW, logoH);
-    logoBottomY = logoY + logoH; // 50.9 mm
+    logoBottomY = logoY + logoH; // 48.0 mm
   } else {
-    logoBottomY = 22;
+    logoBottomY = 22.0;
   }
 
   // ==========================================
-  // 3. CUERPO CENTRAL (EQUIDISTANCIA MATEMÁTICA EXACTA)
-  // Espacio libre entre el logo (50.9 mm) y el pie (177 mm) = 126.1 mm.
-  // Altura del bloque central = 94.1 mm.
-  // Margen superior e inferior idénticos = 16 mm.
-  // Punto de inicio superior: headerStartY = 70.0 mm.
+  // 3. CUERPO CENTRAL (EQUIDISTANCIA Y SEPARACIÓN ÓPTIMA)
+  // Espacio libre entre logoBottomY (48 mm) y pie (qrTopY = 177 mm) = 129 mm.
+  // Altura del bloque central completo = 96 mm.
+  // Margen superior e inferior idénticos = 16.5 mm.
+  // Punto inicial: headerStartY = 67.5 mm.
+  // Base de la tarjeta de folio: boxBottom = 160.5 mm (16.5 mm exactos al pie).
   // ==========================================
-  const headerStartY = 70.0;
+  const headerStartY = 67.5;
 
   // A. Encabezado de la Asociación
   doc.setFont('helvetica', 'bold');
@@ -213,7 +214,7 @@ export async function createCertificateDoc(data: MembershipCertificateData): Pro
   doc.text(
     'DE PROFESIONALES DE LA CIENCIA ENFERMERÍA (ARCCPCE)',
     pageWidth / 2,
-    headerStartY + 5.2,
+    headerStartY + 5.0,
     { align: 'center' }
   );
 
@@ -223,16 +224,16 @@ export async function createCertificateDoc(data: MembershipCertificateData): Pro
   doc.text(
     'Personería Jurídica Civil • Sede Central Regional: San José, Costa Rica • Registro de Acreditación Gremial',
     pageWidth / 2,
-    headerStartY + 10.2,
+    headerStartY + 9.5,
     { align: 'center' }
   );
 
   doc.setDrawColor(203, 213, 225);
   doc.setLineWidth(0.3);
-  doc.line(35, headerStartY + 13.5, pageWidth - 35, headerStartY + 13.5);
+  doc.line(35, headerStartY + 12.5, pageWidth - 35, headerStartY + 12.5);
 
   // B. Título del Documento
-  const titleY = headerStartY + 20;
+  const titleY = headerStartY + 18.5;
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(14.5);
   doc.setTextColor(5, 150, 105); // Verde esmeralda noble
@@ -244,12 +245,12 @@ export async function createCertificateDoc(data: MembershipCertificateData): Pro
   doc.text(
     'Padrón Regional para la Homologación, Movilidad Transfronteriza y Desarrollo Científico',
     pageWidth / 2,
-    titleY + 5,
+    titleY + 4.5,
     { align: 'center' }
   );
 
-  // C. Certificación y Nombre
-  const bodyY = titleY + 12.5;
+  // C. Certificación y Nombre del Profesional
+  const bodyY = titleY + 11.5;
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(9.5);
   doc.setTextColor(51, 65, 85);
@@ -260,7 +261,7 @@ export async function createCertificateDoc(data: MembershipCertificateData): Pro
     { align: 'center' }
   );
 
-  const nameY = bodyY + 10.5;
+  const nameY = bodyY + 9.5;
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(18);
   doc.setTextColor(15, 43, 92);
@@ -271,7 +272,7 @@ export async function createCertificateDoc(data: MembershipCertificateData): Pro
   doc.setLineWidth(0.4);
   doc.line(pageWidth / 2 - nameWidth / 2, nameY + 2, pageWidth / 2 + nameWidth / 2, nameY + 2);
 
-  const descY = nameY + 8.5;
+  const descY = nameY + 8.0;
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(9.2);
   doc.setTextColor(51, 65, 85);
@@ -288,11 +289,11 @@ export async function createCertificateDoc(data: MembershipCertificateData): Pro
     { align: 'center' }
   );
 
-  // D. Sección de Banderas Vectoriales
-  const flagY = descY + 9;
+  // D. Sección de Banderas y Nombre del País (Con separación limpia y sin encimarse)
+  const flagY = descY + 8.5;
   const countries = data.country.split(/[,/-]/).map(c => c.trim()).filter(Boolean);
-  const flagWidth = 13;
-  const flagHeight = 8.6;
+  const flagWidth = 14;
+  const flagHeight = 8.5;
   const spacing = 4;
   const totalFlagsWidth = countries.length * flagWidth + (countries.length - 1) * spacing;
   let currentFlagX = (pageWidth / 2) - (totalFlagsWidth / 2);
@@ -302,13 +303,14 @@ export async function createCertificateDoc(data: MembershipCertificateData): Pro
     currentFlagX += flagWidth + spacing;
   });
 
+  const countryTextY = flagY + flagHeight + 4.5;
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(8.5);
   doc.setTextColor(15, 43, 92);
-  doc.text(data.country, pageWidth / 2, flagY + flagHeight + 4.5, { align: 'center' });
+  doc.text(data.country, pageWidth / 2, countryTextY, { align: 'center' });
 
-  // E. Recuadro de Seguridad y Folio Regional
-  const boxY = flagY + flagHeight + 8;
+  // E. Recuadro de Seguridad y Folio Regional (Comienza claramente 5.5 mm abajo del texto del país)
+  const boxY = countryTextY + 5.5;
   const boxWidth = 138;
   const boxHeight = 14;
   doc.setFillColor(248, 250, 252);
