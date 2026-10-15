@@ -138,13 +138,6 @@ const REGIONAL_NODES: Record<string, HubCountry> = {
         email: "costarica@arccpce.org",
       },
       {
-        name: "Marlene de los Ángeles Agüero Arce",
-        role: "Socia Fundadora",
-        specialty: "Firmante de Acta Constitutiva",
-        institution: "Asamblea Constitutiva ARCCPCE",
-        email: "costarica@arccpce.org",
-      },
-      {
         name: "Alejandra Trejos Chacón",
         role: "Socia Fundadora",
         specialty: "Firmante de Acta Constitutiva",
@@ -160,13 +153,6 @@ const REGIONAL_NODES: Record<string, HubCountry> = {
       },
       {
         name: "Carmen María Loaiza Madriz",
-        role: "Socia Fundadora",
-        specialty: "Firmante de Acta Constitutiva",
-        institution: "Asamblea Constitutiva ARCCPCE",
-        email: "costarica@arccpce.org",
-      },
-      {
-        name: "Fulvia Elizondo Saborío",
         role: "Socia Fundadora",
         specialty: "Firmante de Acta Constitutiva",
         institution: "Asamblea Constitutiva ARCCPCE",
