@@ -37,7 +37,7 @@ const DEFAULT_NEWS: NewsItem[] = [
     id: "fb-2",
     title: "Discurso Presidencial: Visibilizar la Ciencia Enfermera en la Toma de Decisiones",
     summary:
-      "Publicación íntegra de las palabras del Dr. José Eduardo Carvajal Ovando destacando la urgencia de incidir en las políticas públicas de salud y defender la autonomía profesional de las enfermeras y enfermeros.",
+      "Publicación íntegra de las palabras del Dr. José Eduardo Carvajal Obando destacando la urgencia de incidir en las políticas públicas de salud y defender la autonomía profesional de las enfermeras y enfermeros.",
     category: "facebook",
     sourceName: "Página Oficial de Facebook ARCCPCE",
     url: "https://www.facebook.com/profile.php?id=61576498572279",

@@ -10,7 +10,7 @@ interface FoundingMember {
 }
 
 const FOUNDING_MEMBERS: FoundingMember[] = [
-  { name: "Dr. José Eduardo Carvajal Obando", role: "Presidente Fundacional", distinction: "Convocante & Ponente Inaugural" },
+  { name: "Dr. José Eduardo Carvajal Obando", role: "Presidente de la Junta Directiva (2026-2028)", distinction: "Presidente Fundacional • Convocante & Ponente Inaugural" },
   { name: "Dra. Marlen Calvo Solano", role: "Socia Fundadora", distinction: "Palabras de Clausura Oficial" },
   { name: "Lic. Álvaro Sánchez", role: "Socio Fundador", distinction: "Lectura del Acta de Constitución" },
   { name: "Teresita Mayela García Browne", role: "Socia Fundadora" },

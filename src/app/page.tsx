@@ -40,7 +40,7 @@ import {
 
 const GALLERY_IMAGES = [
   { src: "/assets/images/asamblea-general.jpeg", title: "Asamblea General Constitutiva", tag: "Instalación" },
-  { src: "/assets/images/mesa-directiva.jpeg", title: "Mesa Directiva y Presidencia", tag: "Gobernanza" },
+  { src: "/assets/images/junta-directiva-2026-2028.jpeg", title: "Junta Directiva Oficial (2026-2028)", tag: "Gobernanza" },
   { src: "/assets/images/mesa-honor-universidad-latina.jpeg", title: "Mesa de Honor y Autoridades Académicas", tag: "Protocolo" },
   { src: "/assets/images/firma-acta-constitutiva.jpeg", title: "Firma Solemne del Acta Constitutiva", tag: "Fundación" },
   { src: "/assets/images/lectura-estatutos-fundacion.jpeg", title: "Lectura y Aprobación de Estatutos (Ley 218)", tag: "Estatutos" },
@@ -504,15 +504,23 @@ export default function HomePage() {
                     />
                   </div>
                   <div className="p-4 bg-white border-t border-slate-100 text-center">
-                    <span className="text-xs font-black uppercase tracking-wider text-[#ce1126] block">
-                      Presidencia Fundacional
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 text-[#ce1126] border border-rose-200 text-[11px] font-extrabold uppercase tracking-wider mb-2">
+                      <Award className="w-3.5 h-3.5" /> Junta Directiva 2026-2028
+                    </div>
+                    <span className="text-xs font-black uppercase tracking-wider text-[#002b7f] block">
+                      Presidente
                     </span>
-                    <h3 className="text-lg font-extrabold text-[#002b7f] mt-1">
-                      Dr. José Eduardo Carvajal Ovando
+                    <h3 className="text-lg font-extrabold text-slate-900 mt-1">
+                      Dr. José Eduardo Carvajal Obando
                     </h3>
                     <p className="text-xs text-slate-600 font-semibold mt-1">
-                      Presidente de la Asociación Regional Centroamericana y Caribe de Profesionales de la Ciencia Enfermería (ARCCPCE)
+                      Presidente de la Junta Directiva (2026-2028) • Asociación Regional Centroamericana y Caribe de Profesionales de la Ciencia Enfermería (ARCCPCE)
                     </p>
+                    <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-center gap-2 text-[11px] text-slate-500 font-medium">
+                      <span>Período Estatutario: <strong>2026 – 2028</strong></span>
+                      <span>•</span>
+                      <span>Sede San José, Costa Rica</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -558,7 +566,7 @@ export default function HomePage() {
                         </span>
                         <span className="text-slate-400 text-xs">•</span>
                         <span className="text-xs text-slate-600 font-medium">
-                          Dr. José Eduardo Carvajal Ovando
+                          Dr. José Eduardo Carvajal Obando
                         </span>
                       </div>
                     </div>

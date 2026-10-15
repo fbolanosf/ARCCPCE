@@ -54,7 +54,7 @@ const REGIONAL_NODES: Record<string, HubCountry> = {
     primaryStrategicFocus: "Gobernanza regional, armonización de competencias clínicas y secretaría permanente.",
     leaders: [
       {
-        name: "Dr. José Eduardo Carvajal Ovando",
+        name: "Dr. José Eduardo Carvajal Obando",
         role: "Presidente Regional ARCCPCE",
         specialty: "Gestión Hospitalaria & Bioética Clínica",
         institution: "Consejo Regional ARCCPCE • San José",

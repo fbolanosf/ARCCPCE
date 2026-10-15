@@ -51,7 +51,7 @@ const REGIONAL_DELEGATIONS: CountryDelegationData[] = [
     isHeadquarters: true,
     status: "Sede Central Fundacional",
     coordinator: {
-      name: "Dr. José Eduardo Carvajal Ovando",
+      name: "Dr. José Eduardo Carvajal Obando",
       title: "Presidente Regional & Coordinador Fundacional",
       committee: "Presidencia Fundacional & Secretaría General",
       institution: "Consejo Regional ARCCPCE • San José",
