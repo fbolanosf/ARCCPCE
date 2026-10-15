@@ -110,7 +110,7 @@ export function drawVectorFlag(doc: jsPDF, countryName: string, x: number, y: nu
     doc.setFillColor(0, 45, 98); doc.rect(x, y, wHalf, hHalf, 'F');
     doc.setFillColor(206, 17, 38); doc.rect(x + wHalf, y, wHalf, hHalf, 'F');
     doc.setFillColor(206, 17, 38); doc.rect(x, y + hHalf, wHalf, hHalf, 'F');
-    doc.setFillColor(0, 45, 98); doc.rect(x + wHalf, y + hHalf, wHalf, hHalf, 'F');
+    doc.setFillColor(0, 45, 98); doc.rect(x + wHalf, y, wHalf, hHalf, 'F');
     // Cruz blanca central
     doc.setFillColor(255, 255, 255);
     doc.rect(x + wHalf - 1, y, 2, h, 'F');
@@ -139,7 +139,7 @@ export async function createCertificateDoc(data: MembershipCertificateData): Pro
     year: 'numeric'
   });
 
-  // URL dinámica de validación: en producción apunta a arccpce.pages.dev o dominio actual
+  // URL dinámica de validación
   let origin = 'https://arccpce.pages.dev';
   if (typeof window !== 'undefined' && window.location.origin) {
     origin = window.location.origin;
@@ -174,26 +174,30 @@ export async function createCertificateDoc(data: MembershipCertificateData): Pro
   doc.rect(13, 13, pageWidth - 26, pageHeight - 26);
 
   // ==========================================
-  // 2. LOGOTIPO INSTITUCIONAL (PROTAGÓNICO Y GRANDE)
-  // Tamaño ampliado: Ancho 33 mm x Alto 28.2 mm (relación de aspecto exacta)
-  // Posición: Y = 15.5 mm a Y = 43.7 mm
+  // 2. LOGOTIPO INSTITUCIONAL PROTAGÓNICO Y MÁS GRANDE
+  // Ancho: 42 mm x Alto: 35.9 mm (proporción nativa de 1670x1428)
+  // Posición: Y = 15 mm a Y = 50.9 mm
   // ==========================================
-  let logoBottomY = 15.5;
+  let logoBottomY = 15;
 
   if (logoDataUrl) {
-    const logoW = 33;
-    const logoH = 28.2;
-    const logoY = 15.5;
+    const logoW = 42;
+    const logoH = 35.9;
+    const logoY = 15;
     doc.addImage(logoDataUrl, 'JPEG', pageWidth / 2 - logoW / 2, logoY, logoW, logoH);
-    logoBottomY = logoY + logoH; // 43.7 mm
+    logoBottomY = logoY + logoH; // 50.9 mm
   } else {
     logoBottomY = 22;
   }
 
   // ==========================================
-  // CUERPO CENTRAL (EQUIDISTANTE)
+  // 3. CUERPO CENTRAL (EQUIDISTANCIA MATEMÁTICA EXACTA)
+  // Espacio libre entre el logo (50.9 mm) y el pie (177 mm) = 126.1 mm.
+  // Altura del bloque central = 94.1 mm.
+  // Margen superior e inferior idénticos = 16 mm.
+  // Punto de inicio superior: headerStartY = 70.0 mm.
   // ==========================================
-  const headerStartY = logoBottomY + 11.5; // Y = 55.2 mm
+  const headerStartY = 70.0;
 
   // A. Encabezado de la Asociación
   doc.setFont('helvetica', 'bold');
@@ -209,7 +213,7 @@ export async function createCertificateDoc(data: MembershipCertificateData): Pro
   doc.text(
     'DE PROFESIONALES DE LA CIENCIA ENFERMERÍA (ARCCPCE)',
     pageWidth / 2,
-    headerStartY + 4.8,
+    headerStartY + 5.2,
     { align: 'center' }
   );
 
@@ -219,16 +223,16 @@ export async function createCertificateDoc(data: MembershipCertificateData): Pro
   doc.text(
     'Personería Jurídica Civil • Sede Central Regional: San José, Costa Rica • Registro de Acreditación Gremial',
     pageWidth / 2,
-    headerStartY + 9.5,
+    headerStartY + 10.2,
     { align: 'center' }
   );
 
   doc.setDrawColor(203, 213, 225);
   doc.setLineWidth(0.3);
-  doc.line(35, headerStartY + 12.5, pageWidth - 35, headerStartY + 12.5);
+  doc.line(35, headerStartY + 13.5, pageWidth - 35, headerStartY + 13.5);
 
   // B. Título del Documento
-  const titleY = headerStartY + 18.5;
+  const titleY = headerStartY + 20;
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(14.5);
   doc.setTextColor(5, 150, 105); // Verde esmeralda noble
@@ -240,12 +244,12 @@ export async function createCertificateDoc(data: MembershipCertificateData): Pro
   doc.text(
     'Padrón Regional para la Homologación, Movilidad Transfronteriza y Desarrollo Científico',
     pageWidth / 2,
-    titleY + 4.5,
+    titleY + 5,
     { align: 'center' }
   );
 
   // C. Certificación y Nombre
-  const bodyY = titleY + 11;
+  const bodyY = titleY + 12.5;
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(9.5);
   doc.setTextColor(51, 65, 85);
@@ -256,7 +260,7 @@ export async function createCertificateDoc(data: MembershipCertificateData): Pro
     { align: 'center' }
   );
 
-  const nameY = bodyY + 9;
+  const nameY = bodyY + 10.5;
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(18);
   doc.setTextColor(15, 43, 92);
@@ -267,7 +271,7 @@ export async function createCertificateDoc(data: MembershipCertificateData): Pro
   doc.setLineWidth(0.4);
   doc.line(pageWidth / 2 - nameWidth / 2, nameY + 2, pageWidth / 2 + nameWidth / 2, nameY + 2);
 
-  const descY = nameY + 7.5;
+  const descY = nameY + 8.5;
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(9.2);
   doc.setTextColor(51, 65, 85);
@@ -280,12 +284,12 @@ export async function createCertificateDoc(data: MembershipCertificateData): Pro
   doc.text(
     `adscrito(a) formalmente para fines de homologación y ejercicio multilateral en:`,
     pageWidth / 2,
-    descY + 4.5,
+    descY + 4.8,
     { align: 'center' }
   );
 
   // D. Sección de Banderas Vectoriales
-  const flagY = descY + 7.8;
+  const flagY = descY + 9;
   const countries = data.country.split(/[,/-]/).map(c => c.trim()).filter(Boolean);
   const flagWidth = 13;
   const flagHeight = 8.6;
@@ -301,10 +305,10 @@ export async function createCertificateDoc(data: MembershipCertificateData): Pro
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(8.5);
   doc.setTextColor(15, 43, 92);
-  doc.text(data.country, pageWidth / 2, flagY + flagHeight + 4.2, { align: 'center' });
+  doc.text(data.country, pageWidth / 2, flagY + flagHeight + 4.5, { align: 'center' });
 
   // E. Recuadro de Seguridad y Folio Regional
-  const boxY = flagY + flagHeight + 6.8;
+  const boxY = flagY + flagHeight + 8;
   const boxWidth = 138;
   const boxHeight = 14;
   doc.setFillColor(248, 250, 252);
@@ -327,7 +331,7 @@ export async function createCertificateDoc(data: MembershipCertificateData): Pro
   );
 
   // ==========================================
-  // 3. PIE AL RAS DEL MARCO (SIN SOBREPONERSE): QR, BLOCKCHAIN Y FIRMA
+  // 4. PIE AL RAS DEL MARCO (SIN SOBREPONERSE): QR, BLOCKCHAIN Y FIRMA
   // ==========================================
   const qrTopY = 177;
   const qrSize = 23;
