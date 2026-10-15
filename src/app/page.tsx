@@ -9,6 +9,7 @@ import MentorshipDirectory from "@/components/MentorshipDirectory";
 import RegionalNewsHub from "@/components/RegionalNewsHub";
 import TechnicalCommittees from "@/components/TechnicalCommittees";
 import FoundingMembers from "@/components/FoundingMembers";
+import BoardOfDirectors from "@/components/BoardOfDirectors";
 import {
   MapPin,
   Calendar,
@@ -165,6 +166,7 @@ export default function HomePage() {
             <a href="#acerca" className="hover:text-[#002b7f] transition-colors">Identidad</a>
             <a href="#mision-vision" className="hover:text-[#002b7f] transition-colors">Misión</a>
             <a href="#fines" className="hover:text-[#002b7f] transition-colors">Fines</a>
+            <a href="#junta-directiva" className="hover:text-[#002b7f] transition-colors">Directiva</a>
             <a href="#socios-fundadores" className="hover:text-[#002b7f] transition-colors">Fundadores</a>
             <a href="#galeria" className="hover:text-[#002b7f] transition-colors">Galería</a>
             <a href="#alianzas" className="hover:text-[#002b7f] transition-colors">Alianzas</a>
@@ -188,6 +190,7 @@ export default function HomePage() {
             <a href="#acerca" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 font-semibold">Identidad Institucional</a>
             <a href="#mision-vision" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 font-semibold">Misión y Visión</a>
             <a href="#fines" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 font-semibold">Fines Estatutarios</a>
+            <a href="#junta-directiva" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-[#002b7f] hover:bg-sky-50 font-bold">Mesa Directiva (2026-2028)</a>
             <a href="#socios-fundadores" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 font-semibold">Socios Fundadores</a>
             <a href="#galeria" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 font-semibold">Galería Solemne</a>
             <a href="#alianzas" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 font-semibold">Vínculos Regionales</a>
@@ -700,6 +703,9 @@ export default function HomePage() {
 
       {/* ==================== CENTRO DE INTELIGENCIA Y ACTUALIDAD SANITARIA ==================== */}
       <RegionalNewsHub />
+
+      {/* ==================== MESA DIRECTIVA OFICIAL 2026-2028 ==================== */}
+      <BoardOfDirectors />
 
       {/* ==================== SOCIOS FUNDADORES OFICIALES (19 DE MARZO DE 2026) ==================== */}
       <div id="mentoria" className="scroll-mt-24" />
