@@ -41,10 +41,19 @@ import {
 const GALLERY_IMAGES = [
   { src: "/assets/images/asamblea-general.jpeg", title: "Asamblea General Constitutiva", tag: "Instalación" },
   { src: "/assets/images/mesa-directiva.jpeg", title: "Mesa Directiva y Presidencia", tag: "Gobernanza" },
-  { src: "/assets/images/delegaciones-regionales.jpeg", title: "Acreditaciones Regionales", tag: "Integración" },
-  { src: "/assets/images/juramentacion.jpeg", title: "Juramentación de la Directiva", tag: "Solemne" },
-  { src: "/assets/images/estandarte-banderas.jpeg", title: "Estandarte y Banderas", tag: "Símbolos" },
-  { src: "/assets/images/equipo-clinico.jpeg", title: "Sesión Técnica y Clínica", tag: "Gestión" },
+  { src: "/assets/images/mesa-honor-universidad-latina.jpeg", title: "Mesa de Honor y Autoridades Académicas", tag: "Protocolo" },
+  { src: "/assets/images/firma-acta-constitutiva.jpeg", title: "Firma Solemne del Acta Constitutiva", tag: "Fundación" },
+  { src: "/assets/images/lectura-estatutos-fundacion.jpeg", title: "Lectura y Aprobación de Estatutos (Ley 218)", tag: "Estatutos" },
+  { src: "/assets/images/juramentacion.jpeg", title: "Juramentación de la Junta Directiva", tag: "Solemne" },
+  { src: "/assets/images/compromiso-etico-juramento.jpeg", title: "Compromiso Ético y Deontológico", tag: "Ética" },
+  { src: "/assets/images/delegaciones-regionales.jpeg", title: "Delegaciones y Acreditaciones Regionales", tag: "Integración" },
+  { src: "/assets/images/sesion-plenaria-asamblea.jpeg", title: "Sesión Plenaria y Votación Unánime", tag: "Plenaria" },
+  { src: "/assets/images/estrado-asamblea-fundacional.jpeg", title: "Estrado Principal y Convocatoria Regional", tag: "Gobernanza" },
+  { src: "/assets/images/miembros-fundadores-reunion.jpeg", title: "Encuentro de Socios Fundadores", tag: "Fraternidad" },
+  { src: "/assets/images/foto-oficial-asamblea-constitutiva.jpeg", title: "Fotografía Oficial Conmemorativa", tag: "Histórica" },
+  { src: "/assets/images/clausura-confraternidad-gremial.jpeg", title: "Clausura y Confraternidad Panamericana", tag: "Clausura" },
+  { src: "/assets/images/estandarte-banderas.jpeg", title: "Estandarte Institucional y Pabellones", tag: "Símbolos" },
+  { src: "/assets/images/equipo-clinico.jpeg", title: "Comisiones de Trabajo Científico", tag: "Ciencia" },
 ];
 
 export default function HomePage() {

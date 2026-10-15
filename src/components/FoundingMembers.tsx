@@ -59,14 +59,42 @@ export default function FoundingMembers() {
           </div>
         </div>
 
-        {/* Cita Solemne del Acta */}
-        <div className="mb-12 max-w-4xl mx-auto p-6 rounded-2xl bg-white border-l-4 border-[#002b7f] border-y border-r border-slate-200 shadow-sm text-center sm:text-left">
-          <p className="text-xs sm:text-sm text-slate-700 font-medium italic leading-relaxed">
-            "Promover y defender el acceso universal a la salud y la seguridad social en todos los países miembros de la Región, abogando por políticas públicas que garanticen servicios de salud de calidad y equitativos para la población, especialmente en comunidades vulnerables."
-          </p>
-          <span className="block text-[11px] font-bold text-[#002b7f] uppercase tracking-wider mt-2.5 not-italic">
-            — Compromiso Fundacional • Ley de Asociaciones N° 218
-          </span>
+        {/* Registro Fotográfico del Acta Fundacional y Sesión Solemne */}
+        <div className="mb-12 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 items-center bg-white p-4 sm:p-6 rounded-3xl border border-slate-200 shadow-sm">
+          <div className="md:col-span-5 relative h-72 sm:h-80 rounded-2xl overflow-hidden border border-slate-200/80 shadow-inner bg-slate-100 group">
+            <img
+              src="/assets/images/firma-acta-constitutiva.jpeg"
+              alt="Acta Constitutiva y Firmas de los Socios Fundadores"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent flex items-end p-4">
+              <span className="text-white text-xs font-bold drop-shadow">
+                Acta Constitutiva Oficial • Universidad Latina de Costa Rica
+              </span>
+            </div>
+          </div>
+          <div className="md:col-span-7 space-y-4">
+            <div className="p-5 rounded-2xl bg-sky-50/60 border border-sky-100">
+              <p className="text-xs sm:text-sm text-slate-700 font-medium italic leading-relaxed">
+                "Promover y defender el acceso universal a la salud y la seguridad social en todos los países miembros de la Región, abogando por políticas públicas que garanticen servicios de salud de calidad y equitativos para la población, especialmente en comunidades vulnerables."
+              </p>
+              <span className="block text-[11px] font-bold text-[#002b7f] uppercase tracking-wider mt-2.5 not-italic">
+                — Compromiso Estatutario • Ley de Asociaciones N° 218 de Costa Rica
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-3 text-xs text-slate-600">
+              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+                <span className="block font-bold text-[#ce1126] uppercase text-[10px]">Convocatoria</span>
+                <p className="font-semibold text-slate-800 mt-0.5">Dr. José Eduardo Carvajal</p>
+                <p className="text-[11px] text-slate-500">Presidente Fundacional</p>
+              </div>
+              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+                <span className="block font-bold text-[#002b7f] uppercase text-[10px]">Clausura Solemne</span>
+                <p className="font-semibold text-slate-800 mt-0.5">Dra. Marlen Calvo Solano</p>
+                <p className="text-[11px] text-slate-500">Socia Fundadora</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Grid de Socios Fundadores */}
