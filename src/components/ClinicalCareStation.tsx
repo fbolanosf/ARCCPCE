@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import {
   Activity,
   Brain,
@@ -246,8 +247,33 @@ export default function ClinicalCareStation() {
           </button>
         </div>
 
-        {/* Workspace Central Amplio de Alta Definición */}
-        <div className="bg-white rounded-3xl border border-slate-200/90 shadow-xl shadow-slate-900/[0.03] p-6 sm:p-8 md:p-10 max-w-5xl mx-auto">
+        {/* Workspace Central Amplio de Alta Definición con Ilustración Isométrica Exterior */}
+        <div className="relative max-w-5xl mx-auto">
+          {/* Ilustración Isométrica de Enfermera Externa (ubicada por fuera de la ventana a la izquierda en pantallas grandes) */}
+          <div className="hidden xl:flex flex-col items-center absolute -left-72 2xl:-left-80 top-6 w-64 pointer-events-none z-10 select-none">
+            {/* Halo de luz suave difusa */}
+            <div className="absolute inset-0 bg-sky-200/35 rounded-full blur-2xl -z-10" />
+            <div className="relative w-60 h-72">
+              <Image
+                src="/assets/illustrations/iso_nurse_medication.png"
+                alt="Enfermera profesional administrando y calibrando perfusión clínica intravenosa"
+                fill
+                sizes="240px"
+                className="object-contain filter drop-shadow-[0_12px_24px_rgba(0,43,127,0.14)]"
+                priority
+              />
+            </div>
+            <div className="mt-1 bg-white/95 backdrop-blur-xs px-3.5 py-1.5 rounded-full border border-sky-100 shadow-sm text-center">
+              <span className="text-[10px] font-bold text-[#002b7f] tracking-wide block">
+                Seguridad & Dosificación
+              </span>
+              <span className="text-[9px] text-slate-500 block leading-tight">
+                Protocolo Internacional ARCCPCE
+              </span>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-3xl border border-slate-200/90 shadow-xl shadow-slate-900/[0.03] p-6 sm:p-8 md:p-10">
           {/* ========================================================
               TAB 1: INFUSIÓN Y VELOCIDAD DE GOTEO
              ======================================================== */}
@@ -915,6 +941,7 @@ export default function ClinicalCareStation() {
               </div>
             </div>
           )}
+          </div>
         </div>
 
         {/* Banner de Vinculación Académica y Gremial */}
