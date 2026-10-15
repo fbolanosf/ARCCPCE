@@ -10,6 +10,7 @@ import TechnicalCommittees from "@/components/TechnicalCommittees";
 import FoundingMembers from "@/components/FoundingMembers";
 import BoardOfDirectors from "@/components/BoardOfDirectors";
 import ClinicalCareStation from "@/components/ClinicalCareStation";
+import { generateMembershipCertificate, MembershipCertificateData } from "@/utils/generateMembershipCertificate";
 import {
   MapPin,
   Calendar,
@@ -37,6 +38,7 @@ import {
   Award,
   ChevronLeft,
   ChevronRight,
+  FileDown,
 } from "lucide-react";
 
 const GALLERY_IMAGES = [
@@ -62,6 +64,7 @@ export default function HomePage() {
   const [selectedGalleryIndex, setSelectedGalleryIndex] = useState<number | null>(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [registeredFolio, setRegisteredFolio] = useState<string | null>(null);
+  const [lastSubmissionData, setLastSubmissionData] = useState<MembershipCertificateData | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const ribbonScrollRef = useRef<HTMLDivElement>(null);
 
@@ -88,6 +91,19 @@ export default function HomePage() {
     const specialty = (formData.get("specialty") as string) || (form.querySelector('#specialtyInput') as HTMLInputElement)?.value || "";
     const motivation = (formData.get("motivation") as string) || (form.querySelector('#messageInput') as HTMLTextAreaElement)?.value || "";
 
+    const countryNameMap: Record<string, string> = {
+      CR: "Costa Rica",
+      GT: "Guatemala",
+      SV: "El Salvador",
+      HN: "Honduras",
+      NI: "Nicaragua",
+      PA: "Panamá",
+      CAR: "República Dominicana / Caribe",
+    };
+    const countryLabel = countryNameMap[country] || country;
+
+    let finalFolio = "";
+
     try {
       const res = await fetch("/api/affiliate", {
         method: "POST",
@@ -98,25 +114,38 @@ export default function HomePage() {
       const result = await res.json();
 
       if (res.ok && result.success && result.data?.folio) {
-        setRegisteredFolio(result.data.folio);
+        finalFolio = result.data.folio;
       } else {
         // Fallback local seguro si la ruta estática responde sin backend dinámico
         const currentYear = new Date().getFullYear();
         const iso3 = country === "GT" ? "GTM" : country === "SV" ? "SLV" : country === "HN" ? "HND" : country === "NI" ? "NIC" : country === "PA" ? "PAN" : country === "CAR" ? "DOM" : "CRI";
         const randomCorrelative = String(Math.floor(100 + Math.random() * 900)).padStart(4, "0");
-        setRegisteredFolio(`ARCCPCE-${iso3}-${currentYear}-${randomCorrelative}`);
+        finalFolio = `ARCCPCE-${iso3}-${currentYear}-${randomCorrelative}`;
       }
-      setFormSubmitted(true);
-      form.reset();
     } catch (err) {
       console.warn("Fallo en fetch /api/affiliate, generando folio seguro de contingencia:", err);
       const currentYear = new Date().getFullYear();
       const iso3 = country === "GT" ? "GTM" : country === "SV" ? "SLV" : country === "HN" ? "HND" : country === "NI" ? "NIC" : country === "PA" ? "PAN" : country === "CAR" ? "DOM" : "CRI";
       const randomCorrelative = String(Math.floor(100 + Math.random() * 900)).padStart(4, "0");
-      setRegisteredFolio(`ARCCPCE-${iso3}-${currentYear}-${randomCorrelative}`);
+      finalFolio = `ARCCPCE-${iso3}-${currentYear}-${randomCorrelative}`;
+    } finally {
+      setRegisteredFolio(finalFolio);
+      const certificatePayload: MembershipCertificateData = {
+        fullName: fullName || "PROFESIONAL COLEGIADO",
+        country: countryLabel,
+        specialty: specialty || "Ciencias de la Enfermería",
+        folio: finalFolio,
+      };
+      setLastSubmissionData(certificatePayload);
+
+      try {
+        generateMembershipCertificate(certificatePayload);
+      } catch (pdfErr) {
+        console.error("Error al generar constancia PDF:", pdfErr);
+      }
+
       setFormSubmitted(true);
       form.reset();
-    } finally {
       setIsSubmitting(false);
     }
   };
@@ -1043,10 +1072,10 @@ export default function HomePage() {
                 </button>
 
                 {formSubmitted && (
-                  <div className="p-4 sm:p-5 rounded-2xl bg-emerald-50 border-2 border-emerald-300 text-emerald-950 space-y-2 text-xs shadow-sm">
+                  <div className="p-4 sm:p-5 rounded-2xl bg-emerald-50 border-2 border-emerald-300 text-emerald-950 space-y-3 text-xs shadow-sm">
                     <div className="flex items-center gap-2 font-black text-sm text-emerald-900">
                       <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-emerald-600" />
-                      <span>¡Solicitud Registrada con Éxito!</span>
+                      <span>¡Solicitud Registrada y Constancia Generada con Éxito!</span>
                     </div>
                     {registeredFolio && (
                       <div className="inline-block bg-white px-3 py-1 rounded-lg border border-emerald-300 font-mono font-bold text-xs text-[#002b7f]">
@@ -1054,8 +1083,18 @@ export default function HomePage() {
                       </div>
                     )}
                     <p className="text-emerald-900 leading-relaxed font-medium">
-                      Tu constancia de pre-afiliación ha quedado asentada en el padrón regional de ARCCPCE. La Secretaría General te contactará vía WhatsApp/Correo para coordinar la entrega de tu Pasaporte Digital DPC.
+                      Tu constancia de pre-afiliación ha quedado asentada en el padrón regional de ARCCPCE. Se ha iniciado la descarga automática de tu documento oficial en formato PDF. La Secretaría General te contactará vía WhatsApp/Correo para coordinar la entrega de tu Pasaporte Digital DPC.
                     </p>
+                    {lastSubmissionData && (
+                      <button
+                        type="button"
+                        onClick={() => generateMembershipCertificate(lastSubmissionData)}
+                        className="inline-flex items-center gap-2 bg-[#002b7f] hover:bg-[#001d57] text-white font-bold py-2 px-4 rounded-xl shadow-sm transition-all text-xs cursor-pointer"
+                      >
+                        <FileDown className="w-4 h-4 text-amber-300" />
+                        <span>Volver a Descargar Constancia Oficial en PDF</span>
+                      </button>
+                    )}
                   </div>
                 )}
               </form>
