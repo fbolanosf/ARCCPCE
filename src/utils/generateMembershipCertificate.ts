@@ -69,7 +69,7 @@ function drawVectorFlag(doc: jsPDF, countryName: string, x: number, y: number, w
     doc.setFillColor(0, 43, 127); doc.rect(x, y, w, h1, 'F');
     doc.setFillColor(255, 255, 255); doc.rect(x, y + h1, w, h1, 'F');
     doc.setFillColor(206, 17, 38); doc.rect(x, y + h1 * 2, w, h1 * 2, 'F');
-    doc.setFillColor(255, 255, 255); doc.rect(x, y + h1 * 4, w, h1, 'F');
+    doc.setFillColor(255, 255, 255); doc.rect(x, y + h1 * 4, w, h1 * 4, 'F');
     doc.setFillColor(0, 43, 127); doc.rect(x, y + h1 * 5, w, h1, 'F');
   } else if (norm.includes('guatemala')) {
     // Azul celeste - Blanco - Azul celeste vertical
@@ -131,8 +131,8 @@ export async function generateMembershipCertificate(data: MembershipCertificateD
     format: 'letter', // 279.4 x 215.9 mm
   });
 
-  const pageWidth = doc.internal.pageSize.getWidth();
-  const pageHeight = doc.internal.pageSize.getHeight();
+  const pageWidth = doc.internal.pageSize.getWidth(); // 279.4 mm
+  const pageHeight = doc.internal.pageSize.getHeight(); // 215.9 mm
   const issueDateStr = data.issueDate || new Date().toLocaleDateString('es-ES', {
     day: 'numeric',
     month: 'long',
@@ -152,8 +152,8 @@ export async function generateMembershipCertificate(data: MembershipCertificateD
   const logoDataUrl = await getLogoDataUrl();
 
   // ==========================================
-  // 1. ORLAS PERIMETRALES GEOMÉTRICAS (LÍMITES: 8mm, 11.5mm, 13mm)
-  // Interior libre de marco: Y de 13mm a 202.9mm (pageHeight - 13)
+  // 1. ORLAS PERIMETRALES GEOMÉTRICAS (MARCO SOLEMNE)
+  // Marco interior: Y = 13 mm a Y = 202.9 mm
   // ==========================================
   doc.setDrawColor(15, 43, 92); // Azul institucional
   doc.setLineWidth(1.8);
@@ -168,18 +168,33 @@ export async function generateMembershipCertificate(data: MembershipCertificateD
   doc.rect(13, 13, pageWidth - 26, pageHeight - 26);
 
   // ==========================================
-  // 2. LOGOTIPO INSTITUCIONAL (MÁS GRANDE: 27 x 27 mm) Y ENCABEZADO
+  // 2. LOGOTIPO INSTITUCIONAL (PROTAGÓNICO Y GRANDE)
+  // Tamaño ampliado: Ancho 33 mm x Alto 28.2 mm (relación de aspecto exacta)
+  // Posición: Y = 15.5 mm a Y = 43.7 mm
   // ==========================================
-  let headerStartY = 20;
+  let logoBottomY = 15.5;
 
   if (logoDataUrl) {
-    const logoSize = 27; // Tamaño ampliado, nítido y protagónico
-    doc.addImage(logoDataUrl, 'JPEG', pageWidth / 2 - logoSize / 2, 16, logoSize, logoSize);
-    headerStartY = 47.5;
+    const logoW = 33;
+    const logoH = 28.2;
+    const logoY = 15.5;
+    doc.addImage(logoDataUrl, 'JPEG', pageWidth / 2 - logoW / 2, logoY, logoW, logoH);
+    logoBottomY = logoY + logoH; // 43.7 mm
   } else {
-    headerStartY = 24;
+    logoBottomY = 22;
   }
 
+  // ==========================================
+  // PIE AL RAS DEL MARCO (QR + BLOCKCHAIN + FIRMA)
+  // Comienza en qrTopY = 177 mm y termina en 200 mm (a 2.9 mm del marco de 202.9 mm)
+  // Espacio disponible para el cuerpo central: desde logoBottomY (43.7 mm) hasta 177 mm = 133.3 mm
+  // Altura total del bloque central: ~110 mm
+  // Espacio equidistante superior e inferior: (133.3 - 110) / 2 = 11.6 mm
+  // Por lo tanto, el bloque central inicia exactamente en Y = 55.5 mm
+  // ==========================================
+  const headerStartY = logoBottomY + 11.5; // Y = 55.2 mm (Espacio generoso y equilibrado con el logo)
+
+  // A. Encabezado de la Asociación
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(12.5);
   doc.setTextColor(15, 43, 92);
@@ -211,10 +226,8 @@ export async function generateMembershipCertificate(data: MembershipCertificateD
   doc.setLineWidth(0.3);
   doc.line(35, headerStartY + 12.5, pageWidth - 35, headerStartY + 12.5);
 
-  // ==========================================
-  // 3. TÍTULO DEL DOCUMENTO
-  // ==========================================
-  const titleY = headerStartY + 19;
+  // B. Título del Documento
+  const titleY = headerStartY + 18.5;
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(14.5);
   doc.setTextColor(5, 150, 105); // Verde esmeralda noble
@@ -230,10 +243,8 @@ export async function generateMembershipCertificate(data: MembershipCertificateD
     { align: 'center' }
   );
 
-  // ==========================================
-  // 4. CERTIFICACIÓN Y NOMBRE
-  // ==========================================
-  const bodyY = titleY + 11.5;
+  // C. Certificación y Nombre
+  const bodyY = titleY + 11;
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(9.5);
   doc.setTextColor(51, 65, 85);
@@ -272,10 +283,8 @@ export async function generateMembershipCertificate(data: MembershipCertificateD
     { align: 'center' }
   );
 
-  // ==========================================
-  // 5. SECCIÓN DE BANDERAS Y JURISDICCIONES DEL PROFESIONAL
-  // ==========================================
-  const flagY = descY + 8;
+  // D. Sección de Banderas Vectoriales
+  const flagY = descY + 7.8;
   const countries = data.country.split(/[,/-]/).map(c => c.trim()).filter(Boolean);
   const flagWidth = 13;
   const flagHeight = 8.6;
@@ -293,10 +302,8 @@ export async function generateMembershipCertificate(data: MembershipCertificateD
   doc.setTextColor(15, 43, 92);
   doc.text(data.country, pageWidth / 2, flagY + flagHeight + 4.2, { align: 'center' });
 
-  // ==========================================
-  // 6. RECUADRO DE SEGURIDAD Y FOLIO
-  // ==========================================
-  const boxY = flagY + flagHeight + 7;
+  // E. Recuadro de Seguridad y Folio Regional
+  const boxY = flagY + flagHeight + 6.8;
   const boxWidth = 138;
   const boxHeight = 14;
   doc.setFillColor(248, 250, 252);
@@ -318,17 +325,19 @@ export async function generateMembershipCertificate(data: MembershipCertificateD
     { align: 'center' }
   );
 
+  // El final de la tarjeta de folio queda en boxY + boxHeight = ~165.5 mm
+  // Quedan 11.5 mm de holgura limpia y equidistante hacia el pie (qrTopY = 177 mm)
+
   // ==========================================
-  // 7. PIE AL RAS DEL MARCO (SIN SOBREPONERSE): QR, BLOCKCHAIN Y FIRMA DE PRESIDENCIA
-  // El marco interior termina en Y = 202.9 mm. Ubicamos el bloque con margen exacto y elegante.
+  // 3. PIE AL RAS DEL MARCO (SIN SOBREPONERSE): QR, BLOCKCHAIN Y FIRMA
   // ==========================================
   const qrTopY = 177;
-  const qrSize = 23; // QR de 177 mm a 200 mm (a 2.9 mm del marco interior de 202.9 mm)
+  const qrSize = 23;
 
-  // Código QR al ras
+  // Código QR al ras izquierdo
   doc.addImage(qrDataUrl, 'PNG', 20, qrTopY, qrSize, qrSize);
 
-  // Bloque Criptográfico alineado con el QR
+  // Bloque Criptográfico alineado al QR
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(7.5);
   doc.setTextColor(15, 43, 92);
