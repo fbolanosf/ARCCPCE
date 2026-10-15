@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import RegionalNetworkHub from "@/components/RegionalNetworkHub";
 import RegionalObservatory from "@/components/RegionalObservatory";
@@ -62,6 +62,17 @@ export default function HomePage() {
   const [selectedGalleryIndex, setSelectedGalleryIndex] = useState<number | null>(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const ribbonScrollRef = useRef<HTMLDivElement>(null);
+
+  const scrollRibbon = (direction: "left" | "right") => {
+    if (ribbonScrollRef.current) {
+      const scrollAmount = 380;
+      ribbonScrollRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -714,35 +725,80 @@ export default function HomePage() {
       {/* ==================== COMITÉS TÉCNICOS REGIONALES ==================== */}
       <TechnicalCommittees />
 
-      {/* ==================== GALERÍA FOTOGRÁFICA ==================== */}
-      <section id="galeria" className="py-20 bg-white border-t border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="text-[#002b7f] text-xs font-bold tracking-widest uppercase bg-sky-50 px-3.5 py-1 rounded-full border border-sky-100">
-              Memoria Histórica y Fotográfica
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 mt-3">
-              Galería de Actividades y Sesiones Solemnes
-            </h2>
-            <p className="text-slate-500 text-sm mt-2">
-              Momentos destacados de la constitución oficial de ARCCPCE en San José, Costa Rica.
-            </p>
-          </div>
+      {/* ==================== GALERÍA FOTOGRÁFICA EN CINTILLO PANORÁMICO ==================== */}
+      <section id="galeria" className="py-20 bg-white border-t border-slate-200 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <span className="text-[#002b7f] text-xs font-bold tracking-widest uppercase bg-sky-50 px-3.5 py-1 rounded-full border border-sky-100 inline-block mb-3">
+                Memoria Histórica y Fotográfica
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-slate-900">
+                Galería y Cintillo de Sesiones Solemnes
+              </h2>
+              <p className="text-slate-500 text-sm mt-2 max-w-2xl">
+                Registro fotográfico de la asamblea constitutiva en San José, Costa Rica. Pase el cursor para pausar el cintillo o haga clic en cualquier fotografía para verla ampliada.
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {GALLERY_IMAGES.map((img, idx) => (
-              <div
-                key={idx}
-                onClick={() => setSelectedGalleryIndex(idx)}
-                className="group relative h-64 rounded-2xl overflow-hidden cursor-pointer border border-slate-200 bg-slate-100 shadow-sm"
+            {/* Controles de Navegación del Cintillo */}
+            <div className="flex items-center gap-2 self-start md:self-auto shrink-0">
+              <button
+                onClick={() => scrollRibbon("left")}
+                aria-label="Desplazar cintillo a la izquierda"
+                className="w-10 h-10 rounded-full border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 flex items-center justify-center shadow-xs transition-colors hover:border-[#002b7f] hover:text-[#002b7f]"
               >
-                <Image src={img.src} alt={img.title} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-white">
-                  <span className="text-xs text-[#eab308] font-bold uppercase">{img.tag}</span>
-                  <p className="text-sm font-bold">{img.title}</p>
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={() => scrollRibbon("right")}
+                aria-label="Desplazar cintillo a la derecha"
+                className="w-10 h-10 rounded-full border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 flex items-center justify-center shadow-xs transition-colors hover:border-[#002b7f] hover:text-[#002b7f]"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Contenedor del Cintillo Panorámico */}
+        <div className="relative w-full overflow-hidden py-4">
+          {/* Sombras laterales de degradado para terminación visual profesional */}
+          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
+
+          {/* Riel con desplazamiento continuo (Cintillo Dinámico) */}
+          <div
+            ref={ribbonScrollRef}
+            className="flex gap-5 overflow-x-auto no-scrollbar scroll-smooth px-8 py-2"
+          >
+            {/* Duplicación para efecto infinito de cintillo continuo */}
+            {[...GALLERY_IMAGES, ...GALLERY_IMAGES].map((img, idx) => {
+              const realIndex = idx % GALLERY_IMAGES.length;
+              return (
+                <div
+                  key={idx}
+                  onClick={() => setSelectedGalleryIndex(realIndex)}
+                  className="group relative w-72 sm:w-80 h-52 sm:h-56 shrink-0 rounded-2xl overflow-hidden cursor-pointer border border-slate-200/90 bg-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                >
+                  <Image
+                    src={img.src}
+                    alt={img.title}
+                    fill
+                    sizes="(max-width: 640px) 288px, 320px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent opacity-85 sm:opacity-70 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-white">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#eab308] bg-black/40 px-2 py-0.5 rounded-full border border-white/20 w-fit mb-1">
+                      {img.tag}
+                    </span>
+                    <p className="text-xs sm:text-sm font-bold font-display leading-tight drop-shadow">
+                      {img.title}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

@@ -27,3 +27,32 @@ body {
 .perspective-1000 {
   perspective: 1000px;
 }
+
+/* Ocultar barra de desplazamiento estándar manteniendo interactividad */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Animación de cintillo panorámico continuo fluido */
+@keyframes ribbonMarquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-ribbon {
+  display: flex;
+  width: max-content;
+  animation: ribbonMarquee 42s linear infinite;
+}
+
+.animate-ribbon:hover {
+  animation-play-state: paused;
+}
