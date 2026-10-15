@@ -9,6 +9,7 @@ import RegionalNewsHub from "@/components/RegionalNewsHub";
 import TechnicalCommittees from "@/components/TechnicalCommittees";
 import FoundingMembers from "@/components/FoundingMembers";
 import BoardOfDirectors from "@/components/BoardOfDirectors";
+import ClinicalCareStation from "@/components/ClinicalCareStation";
 import {
   MapPin,
   Calendar,
@@ -209,6 +210,7 @@ export default function HomePage() {
           <nav className="hidden lg:flex items-center space-x-5 xl:space-x-6 text-sm font-bold text-slate-700">
             <a href="#inicio" className="hover:text-[#002b7f] transition-colors">Inicio</a>
             <a href="#observatorio" className="hover:text-[#002b7f] transition-colors">Observatorio</a>
+            <a href="#estacion-clinica" className="hover:text-[#002b7f] transition-colors text-[#002b7f]/90">Herramientas Clínicas</a>
             <a href="#presidencia" className="hover:text-[#002b7f] transition-colors">Presidencia</a>
             <a href="#acerca" className="hover:text-[#002b7f] transition-colors">Identidad</a>
             <a href="#mision-vision" className="hover:text-[#002b7f] transition-colors">Misión</a>
@@ -234,6 +236,7 @@ export default function HomePage() {
           <div className="lg:hidden px-4 pt-3 pb-6 bg-white border-t border-slate-200 space-y-2">
             <a href="#inicio" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 font-semibold">Inicio</a>
             <a href="#observatorio" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-[#002b7f] hover:bg-sky-50 font-bold">Micro-Observatorio</a>
+            <a href="#estacion-clinica" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-[#002b7f] hover:bg-sky-50 font-bold">Estación de Herramientas Clínicas</a>
             <a href="#acerca" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 font-semibold">Identidad Institucional</a>
             <a href="#mision-vision" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 font-semibold">Misión y Visión</a>
             <a href="#fines" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 font-semibold">Fines Estatutarios</a>
@@ -873,6 +876,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ==================== ESTACIÓN DE HERRAMIENTAS CLÍNICAS & CALCULADORAS ==================== */}
+      <ClinicalCareStation />
 
       {/* ==================== AFILIACIÓN Y PASAPORTE DIGITAL ==================== */}
       <section id="contacto" className="py-20 bg-white border-t border-slate-200">
