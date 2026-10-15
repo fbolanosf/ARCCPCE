@@ -935,7 +935,8 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5">
+          {/* Barra Integrada Ejecutiva de Alianzas y Organismos Internacionales */}
+          <div className="bg-white rounded-3xl border border-slate-200/90 shadow-[0_10px_30px_-5px_rgba(0,43,127,0.06)] divide-y lg:divide-y-0 lg:divide-x divide-slate-100 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 overflow-hidden">
             {[
               {
                 id: "comisca",
@@ -945,7 +946,6 @@ export default function HomePage() {
                 desc: "Consejo Ministros Salud CA",
                 url: "https://www.sica.int/comisca/",
                 badge: "Regional CA",
-                badgeColor: "bg-sky-100 text-sky-800 border-sky-200",
               },
               {
                 id: "sica",
@@ -955,7 +955,6 @@ export default function HomePage() {
                 desc: "Sistema Integración CA",
                 url: "https://www.sica.int/",
                 badge: "Integración",
-                badgeColor: "bg-blue-100 text-blue-800 border-blue-200",
               },
               {
                 id: "ops",
@@ -964,8 +963,7 @@ export default function HomePage() {
                 fullName: "Organización Panamericana de la Salud",
                 desc: "Organización Panamericana",
                 url: "https://www.paho.org/es",
-                badge: "ONU / Salud",
-                badgeColor: "bg-emerald-100 text-emerald-800 border-emerald-200",
+                badge: "Salud Global",
               },
               {
                 id: "cie",
@@ -975,7 +973,6 @@ export default function HomePage() {
                 desc: "Consejo Internacional",
                 url: "https://www.icn.ch/es",
                 badge: "Mundial",
-                badgeColor: "bg-amber-100 text-amber-800 border-amber-200",
               },
               {
                 id: "feppen",
@@ -985,7 +982,6 @@ export default function HomePage() {
                 desc: "Federación Panamericana",
                 url: "https://feppen.org/",
                 badge: "Panamericano",
-                badgeColor: "bg-indigo-100 text-indigo-800 border-indigo-200",
               },
               {
                 id: "gpecac",
@@ -995,7 +991,6 @@ export default function HomePage() {
                 desc: "Profesionales CA y Caribe",
                 url: "https://www.facebook.com/GPECAC/",
                 badge: "Centroamérica",
-                badgeColor: "bg-rose-100 text-rose-800 border-rose-200",
               },
             ].map((org) => (
               <a
@@ -1003,53 +998,42 @@ export default function HomePage() {
                 href={org.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                title={`Visitar sitio oficial de ${org.fullName}`}
-                className="group relative rounded-2xl p-5 border border-slate-200/80 bg-white/80 hover:bg-white shadow-[0_4px_20px_-4px_rgba(0,43,127,0.07)] hover:shadow-[0_20px_35px_-10px_rgba(0,43,127,0.18)] hover:border-[#002b7f]/40 hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center cursor-pointer overflow-hidden backdrop-blur-md"
+                title={`Visitar portal oficial de ${org.fullName}`}
+                className="group relative p-6 sm:p-7 flex flex-col items-center justify-between text-center transition-all duration-300 hover:bg-slate-50/80 cursor-pointer"
               >
-                {/* Acento superior de degradado institucional */}
-                <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-[#002b7f]/40 to-transparent group-hover:via-[#002b7f] transition-all duration-500" />
-
-                {/* Resplandor radial tenue al fondo de cada tarjeta */}
-                <div className="absolute -top-12 -right-12 w-28 h-28 bg-sky-400/10 rounded-full blur-2xl group-hover:bg-sky-400/25 transition-all duration-500 pointer-events-none" />
-
-                {/* Fila superior: Badge y botón exterior */}
-                <div className="w-full flex items-center justify-between mb-3 z-10">
-                  <span className={`text-[9px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-full border shadow-2xs ${org.badgeColor}`}>
-                    {org.badge}
-                  </span>
-                  <div className="w-6 h-6 rounded-full bg-slate-100/90 text-slate-400 group-hover:bg-[#002b7f] group-hover:text-white flex items-center justify-center transition-all duration-300 group-hover:rotate-45 shadow-xs">
-                    <ExternalLink className="w-3 h-3" />
-                  </div>
+                {/* Indicador de enlace externo discreto en esquina */}
+                <div className="absolute top-3 right-3 text-slate-300 group-hover:text-[#002b7f] transition-colors">
+                  <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100" />
                 </div>
 
-                {/* Pod o nicho para el Escudo con fondo premium gris zafiro suave y marco biselado */}
-                <div className="w-20 h-20 sm:w-22 sm:h-22 mb-3.5 relative flex items-center justify-center p-2 rounded-2xl bg-gradient-to-b from-slate-100/90 via-slate-50 to-white border border-slate-200/90 group-hover:border-sky-300 group-hover:shadow-[0_8px_20px_-6px_rgba(0,43,127,0.2)] transition-all duration-300">
+                {/* Insignia sobria institucional */}
+                <span className="text-[10px] font-bold tracking-wider uppercase text-slate-500 group-hover:text-[#002b7f] transition-colors mb-4">
+                  {org.badge}
+                </span>
+
+                {/* Escudo flotante sin cajas ni bordes secundarios */}
+                <div className="w-24 h-24 relative flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-108">
                   <Image
                     src={org.logo}
-                    alt={`Escudo oficial de ${org.name}`}
-                    width={72}
-                    height={72}
-                    className="object-contain group-hover:scale-110 transition-transform duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.12)]"
+                    alt={`Escudo de ${org.name}`}
+                    width={88}
+                    height={88}
+                    className="object-contain filter transition-all duration-300 group-hover:brightness-105"
                   />
                 </div>
 
-                {/* Título y Siglas */}
-                <span className="text-[#002b7f] font-extrabold text-sm tracking-wide group-hover:text-sky-700 transition-colors">
-                  {org.name}
-                </span>
-
-                {/* Subtítulo descriptivo */}
-                <span className="text-[11px] text-slate-500 font-medium mt-1 leading-snug line-clamp-2">
-                  {org.desc}
-                </span>
-
-                {/* Botón inferior estilizado tipo píldora ejecutiva */}
-                <div className="mt-4 pt-2.5 border-t border-slate-100 w-full flex items-center justify-center">
-                  <span className="inline-flex items-center gap-1.5 text-[10px] font-bold text-slate-600 group-hover:text-[#002b7f] bg-slate-50 group-hover:bg-sky-50/80 px-2.5 py-1 rounded-full border border-slate-200/60 group-hover:border-sky-200 transition-all duration-300">
-                    <span>Portal Oficial</span>
-                    <ExternalLink className="w-2.5 h-2.5 opacity-70 group-hover:opacity-100" />
+                {/* Denominación de la entidad */}
+                <div className="space-y-1 mt-auto">
+                  <span className="block text-[#002b7f] font-extrabold text-base tracking-wide group-hover:text-sky-700 transition-colors">
+                    {org.name}
+                  </span>
+                  <span className="block text-[11px] text-slate-500 font-medium leading-snug">
+                    {org.desc}
                   </span>
                 </div>
+
+                {/* Barra de progreso inferior activa al pasar el ratón */}
+                <span className="absolute bottom-0 inset-x-6 h-0.5 bg-transparent group-hover:bg-[#002b7f] transition-colors duration-300" />
               </a>
             ))}
           </div>
