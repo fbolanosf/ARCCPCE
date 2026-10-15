@@ -17,8 +17,8 @@ const BOARD_MEMBERS: BoardMember[] = [
   { role: "Secretaria", name: "Dra. Patricia Quesada Steller", badge: "Secretaría General" },
   { role: "Tesorero", name: "Dr. Josué Paniagua Sánchez", badge: "Tesorería y Finanzas" },
   { role: "Fiscal", name: "Dra. Janet Morales Salazar", badge: "Fiscalía Deontológica" },
-  { role: "Vocal 1", name: "Dr. Marco Antonio Obando Rodríguez", badge: "Vocalía I" },
-  { role: "Vocal 2", name: "Dr. Fibier Olmos Venegas", badge: "Vocalía II" },
+  { role: "Vocal 1", name: "Dr. Fibier Olmos Venegas", badge: "Vocalía I" },
+  { role: "Vocal 2", name: "Dr. Marco Antonio Obando Rodríguez", badge: "Vocalía II" },
 ];
 
 export default function BoardOfDirectors() {
