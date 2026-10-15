@@ -32,14 +32,3 @@ export interface RegionalMetric {
   mobilityStatus: string;
   downloadGuideUrl: string;
 }
-
-export interface Mentor {
-  id: string;
-  name: string;
-  country: string;
-  flag: string;
-  specialty: "Salud Pública" | "Cuidados Intensivos" | "Educación e Investigación" | "Gestión Sanitaria";
-  institution: string;
-  bio: string;
-  activeResearch: string;
-}

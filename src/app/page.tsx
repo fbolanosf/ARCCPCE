@@ -5,7 +5,6 @@ import Image from "next/image";
 import RegionalNetworkHub from "@/components/RegionalNetworkHub";
 import RegionalObservatory from "@/components/RegionalObservatory";
 import DigitalPassportCard from "@/components/DigitalPassportCard";
-import MentorshipDirectory from "@/components/MentorshipDirectory";
 import RegionalNewsHub from "@/components/RegionalNewsHub";
 import TechnicalCommittees from "@/components/TechnicalCommittees";
 import FoundingMembers from "@/components/FoundingMembers";
@@ -719,7 +718,6 @@ export default function HomePage() {
       <BoardOfDirectors />
 
       {/* ==================== SOCIOS FUNDADORES OFICIALES (19 DE MARZO DE 2026) ==================== */}
-      <div id="mentoria" className="scroll-mt-24" />
       <FoundingMembers />
 
       {/* ==================== COMITÉS TÉCNICOS REGIONALES ==================== */}
@@ -1027,9 +1025,11 @@ export default function HomePage() {
               <span className="font-bold uppercase tracking-wider text-white">Navegación</span>
               <ul className="space-y-1">
                 <li><a href="#observatorio" className="hover:text-[#eab308]">Micro-Observatorio</a></li>
-                <li><a href="#mentoria" className="hover:text-[#eab308]">Red de Mentoría</a></li>
+                <li><a href="#junta-directiva" className="hover:text-[#eab308]">Mesa Directiva</a></li>
+                <li><a href="#socios-fundadores" className="hover:text-[#eab308]">Socios Fundadores</a></li>
+                <li><a href="#comites" className="hover:text-[#eab308]">Comités Técnicos</a></li>
                 <li><a href="#fines" className="hover:text-[#eab308]">Fines Estatutarios</a></li>
-                <li><a href="#contacto" className="hover:text-[#eab308]">Pasaporte Digital DPC</a></li>
+                <li><a href="#contacto" className="hover:text-[#eab308]">Afiliación & Contacto</a></li>
               </ul>
             </div>
 
