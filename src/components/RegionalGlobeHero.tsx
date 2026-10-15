@@ -116,8 +116,8 @@ const REGIONAL_DELEGATIONS: CountryDelegationData[] = [
       },
       {
         name: "Lic. Álvaro Sánchez",
-        title: "Socio Fundador",
-        committee: "Lectura del Acta de Constitución",
+        title: "Socio Fundador Abogado",
+        committee: "Asesoría Legal • Lectura del Acta de Constitución",
         institution: "Asamblea Constitutiva ARCCPCE",
         email: "costarica@arccpce.org",
       },

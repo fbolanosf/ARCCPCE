@@ -104,8 +104,8 @@ const REGIONAL_NODES: Record<string, HubCountry> = {
       },
       {
         name: "Lic. Álvaro Sánchez",
-        role: "Socio Fundador",
-        specialty: "Lectura del Acta de Constitución",
+        role: "Socio Fundador Abogado",
+        specialty: "Asesoría Legal • Lectura del Acta de Constitución",
         institution: "Asamblea Constitutiva ARCCPCE",
         email: "costarica@arccpce.org",
       },
