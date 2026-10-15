@@ -1,0 +1,14 @@
+[
+  {
+    "id": "aff-1792030211859",
+    "folio": "ARCCPCE-CRI-2026-0001",
+    "fullName": "Licda. Sofia Morales",
+    "email": "sofia.morales@test.org",
+    "country": "CRI",
+    "whatsapp": "+506 8888 1122",
+    "specialty": "Cuidados Intensivos",
+    "motivation": "Deseo integrarme al comité de cuidados críticos.",
+    "createdAt": "2026-10-15T02:10:11.859Z",
+    "status": "Pre-afiliación Registrada"
+  }
+]

@@ -24,6 +24,8 @@ interface ApiMetricItem {
   densityYear: string;
   healthSpendUSD: number;
   spendYear: string;
+  hospitalBeds: number;
+  bedsYear: string;
   source: string;
 }
 
@@ -38,14 +40,14 @@ const ISO2_TO_ISO3: Record<string, string> = {
 };
 
 // Fallback inicial inmediato por país para evitar cualquier parpadeo
-const INITIAL_WB_FALLBACK: Record<string, { healthSpendUSD: number; spendYear: string }> = {
-  CRI: { healthSpendUSD: 980, spendYear: "2021" },
-  GTM: { healthSpendUSD: 285, spendYear: "2021" },
-  SLV: { healthSpendUSD: 395, spendYear: "2021" },
-  HND: { healthSpendUSD: 215, spendYear: "2021" },
-  NIC: { healthSpendUSD: 195, spendYear: "2021" },
-  PAN: { healthSpendUSD: 915, spendYear: "2021" },
-  DOM: { healthSpendUSD: 490, spendYear: "2021" },
+const INITIAL_WB_FALLBACK: Record<string, { healthSpendUSD: number; spendYear: string; hospitalBeds: number; bedsYear: string }> = {
+  CRI: { healthSpendUSD: 980, spendYear: "2021", hospitalBeds: 1.2, bedsYear: "2021" },
+  GTM: { healthSpendUSD: 285, spendYear: "2021", hospitalBeds: 0.6, bedsYear: "2021" },
+  SLV: { healthSpendUSD: 395, spendYear: "2021", hospitalBeds: 1.3, bedsYear: "2021" },
+  HND: { healthSpendUSD: 215, spendYear: "2021", hospitalBeds: 0.7, bedsYear: "2021" },
+  NIC: { healthSpendUSD: 195, spendYear: "2021", hospitalBeds: 0.9, bedsYear: "2021" },
+  PAN: { healthSpendUSD: 915, spendYear: "2021", hospitalBeds: 1.6, bedsYear: "2021" },
+  DOM: { healthSpendUSD: 490, spendYear: "2021", hospitalBeds: 1.6, bedsYear: "2021" },
 };
 
 export default function RegionalObservatory() {
@@ -163,25 +165,45 @@ export default function RegionalObservatory() {
                 Representa el {Math.round((currentCountry.ratioPer10k / currentCountry.whoBenchmark) * 100)}% del umbral óptimo recomendado para Cobertura Universal de Salud.
               </p>
 
-              {/* Indicador de Gasto Corriente en Salud (Banco Mundial) */}
-              <div className="mt-3.5 mb-2 py-2.5 px-3.5 bg-slate-50/80 border border-slate-200/90 rounded-xl text-xs flex items-center justify-between shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
-                <div className="flex flex-col">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
-                    Gasto Corriente en Salud
-                  </span>
-                  <span className="text-slate-800 font-bold text-sm">
-                    ${currentMetric?.healthSpendUSD ? currentMetric.healthSpendUSD.toLocaleString() : '---'} USD 
-                    <span className="text-[11px] font-normal text-slate-500"> / hab.</span>
-                  </span>
-                </div>
-                <div className="text-right flex flex-col items-end">
-                  <span className="inline-flex items-center gap-1 text-[10px] bg-emerald-50 text-emerald-800 font-semibold px-2 py-0.5 rounded-md border border-emerald-200/60">
+              {/* Indicadores Oficiales Banco Mundial (Gasto en Salud + Infraestructura Hospitalaria) */}
+              <div className="mt-3.5 mb-2 py-2 px-3 bg-slate-50/90 border border-slate-200/90 rounded-xl text-xs shadow-[0_1px_2px_rgba(0,0,0,0.03)] space-y-2">
+                <div className="flex items-center justify-between pb-1.5 border-b border-slate-200/60">
+                  <span className="inline-flex items-center gap-1 text-[10px] bg-emerald-50 text-emerald-800 font-bold px-2 py-0.5 rounded-md border border-emerald-200/60">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                     Banco Mundial
                   </span>
-                  <span className="text-[9px] text-slate-400 mt-0.5">
-                    Reporte Oficial {currentMetric?.spendYear || ''}
+                  <span className="text-[9px] text-slate-400">
+                    Reporte Oficial {currentMetric?.spendYear || '2021'}
                   </span>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 items-center divide-x divide-slate-200/70">
+                  {/* Columna 1: Gasto en Salud en USD/hab */}
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+                      Gasto en Salud
+                    </span>
+                    <span className="text-slate-800 font-bold text-sm leading-tight">
+                      ${currentMetric?.healthSpendUSD ? currentMetric.healthSpendUSD.toLocaleString() : '---'} USD
+                      <span className="text-[10px] font-normal text-slate-500"> / hab.</span>
+                    </span>
+                  </div>
+
+                  {/* Columna 2: Capacidad Hospitalaria */}
+                  <div className="pl-3 flex flex-col">
+                    <div className="flex items-center justify-between gap-1">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+                        Camas Hosp.
+                      </span>
+                      <span className="text-[9px] font-bold text-sky-700 bg-sky-50 px-1.5 py-0.2 rounded border border-sky-100">
+                        Infraestructura
+                      </span>
+                    </div>
+                    <span className="text-slate-800 font-bold text-sm leading-tight">
+                      {currentMetric?.hospitalBeds !== undefined ? currentMetric.hospitalBeds.toFixed(1) : '---'}
+                      <span className="text-[10px] font-normal text-slate-500"> / 1,000 hab.</span>
+                    </span>
+                  </div>
                 </div>
               </div>
 

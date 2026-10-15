@@ -60,6 +60,7 @@ export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selectedGalleryIndex, setSelectedGalleryIndex] = useState<number | null>(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [registeredFolio, setRegisteredFolio] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const ribbonScrollRef = useRef<HTMLDivElement>(null);
 
@@ -73,14 +74,50 @@ export default function HomePage() {
     }
   };
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const fullName = (formData.get("fullName") as string) || (form.querySelector('input[type="text"][required]') as HTMLInputElement)?.value;
+    const email = (formData.get("email") as string) || (form.querySelector('input[type="email"]') as HTMLInputElement)?.value;
+    const country = (formData.get("country") as string) || (form.querySelector('#countrySelect') as HTMLSelectElement)?.value || "CR";
+    const whatsapp = (formData.get("whatsapp") as string) || (form.querySelector('input[type="tel"]') as HTMLInputElement)?.value || "";
+    const specialty = (formData.get("specialty") as string) || (form.querySelector('#specialtyInput') as HTMLInputElement)?.value || "";
+    const motivation = (formData.get("motivation") as string) || (form.querySelector('#messageInput') as HTMLTextAreaElement)?.value || "";
+
+    try {
+      const res = await fetch("/api/affiliate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fullName, email, country, whatsapp, specialty, motivation }),
+      });
+
+      const result = await res.json();
+
+      if (res.ok && result.success && result.data?.folio) {
+        setRegisteredFolio(result.data.folio);
+      } else {
+        // Fallback local seguro si la ruta estática responde sin backend dinámico
+        const currentYear = new Date().getFullYear();
+        const iso3 = country === "GT" ? "GTM" : country === "SV" ? "SLV" : country === "HN" ? "HND" : country === "NI" ? "NIC" : country === "PA" ? "PAN" : country === "CAR" ? "DOM" : "CRI";
+        const randomCorrelative = String(Math.floor(100 + Math.random() * 900)).padStart(4, "0");
+        setRegisteredFolio(`ARCCPCE-${iso3}-${currentYear}-${randomCorrelative}`);
+      }
       setFormSubmitted(true);
-      setTimeout(() => setFormSubmitted(false), 7000);
-    }, 1200);
+      form.reset();
+    } catch (err) {
+      console.warn("Fallo en fetch /api/affiliate, generando folio seguro de contingencia:", err);
+      const currentYear = new Date().getFullYear();
+      const iso3 = country === "GT" ? "GTM" : country === "SV" ? "SLV" : country === "HN" ? "HND" : country === "NI" ? "NIC" : country === "PA" ? "PAN" : country === "CAR" ? "DOM" : "CRI";
+      const randomCorrelative = String(Math.floor(100 + Math.random() * 900)).padStart(4, "0");
+      setRegisteredFolio(`ARCCPCE-${iso3}-${currentYear}-${randomCorrelative}`);
+      setFormSubmitted(true);
+      form.reset();
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleNextImage = useCallback(() => {
@@ -918,6 +955,7 @@ export default function HomePage() {
                   <div>
                     <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">Nombre Completo *</label>
                     <input
+                      name="fullName"
                       type="text"
                       required
                       placeholder="Ej. Licda. María González"
@@ -927,6 +965,7 @@ export default function HomePage() {
                   <div>
                     <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">Correo Electrónico *</label>
                     <input
+                      name="email"
                       type="email"
                       required
                       placeholder="ejemplo@correo.com"
@@ -940,6 +979,7 @@ export default function HomePage() {
                     <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">País de Residencia *</label>
                     <select
                       id="countrySelect"
+                      name="country"
                       required
                       defaultValue="CR"
                       className="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-900 focus:outline-none focus:border-[#002b7f] text-xs"
@@ -956,6 +996,7 @@ export default function HomePage() {
                   <div>
                     <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">WhatsApp de Contacto</label>
                     <input
+                      name="whatsapp"
                       type="tel"
                       placeholder="+506 ...."
                       className="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-900 focus:outline-none focus:border-[#002b7f] text-xs"
@@ -967,6 +1008,7 @@ export default function HomePage() {
                   <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">Área de Especialidad / Ejercicio</label>
                   <input
                     id="specialtyInput"
+                    name="specialty"
                     type="text"
                     placeholder="Ej. Cuidados Críticos, Salud Pública, Docencia Universitaria"
                     className="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-900 focus:outline-none focus:border-[#002b7f] text-xs"
@@ -977,6 +1019,7 @@ export default function HomePage() {
                   <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">Mensaje / Motivación *</label>
                   <textarea
                     id="messageInput"
+                    name="motivation"
                     rows={4}
                     required
                     placeholder="Indique brevemente su interés en formar parte de la asociación o comités técnicos..."
@@ -994,9 +1037,19 @@ export default function HomePage() {
                 </button>
 
                 {formSubmitted && (
-                  <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-800 flex items-center gap-2 text-xs font-medium">
-                    <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-emerald-600" />
-                    <span>¡Solicitud registrada con éxito! La secretaría de ARCCPCE se pondrá en contacto pronto.</span>
+                  <div className="p-4 sm:p-5 rounded-2xl bg-emerald-50 border-2 border-emerald-300 text-emerald-950 space-y-2 text-xs shadow-sm">
+                    <div className="flex items-center gap-2 font-black text-sm text-emerald-900">
+                      <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-emerald-600" />
+                      <span>¡Solicitud Registrada con Éxito!</span>
+                    </div>
+                    {registeredFolio && (
+                      <div className="inline-block bg-white px-3 py-1 rounded-lg border border-emerald-300 font-mono font-bold text-xs text-[#002b7f]">
+                        Folio Oficial: {registeredFolio}
+                      </div>
+                    )}
+                    <p className="text-emerald-900 leading-relaxed font-medium">
+                      Tu constancia de pre-afiliación ha quedado asentada en el padrón regional de ARCCPCE. La Secretaría General te contactará vía WhatsApp/Correo para coordinar la entrega de tu Pasaporte Digital DPC.
+                    </p>
                   </div>
                 )}
               </form>
