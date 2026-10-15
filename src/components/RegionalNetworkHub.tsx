@@ -55,17 +55,122 @@ const REGIONAL_NODES: Record<string, HubCountry> = {
     leaders: [
       {
         name: "Dr. José Eduardo Carvajal Obando",
-        role: "Presidente Regional ARCCPCE",
-        specialty: "Gestión Hospitalaria & Bioética Clínica",
+        role: "Presidente de la Junta Directiva (2026-2028)",
+        specialty: "Presidencia Fundacional • Convocante & Ponente Inaugural",
         institution: "Consejo Regional ARCCPCE • San José",
         email: "presidencia@arccpce.org",
       },
       {
+        name: "Dra. Marlen Calvo Solano",
+        role: "Vicepresidenta de la Junta Directiva (2026-2028)",
+        specialty: "Vicepresidencia • Socia Fundadora • Clausura Oficial",
+        institution: "Consejo Regional ARCCPCE • San José",
+        email: "vicepresidencia@arccpce.org",
+      },
+      {
         name: "Dra. Patricia Quesada Steller",
-        role: "Secretaria General ARCCPCE",
-        specialty: "Secretaría de Actas & Archivo Oficial",
+        role: "Secretaria de la Junta Directiva (2026-2028)",
+        specialty: "Secretaría General • Socia Fundadora",
         institution: "Consejo Regional ARCCPCE • San José",
         email: "secretaria@arccpce.org",
+      },
+      {
+        name: "Dr. Josué Paniagua Sánchez",
+        role: "Tesorero de la Junta Directiva (2026-2028)",
+        specialty: "Tesorería y Finanzas • Socio Fundador",
+        institution: "Consejo Regional ARCCPCE • San José",
+        email: "tesoreria@arccpce.org",
+      },
+      {
+        name: "Dra. Janet Morales Salazar",
+        role: "Fiscal de la Junta Directiva (2026-2028)",
+        specialty: "Fiscalía Deontológica • Socia Fundadora",
+        institution: "Consejo Regional ARCCPCE • San José",
+        email: "fiscalia@arccpce.org",
+      },
+      {
+        name: "Dr. Marco Antonio Obando Rodríguez",
+        role: "Vocal 1 de la Junta Directiva (2026-2028)",
+        specialty: "Vocalía I de Gobernanza Regional",
+        institution: "Consejo Regional ARCCPCE • San José",
+        email: "vocal1@arccpce.org",
+      },
+      {
+        name: "Dr. Fibier Olmos Venegas",
+        role: "Vocal 2 de la Junta Directiva (2026-2028)",
+        specialty: "Vocalía II de Gestión Científica",
+        institution: "Consejo Regional ARCCPCE • San José",
+        email: "vocal2@arccpce.org",
+      },
+      {
+        name: "Lic. Álvaro Sánchez",
+        role: "Socio Fundador",
+        specialty: "Lectura del Acta de Constitución",
+        institution: "Asamblea Constitutiva ARCCPCE",
+        email: "costarica@arccpce.org",
+      },
+      {
+        name: "Teresita Mayela García Browne",
+        role: "Socia Fundadora",
+        specialty: "Firmante de Acta Constitutiva",
+        institution: "Asamblea Constitutiva ARCCPCE",
+        email: "costarica@arccpce.org",
+      },
+      {
+        name: "Patricia Yolanda Robles Yglesias",
+        role: "Socia Fundadora",
+        specialty: "Firmante de Acta Constitutiva",
+        institution: "Asamblea Constitutiva ARCCPCE",
+        email: "costarica@arccpce.org",
+      },
+      {
+        name: "María del Rocío Monge Quirós",
+        role: "Socia Fundadora",
+        specialty: "Firmante de Acta Constitutiva",
+        institution: "Asamblea Constitutiva ARCCPCE",
+        email: "costarica@arccpce.org",
+      },
+      {
+        name: "Karla Tatiana Mena Páez",
+        role: "Socia Fundadora",
+        specialty: "Firmante de Acta Constitutiva",
+        institution: "Asamblea Constitutiva ARCCPCE",
+        email: "costarica@arccpce.org",
+      },
+      {
+        name: "Marlene de los Ángeles Agüero Arce",
+        role: "Socia Fundadora",
+        specialty: "Firmante de Acta Constitutiva",
+        institution: "Asamblea Constitutiva ARCCPCE",
+        email: "costarica@arccpce.org",
+      },
+      {
+        name: "Alejandra Trejos Chacón",
+        role: "Socia Fundadora",
+        specialty: "Firmante de Acta Constitutiva",
+        institution: "Asamblea Constitutiva ARCCPCE",
+        email: "costarica@arccpce.org",
+      },
+      {
+        name: "Emérita Angélica Martínez Retana",
+        role: "Socia Fundadora",
+        specialty: "Firmante de Acta Constitutiva",
+        institution: "Asamblea Constitutiva ARCCPCE",
+        email: "costarica@arccpce.org",
+      },
+      {
+        name: "Carmen María Loaiza Madriz",
+        role: "Socia Fundadora",
+        specialty: "Firmante de Acta Constitutiva",
+        institution: "Asamblea Constitutiva ARCCPCE",
+        email: "costarica@arccpce.org",
+      },
+      {
+        name: "Fulvia Elizondo Saborío",
+        role: "Socia Fundadora",
+        specialty: "Firmante de Acta Constitutiva",
+        institution: "Asamblea Constitutiva ARCCPCE",
+        email: "costarica@arccpce.org",
       },
     ],
   },
@@ -597,10 +702,12 @@ export default function RegionalNetworkHub() {
               <div className="space-y-3">
                 <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#002b7f]">
                   <UserCheck className="w-3.5 h-3.5 text-[#0284c7]" />
-                  Liderazgo y Enlace Oficial
+                  {selectedCountry.leaders.length > 1
+                    ? `Miembros y Liderazgo Oficial (${selectedCountry.leaders.length})`
+                    : "Liderazgo y Enlace Oficial"}
                 </div>
 
-                <div className="space-y-2.5">
+                <div className="space-y-2.5 max-h-80 overflow-y-auto pr-1">
                   {selectedCountry.leaders.map((leader, idx) => (
                     <div
                       key={idx}

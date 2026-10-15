@@ -35,6 +35,13 @@ export interface CountryDelegationData {
     institution: string;
     email: string;
   };
+  coordinators?: Array<{
+    name: string;
+    title: string;
+    committee: string;
+    institution: string;
+    email: string;
+  }>;
   delegatesCount: number;
   workingGroupsCount: number;
   priorityTopic: string;
@@ -52,11 +59,132 @@ const REGIONAL_DELEGATIONS: CountryDelegationData[] = [
     status: "Sede Central Fundacional",
     coordinator: {
       name: "Dr. José Eduardo Carvajal Obando",
-      title: "Presidente Regional & Coordinador Fundacional",
-      committee: "Presidencia Fundacional & Secretaría General",
+      title: "Presidente de la Junta Directiva (2026-2028)",
+      committee: "Presidencia Fundacional & Dirección Regional",
       institution: "Consejo Regional ARCCPCE • San José",
-      email: "presidencia@arccaproce.org",
+      email: "presidencia@arccpce.org",
     },
+    coordinators: [
+      {
+        name: "Dr. José Eduardo Carvajal Obando",
+        title: "Presidente de la Junta Directiva (2026-2028)",
+        committee: "Presidencia Fundacional • Convocante & Ponente Inaugural",
+        institution: "Consejo Regional ARCCPCE • San José",
+        email: "presidencia@arccpce.org",
+      },
+      {
+        name: "Dra. Marlen Calvo Solano",
+        title: "Vicepresidenta de la Junta Directiva (2026-2028)",
+        committee: "Vicepresidencia • Socia Fundadora • Clausura Oficial",
+        institution: "Consejo Regional ARCCPCE • San José",
+        email: "vicepresidencia@arccpce.org",
+      },
+      {
+        name: "Dra. Patricia Quesada Steller",
+        title: "Secretaria de la Junta Directiva (2026-2028)",
+        committee: "Secretaría General • Socia Fundadora",
+        institution: "Consejo Regional ARCCPCE • San José",
+        email: "secretaria@arccpce.org",
+      },
+      {
+        name: "Dr. Josué Paniagua Sánchez",
+        title: "Tesorero de la Junta Directiva (2026-2028)",
+        committee: "Tesorería y Finanzas • Socio Fundador",
+        institution: "Consejo Regional ARCCPCE • San José",
+        email: "tesoreria@arccpce.org",
+      },
+      {
+        name: "Dra. Janet Morales Salazar",
+        title: "Fiscal de la Junta Directiva (2026-2028)",
+        committee: "Fiscalía Deontológica • Socia Fundadora",
+        institution: "Consejo Regional ARCCPCE • San José",
+        email: "fiscalia@arccpce.org",
+      },
+      {
+        name: "Dr. Marco Antonio Obando Rodríguez",
+        title: "Vocal 1 de la Junta Directiva (2026-2028)",
+        committee: "Vocalía I de Gobernanza",
+        institution: "Consejo Regional ARCCPCE • San José",
+        email: "vocal1@arccpce.org",
+      },
+      {
+        name: "Dr. Fibier Olmos Venegas",
+        title: "Vocal 2 de la Junta Directiva (2026-2028)",
+        committee: "Vocalía II de Gestión Científica",
+        institution: "Consejo Regional ARCCPCE • San José",
+        email: "vocal2@arccpce.org",
+      },
+      {
+        name: "Lic. Álvaro Sánchez",
+        title: "Socio Fundador",
+        committee: "Lectura del Acta de Constitución",
+        institution: "Asamblea Constitutiva ARCCPCE",
+        email: "costarica@arccpce.org",
+      },
+      {
+        name: "Teresita Mayela García Browne",
+        title: "Socia Fundadora",
+        committee: "Firmante de Acta Constitutiva",
+        institution: "Asamblea Constitutiva ARCCPCE",
+        email: "costarica@arccpce.org",
+      },
+      {
+        name: "Patricia Yolanda Robles Yglesias",
+        title: "Socia Fundadora",
+        committee: "Firmante de Acta Constitutiva",
+        institution: "Asamblea Constitutiva ARCCPCE",
+        email: "costarica@arccpce.org",
+      },
+      {
+        name: "María del Rocío Monge Quirós",
+        title: "Socia Fundadora",
+        committee: "Firmante de Acta Constitutiva",
+        institution: "Asamblea Constitutiva ARCCPCE",
+        email: "costarica@arccpce.org",
+      },
+      {
+        name: "Karla Tatiana Mena Páez",
+        title: "Socia Fundadora",
+        committee: "Firmante de Acta Constitutiva",
+        institution: "Asamblea Constitutiva ARCCPCE",
+        email: "costarica@arccpce.org",
+      },
+      {
+        name: "Marlene de los Ángeles Agüero Arce",
+        title: "Socia Fundadora",
+        committee: "Firmante de Acta Constitutiva",
+        institution: "Asamblea Constitutiva ARCCPCE",
+        email: "costarica@arccpce.org",
+      },
+      {
+        name: "Alejandra Trejos Chacón",
+        title: "Socia Fundadora",
+        committee: "Firmante de Acta Constitutiva",
+        institution: "Asamblea Constitutiva ARCCPCE",
+        email: "costarica@arccpce.org",
+      },
+      {
+        name: "Emérita Angélica Martínez Retana",
+        title: "Socia Fundadora",
+        committee: "Firmante de Acta Constitutiva",
+        institution: "Asamblea Constitutiva ARCCPCE",
+        email: "costarica@arccpce.org",
+      },
+      {
+        name: "Carmen María Loaiza Madriz",
+        title: "Socia Fundadora",
+        committee: "Firmante de Acta Constitutiva",
+        institution: "Asamblea Constitutiva ARCCPCE",
+        email: "costarica@arccpce.org",
+      },
+      {
+        name: "Fulvia Elizondo Saborío",
+        title: "Socia Fundadora",
+        committee: "Firmante de Acta Constitutiva",
+        institution: "Asamblea Constitutiva ARCCPCE",
+        email: "costarica@arccpce.org",
+      },
+    ],
     delegatesCount: 48,
     workingGroupsCount: 5,
     priorityTopic: "Gobernanza regional y armonización de competencias clínicas",
@@ -777,38 +905,50 @@ export default function RegionalGlobeHero() {
                 {selectedCountry.status}
               </div>
 
-              {/* Líder y Contacto Oficial */}
-              <div className="bg-slate-50/80 rounded-xl p-3.5 border border-slate-200/80 space-y-2">
+              {/* Líderes y Contactos Oficiales */}
+              <div className="space-y-2.5">
                 <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
                   <UserCheck className="w-3.5 h-3.5 text-[#0284c7]" />
-                  Liderazgo Oficial de Enlace
+                  {selectedCountry.coordinators && selectedCountry.coordinators.length > 1
+                    ? `Miembros y Liderazgo Oficial (${selectedCountry.coordinators.length})`
+                    : "Liderazgo Oficial de Enlace"}
                 </div>
-                <div>
-                  <h5 className="text-sm font-extrabold text-slate-900">
-                    {selectedCountry.coordinator.name}
-                  </h5>
-                  <p className="text-xs font-semibold text-[#002b7f]">
-                    {selectedCountry.coordinator.title}
-                  </p>
-                </div>
-                <div className="pt-1.5 border-t border-slate-200/60 space-y-1 text-xs text-slate-600">
-                  <div className="flex items-center gap-2">
-                    <Activity className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                    <span className="truncate">{selectedCountry.coordinator.committee}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Building className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                    <span className="truncate">{selectedCountry.coordinator.institution}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Mail className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                    <a
-                      href={`mailto:${selectedCountry.coordinator.email}`}
-                      className="text-[#0284c7] font-semibold hover:underline truncate"
+
+                <div className="space-y-2 max-h-72 overflow-y-auto pr-1">
+                  {(selectedCountry.coordinators || [selectedCountry.coordinator]).map((coord, cIdx) => (
+                    <div
+                      key={cIdx}
+                      className="bg-slate-50/90 rounded-xl p-3 border border-slate-200/80 space-y-1.5"
                     >
-                      {selectedCountry.coordinator.email}
-                    </a>
-                  </div>
+                      <div>
+                        <h5 className="text-xs font-extrabold text-slate-900 leading-snug">
+                          {coord.name}
+                        </h5>
+                        <p className="text-[11px] font-semibold text-[#002b7f] leading-tight">
+                          {coord.title}
+                        </p>
+                      </div>
+                      <div className="pt-1 border-t border-slate-200/60 space-y-0.5 text-[10px] text-slate-600">
+                        <div className="flex items-center gap-1.5">
+                          <Activity className="w-3 h-3 text-slate-400 shrink-0" />
+                          <span className="truncate">{coord.committee}</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <Building className="w-3 h-3 text-slate-400 shrink-0" />
+                          <span className="truncate">{coord.institution}</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <Mail className="w-3 h-3 text-slate-400 shrink-0" />
+                          <a
+                            href={`mailto:${coord.email}`}
+                            className="text-[#0284c7] font-semibold hover:underline truncate"
+                          >
+                            {coord.email}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
 
