@@ -25,6 +25,8 @@ const FOUNDING_MEMBERS: FoundingMember[] = [
   { name: "Emérita Angélica Martínez Retana", role: "Socia Fundadora" },
   { name: "Carmen María Loaiza Madriz", role: "Socia Fundadora" },
   { name: "Fulvia Elizondo Saborío", role: "Socia Fundadora" },
+  { name: "Dra. Rebeca Moya Masís", role: "Socia Fundadora", distinction: "Asesora de Mercadeo de la Asociación" },
+  { name: "Dr. Carlos Siri Adema", role: "Miembro Honorario & Socio Fundador", distinction: "Decano de la Facultad de Ciencias de la Salud • Universidad Latina de Costa Rica" },
 ];
 
 export default function FoundingMembers() {

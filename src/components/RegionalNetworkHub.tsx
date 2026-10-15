@@ -172,6 +172,20 @@ const REGIONAL_NODES: Record<string, HubCountry> = {
         institution: "Asamblea Constitutiva ARCCPCE",
         email: "costarica@arccpce.org",
       },
+      {
+        name: "Dra. Rebeca Moya Masís",
+        role: "Socia Fundadora • Asesora de Mercadeo",
+        specialty: "Asesoría Estratégica de Mercadeo y Comunicación",
+        institution: "Asociación Regional ARCCPCE",
+        email: "costarica@arccpce.org",
+      },
+      {
+        name: "Dr. Carlos Siri Adema",
+        role: "Miembro Honorario • Socio Fundador",
+        specialty: "Decano de la Facultad de Ciencias de la Salud",
+        institution: "Universidad Latina de Costa Rica",
+        email: "costarica@arccpce.org",
+      },
     ],
   },
   GT: {
