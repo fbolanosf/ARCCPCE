@@ -108,8 +108,8 @@ const REGIONAL_DELEGATIONS: CountryDelegationData[] = [
     flag: "🇭🇳",
     status: "Comité Nacional de Enlace",
     coordinator: {
-      name: "Delegación Honduras",
-      title: "Coordinación Nacional de Enlace Gremial",
+      name: "Mag. Orbelia López",
+      title: "Representante Oficial de Honduras",
       committee: "Comité de Salud Pública y Gestión Comunitaria",
       institution: "Colegio de Profesionales de Enfermería de Honduras",
       email: "honduras@arccpce.org",

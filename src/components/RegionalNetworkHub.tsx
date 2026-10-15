@@ -131,8 +131,8 @@ const REGIONAL_NODES: Record<string, HubCountry> = {
     primaryStrategicFocus: "Resiliencia de centros de salud comunitarios, inmunización preventiva y nutrición.",
     leaders: [
       {
-        name: "Delegación Honduras",
-        role: "Coordinación de Enlace Nacional",
+        name: "Mag. Orbelia López",
+        role: "Representante Oficial de Honduras",
         specialty: "Salud Pública & APS Comunitaria",
         institution: "Colegio de Profesionales de Enfermería de Honduras",
         email: "honduras@arccpce.org",
