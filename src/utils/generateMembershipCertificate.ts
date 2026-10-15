@@ -11,7 +11,7 @@ export interface MembershipCertificateData {
 }
 
 // Generación de Hash Blockchain inmutable
-function generateBlockchainHash(folio: string, fullName: string, dateStr: string): string {
+export function generateBlockchainHash(folio: string, fullName: string, dateStr: string): string {
   const seed = `${folio}|${fullName}|${dateStr}|ARCCPCE-REGIONAL-BLOCKCHAIN-CA-2026`;
   let hash = 0;
   for (let i = 0; i < seed.length; i++) {
@@ -53,7 +53,7 @@ async function getLogoDataUrl(): Promise<string | null> {
 }
 
 // Dibujado vectorial exacto de banderas centroamericanas y del Caribe (proporción 3:2)
-function drawVectorFlag(doc: jsPDF, countryName: string, x: number, y: number, w: number = 15, h: number = 10): void {
+export function drawVectorFlag(doc: jsPDF, countryName: string, x: number, y: number, w: number = 15, h: number = 10): void {
   const norm = countryName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
 
   // Borde fino exterior para delimitar la bandera
@@ -70,7 +70,7 @@ function drawVectorFlag(doc: jsPDF, countryName: string, x: number, y: number, w
     doc.setFillColor(255, 255, 255); doc.rect(x, y + h1, w, h1, 'F');
     doc.setFillColor(206, 17, 38); doc.rect(x, y + h1 * 2, w, h1 * 2, 'F');
     doc.setFillColor(255, 255, 255); doc.rect(x, y + h1 * 4, w, h1 * 4, 'F');
-    doc.setFillColor(0, 43, 127); doc.rect(x, y + h1 * 5, w, h1, 'F');
+    doc.setFillColor(0, 43, 127); doc.rect(x, y + h1 * 5, w, h1 * 5, 'F');
   } else if (norm.includes('guatemala')) {
     // Azul celeste - Blanco - Azul celeste vertical
     const w1 = w / 3;
@@ -82,19 +82,19 @@ function drawVectorFlag(doc: jsPDF, countryName: string, x: number, y: number, w
     const h1 = h / 3;
     doc.setFillColor(15, 71, 175); doc.rect(x, y, w, h1, 'F');
     doc.setFillColor(255, 255, 255); doc.rect(x, y + h1, w, h1, 'F');
-    doc.setFillColor(15, 71, 175); doc.rect(x, y + h1 * 2, w, h1, 'F');
+    doc.setFillColor(15, 71, 175); doc.rect(x, y + h1 * 2, w, h1 * 2, 'F');
   } else if (norm.includes('honduras')) {
     // Azul turquesa - Blanco - Azul turquesa
     const h1 = h / 3;
     doc.setFillColor(0, 115, 207); doc.rect(x, y, w, h1, 'F');
     doc.setFillColor(255, 255, 255); doc.rect(x, y + h1, w, h1, 'F');
-    doc.setFillColor(0, 115, 207); doc.rect(x, y + h1 * 2, w, h1, 'F');
+    doc.setFillColor(0, 115, 207); doc.rect(x, y + h1 * 2, w, h1 * 2, 'F');
   } else if (norm.includes('nicaragua')) {
     // Azul - Blanco - Azul horizontal
     const h1 = h / 3;
     doc.setFillColor(0, 103, 197); doc.rect(x, y, w, h1, 'F');
     doc.setFillColor(255, 255, 255); doc.rect(x, y + h1, w, h1, 'F');
-    doc.setFillColor(0, 103, 197); doc.rect(x, y + h1 * 2, w, h1, 'F');
+    doc.setFillColor(0, 103, 197); doc.rect(x, y + h1 * 2, w, h1 * 2, 'F');
   } else if (norm.includes('panama')) {
     // Cuadrantes: Blanco con estrella / Rojo / Azul / Blanco con estrella
     const wHalf = w / 2;
@@ -124,7 +124,7 @@ function drawVectorFlag(doc: jsPDF, countryName: string, x: number, y: number, w
   drawBorder();
 }
 
-export async function generateMembershipCertificate(data: MembershipCertificateData): Promise<void> {
+export async function createCertificateDoc(data: MembershipCertificateData): Promise<jsPDF> {
   const doc = new jsPDF({
     orientation: 'landscape',
     unit: 'mm',
@@ -139,9 +139,15 @@ export async function generateMembershipCertificate(data: MembershipCertificateD
     year: 'numeric'
   });
 
-  // Generar Código QR y Hash Blockchain
+  // URL dinámica de validación: en producción apunta a arccpce.pages.dev o dominio actual
+  let origin = 'https://arccpce.pages.dev';
+  if (typeof window !== 'undefined' && window.location.origin) {
+    origin = window.location.origin;
+  }
+
   const blockchainHash = generateBlockchainHash(data.folio, data.fullName, issueDateStr);
-  const verificationUrl = `https://arccpce.org/validar?folio=${encodeURIComponent(data.folio)}&hash=${blockchainHash}`;
+  const verificationUrl = `${origin}/validar?folio=${encodeURIComponent(data.folio)}&n=${encodeURIComponent(data.fullName)}&p=${encodeURIComponent(data.country)}&e=${encodeURIComponent(data.specialty || '')}&f=${encodeURIComponent(issueDateStr)}&hash=${blockchainHash}`;
+  
   const qrDataUrl = await QRCode.toDataURL(verificationUrl, {
     width: 250,
     margin: 1,
@@ -185,14 +191,9 @@ export async function generateMembershipCertificate(data: MembershipCertificateD
   }
 
   // ==========================================
-  // PIE AL RAS DEL MARCO (QR + BLOCKCHAIN + FIRMA)
-  // Comienza en qrTopY = 177 mm y termina en 200 mm (a 2.9 mm del marco de 202.9 mm)
-  // Espacio disponible para el cuerpo central: desde logoBottomY (43.7 mm) hasta 177 mm = 133.3 mm
-  // Altura total del bloque central: ~110 mm
-  // Espacio equidistante superior e inferior: (133.3 - 110) / 2 = 11.6 mm
-  // Por lo tanto, el bloque central inicia exactamente en Y = 55.5 mm
+  // CUERPO CENTRAL (EQUIDISTANTE)
   // ==========================================
-  const headerStartY = logoBottomY + 11.5; // Y = 55.2 mm (Espacio generoso y equilibrado con el logo)
+  const headerStartY = logoBottomY + 11.5; // Y = 55.2 mm
 
   // A. Encabezado de la Asociación
   doc.setFont('helvetica', 'bold');
@@ -325,9 +326,6 @@ export async function generateMembershipCertificate(data: MembershipCertificateD
     { align: 'center' }
   );
 
-  // El final de la tarjeta de folio queda en boxY + boxHeight = ~165.5 mm
-  // Quedan 11.5 mm de holgura limpia y equidistante hacia el pie (qrTopY = 177 mm)
-
   // ==========================================
   // 3. PIE AL RAS DEL MARCO (SIN SOBREPONERSE): QR, BLOCKCHAIN Y FIRMA
   // ==========================================
@@ -378,7 +376,11 @@ export async function generateMembershipCertificate(data: MembershipCertificateD
   doc.text('Presidente Fundacional de ARCCPCE', sigX, lineY + 8.2, { align: 'center' });
   doc.text('Sede Central Regional • San José, Costa Rica', sigX, lineY + 11.8, { align: 'center' });
 
-  // Descarga del documento
+  return doc;
+}
+
+export async function generateMembershipCertificate(data: MembershipCertificateData): Promise<void> {
+  const doc = await createCertificateDoc(data);
   const cleanName = data.fullName.replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ]/g, '_');
   doc.save(`ARCCPCE_Constancia_${cleanName}_${data.folio}.pdf`);
 }
