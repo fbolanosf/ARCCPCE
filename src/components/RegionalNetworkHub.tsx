@@ -102,7 +102,7 @@ const REGIONAL_NODES: Record<string, HubCountry> = {
     name: "El Salvador",
     capital: "San Salvador",
     flag: "🇸🇻",
-    status: "Comité Nacional de Enlace",
+    status: "Delegación Nacional Oficial",
     x: 146.6,
     y: 253.2,
     affiliatesCount: 29,
@@ -110,10 +110,10 @@ const REGIONAL_NODES: Record<string, HubCountry> = {
     primaryStrategicFocus: "Protocolos avanzados de soporte vital, triaje de urgencias y terapia intensiva.",
     leaders: [
       {
-        name: "Delegación El Salvador",
-        role: "Coordinación de Enlace Nacional",
-        specialty: "Cuidados Críticos & Soporte Vital Avanzado",
-        institution: "Asociaciones Profesionales de El Salvador",
+        name: "Mag. Cruz Barahona",
+        role: "Representante Oficial de El Salvador",
+        specialty: "Cuidados Críticos, Gestión en Salud y Práctica Avanzada",
+        institution: "Delegación ARCCPCE El Salvador",
         email: "elsalvador@arccpce.org",
       },
     ],
