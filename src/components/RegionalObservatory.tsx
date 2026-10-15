@@ -18,13 +18,69 @@ const countryViewBoxes: Record<string, string> = {
   DO: "692.2 22.6 147.7 109.1",
 };
 
+interface ApiMetricItem {
+  code: string;
+  nursingDensity: number;
+  densityYear: string;
+  healthSpendUSD: number;
+  spendYear: string;
+  source: string;
+}
+
+const ISO2_TO_ISO3: Record<string, string> = {
+  CR: "CRI",
+  GT: "GTM",
+  SV: "SLV",
+  HN: "HND",
+  NI: "NIC",
+  PA: "PAN",
+  DO: "DOM",
+};
+
+// Fallback inicial inmediato por país para evitar cualquier parpadeo
+const INITIAL_WB_FALLBACK: Record<string, { healthSpendUSD: number; spendYear: string }> = {
+  CRI: { healthSpendUSD: 980, spendYear: "2021" },
+  GTM: { healthSpendUSD: 285, spendYear: "2021" },
+  SLV: { healthSpendUSD: 395, spendYear: "2021" },
+  HND: { healthSpendUSD: 215, spendYear: "2021" },
+  NIC: { healthSpendUSD: 195, spendYear: "2021" },
+  PAN: { healthSpendUSD: 915, spendYear: "2021" },
+  DOM: { healthSpendUSD: 490, spendYear: "2021" },
+};
+
 export default function RegionalObservatory() {
   const [selectedCountryId, setSelectedCountryId] = useState<string>("CR");
   const [isMobilityOpen, setIsMobilityOpen] = useState<boolean>(false);
+  const [liveMetrics, setLiveMetrics] = useState<Record<string, ApiMetricItem>>({});
   const countries = metricsData as RegionalMetric[];
+
+  React.useEffect(() => {
+    let isMounted = true;
+    fetch("/api/observatory/metrics")
+      .then((res) => res.json())
+      .then((data) => {
+        if (isMounted && data?.data && Array.isArray(data.data)) {
+          const map: Record<string, ApiMetricItem> = {};
+          data.data.forEach((item: ApiMetricItem) => {
+            if (item.code) map[item.code] = item;
+          });
+          setLiveMetrics(map);
+        }
+      })
+      .catch((err) => {
+        console.warn("Error consultando métricas del observatorio:", err);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const currentCountry = countries.find((c) => c.id === selectedCountryId) || countries[0];
   const countrySvgData = (mapVectorData.members as Record<string, { id: string; name: string; d: string }>)[currentCountry.id];
+
+  const currentCountryIso3 = ISO2_TO_ISO3[currentCountry.id] || "CRI";
+  const currentMetric = liveMetrics[currentCountryIso3] || INITIAL_WB_FALLBACK[currentCountryIso3];
 
   const handleDownloadGuide = () => {
     const contactElem = document.getElementById("contacto");
@@ -103,9 +159,31 @@ export default function RegionalObservatory() {
                 />
               </div>
 
-              <p className="text-[11px] text-slate-500 mb-5">
+              <p className="text-[11px] text-slate-500 mb-2">
                 Representa el {Math.round((currentCountry.ratioPer10k / currentCountry.whoBenchmark) * 100)}% del umbral óptimo recomendado para Cobertura Universal de Salud.
               </p>
+
+              {/* Indicador de Gasto Corriente en Salud (Banco Mundial) */}
+              <div className="mt-3.5 mb-2 py-2.5 px-3.5 bg-slate-50/80 border border-slate-200/90 rounded-xl text-xs flex items-center justify-between shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+                    Gasto Corriente en Salud
+                  </span>
+                  <span className="text-slate-800 font-bold text-sm">
+                    ${currentMetric?.healthSpendUSD ? currentMetric.healthSpendUSD.toLocaleString() : '---'} USD 
+                    <span className="text-[11px] font-normal text-slate-500"> / hab.</span>
+                  </span>
+                </div>
+                <div className="text-right flex flex-col items-end">
+                  <span className="inline-flex items-center gap-1 text-[10px] bg-emerald-50 text-emerald-800 font-semibold px-2 py-0.5 rounded-md border border-emerald-200/60">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Banco Mundial
+                  </span>
+                  <span className="text-[9px] text-slate-400 mt-0.5">
+                    Reporte Oficial {currentMetric?.spendYear || ''}
+                  </span>
+                </div>
+              </div>
 
               {/* Silueta del País (Directa sobre el fondo, sin ventana ni marcos) */}
               <div className="relative pt-4 border-t border-slate-100 flex flex-col items-center justify-center">
