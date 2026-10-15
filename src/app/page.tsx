@@ -68,7 +68,41 @@ export default function HomePage() {
   const [registeredFolio, setRegisteredFolio] = useState<string | null>(null);
   const [lastSubmissionData, setLastSubmissionData] = useState<MembershipCertificateData | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isHoveredGallery, setIsHoveredGallery] = useState(false);
   const ribbonScrollRef = useRef<HTMLDivElement>(null);
+
+  // Autoplay continuo suave para el cintillo de la galería fotográfica
+  useEffect(() => {
+    const el = ribbonScrollRef.current;
+    if (!el) return;
+
+    let animationFrameId: number;
+    let lastTime = performance.now();
+    const speed = 0.65; // píxeles por frame aprox a 60fps
+
+    const step = (time: number) => {
+      const elapsed = time - lastTime;
+      lastTime = time;
+
+      if (!isHoveredGallery && el) {
+        // Desplazamiento progresivo
+        el.scrollLeft += speed * (elapsed / 16.67);
+
+        // Si sobrepasa la mitad del scroll (por la duplicación de imágenes), reiniciamos al inicio suavemente
+        const maxScroll = el.scrollWidth / 2;
+        if (el.scrollLeft >= maxScroll) {
+          el.scrollLeft -= maxScroll;
+        }
+      }
+      animationFrameId = requestAnimationFrame(step);
+    };
+
+    animationFrameId = requestAnimationFrame(step);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [isHoveredGallery]);
 
   const scrollRibbon = (direction: "left" | "right") => {
     if (ribbonScrollRef.current) {
@@ -844,6 +878,10 @@ export default function HomePage() {
           {/* Riel con desplazamiento continuo (Cintillo Dinámico) */}
           <div
             ref={ribbonScrollRef}
+            onMouseEnter={() => setIsHoveredGallery(true)}
+            onMouseLeave={() => setIsHoveredGallery(false)}
+            onTouchStart={() => setIsHoveredGallery(true)}
+            onTouchEnd={() => setIsHoveredGallery(false)}
             className="flex gap-5 overflow-x-auto no-scrollbar scroll-smooth px-8 py-2"
           >
             {/* Duplicación para efecto infinito de cintillo continuo */}
@@ -853,7 +891,7 @@ export default function HomePage() {
                 <div
                   key={idx}
                   onClick={() => setSelectedGalleryIndex(realIndex)}
-                  className="group relative w-72 sm:w-80 h-52 sm:h-56 shrink-0 rounded-2xl overflow-hidden cursor-pointer border border-slate-200/90 bg-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                  className="group relative w-72 sm:w-80 h-52 sm:h-56 shrink-0 rounded-2xl overflow-hidden cursor-pointer border border-slate-200/90 bg-slate-100 shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5"
                 >
                   <Image
                     src={img.src}
@@ -862,8 +900,8 @@ export default function HomePage() {
                     sizes="(max-width: 640px) 288px, 320px"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent opacity-85 sm:opacity-70 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-white">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#eab308] bg-black/40 px-2 py-0.5 rounded-full border border-white/20 w-fit mb-1">
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent opacity-85 sm:opacity-75 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-white">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#eab308] bg-black/50 px-2 py-0.5 rounded-full border border-white/20 w-fit mb-1 backdrop-blur-xs">
                       {img.tag}
                     </span>
                     <p className="text-xs sm:text-sm font-bold font-display leading-tight drop-shadow">
@@ -878,36 +916,135 @@ export default function HomePage() {
       </section>
 
       {/* ==================== ALIANZAS INTERNACIONALES ==================== */}
-      <section id="alianzas" className="py-20 bg-slate-50 border-t border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="alianzas" className="relative py-24 bg-gradient-to-b from-slate-50 via-sky-50/40 to-slate-50 border-t border-slate-200 overflow-hidden">
+        {/* Luces de fondo decorativas para profundidad visual */}
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-sky-200/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-blue-200/25 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="text-[#002b7f] text-xs font-bold uppercase tracking-wider bg-white px-3.5 py-1.5 rounded-full border border-slate-200 shadow-sm">
+            <span className="inline-flex items-center gap-1.5 text-[#002b7f] text-xs font-bold uppercase tracking-wider bg-white/90 backdrop-blur-xs px-4 py-1.5 rounded-full border border-sky-200/70 shadow-xs">
+              <span className="w-2 h-2 rounded-full bg-[#002b7f] animate-pulse" />
               Red de Colaboración e Incidencia
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 mt-3">
+            <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 mt-4 tracking-tight">
               Vínculos Regionales e Internacionales
             </h2>
+            <p className="text-slate-600 text-sm sm:text-base mt-2.5 max-w-2xl mx-auto">
+              Articulación científica y estratégica con los máximos organismos rectores de la salud y el ejercicio profesional de la enfermería en el continente y a nivel global.
+            </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5">
             {[
-              { id: "comisca", logo: "/assets/logos/comisca.svg", name: "COMISCA", desc: "Consejo Ministros Salud CA" },
-              { id: "sica", logo: "/assets/logos/sica.svg", name: "SICA", desc: "Sistema Integración CA" },
-              { id: "ops", logo: "/assets/logos/ops.svg", name: "OPS / OMS", desc: "Organización Panamericana" },
-              { id: "cie", logo: "/assets/logos/cie.svg", name: "CIE • ICN", desc: "Consejo Internacional" },
-              { id: "feppen", logo: "/assets/logos/feppen.svg", name: "FEPPEN", desc: "Federación Panamericana" },
-              { id: "gpecac", logo: "/assets/logos/gpecac.svg", name: "GPECAC", desc: "Profesionales CA y Caribe" },
+              {
+                id: "comisca",
+                logo: "/assets/logos/comisca.svg",
+                name: "COMISCA",
+                fullName: "Consejo de Ministros de Salud de CA y Rep. Dom.",
+                desc: "Consejo Ministros Salud CA",
+                url: "https://www.sica.int/comisca/",
+                badge: "Regional CA",
+                badgeColor: "bg-sky-100 text-sky-800 border-sky-200",
+              },
+              {
+                id: "sica",
+                logo: "/assets/logos/sica.svg",
+                name: "SICA",
+                fullName: "Sistema de la Integración Centroamericana",
+                desc: "Sistema Integración CA",
+                url: "https://www.sica.int/",
+                badge: "Integración",
+                badgeColor: "bg-blue-100 text-blue-800 border-blue-200",
+              },
+              {
+                id: "ops",
+                logo: "/assets/logos/ops.svg",
+                name: "OPS / OMS",
+                fullName: "Organización Panamericana de la Salud",
+                desc: "Organización Panamericana",
+                url: "https://www.paho.org/es",
+                badge: "ONU / Salud",
+                badgeColor: "bg-emerald-100 text-emerald-800 border-emerald-200",
+              },
+              {
+                id: "cie",
+                logo: "/assets/logos/cie.svg",
+                name: "CIE • ICN",
+                fullName: "Consejo Internacional de Enfermeras (Ginebra)",
+                desc: "Consejo Internacional",
+                url: "https://www.icn.ch/es",
+                badge: "Mundial",
+                badgeColor: "bg-amber-100 text-amber-800 border-amber-200",
+              },
+              {
+                id: "feppen",
+                logo: "/assets/logos/feppen.svg",
+                name: "FEPPEN",
+                fullName: "Federación Panamericana de Profesionales de Enfermería",
+                desc: "Federación Panamericana",
+                url: "https://feppen.org/",
+                badge: "Panamericano",
+                badgeColor: "bg-indigo-100 text-indigo-800 border-indigo-200",
+              },
+              {
+                id: "gpecac",
+                logo: "/assets/logos/gpecac.svg",
+                name: "GPECAC",
+                fullName: "Grupo Profesional de Enfermería Centroamérica y del Caribe",
+                desc: "Profesionales CA y Caribe",
+                url: "https://www.facebook.com/GPECAC/",
+                badge: "Centroamérica",
+                badgeColor: "bg-rose-100 text-rose-800 border-rose-200",
+              },
             ].map((org) => (
-              <div
+              <a
                 key={org.id}
-                className="bg-white p-4 rounded-2xl border border-slate-200 hover:border-sky-300 transition-all flex flex-col items-center text-center group shadow-sm hover:shadow"
+                href={org.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={`Visitar sitio oficial de ${org.fullName}`}
+                className="group relative bg-white/95 backdrop-blur-sm p-5 rounded-2xl border border-slate-200/90 hover:border-sky-400/80 hover:bg-gradient-to-b hover:from-white hover:to-sky-50/60 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center text-center cursor-pointer overflow-hidden"
               >
-                <div className="w-18 h-18 sm:w-20 sm:h-20 mb-3 relative flex items-center justify-center p-2">
-                  <Image src={org.logo} alt={org.name} width={70} height={70} className="object-contain" />
+                {/* Indicador de apertura externa flotante */}
+                <div className="absolute top-2.5 right-2.5 w-6 h-6 rounded-full bg-slate-100/80 group-hover:bg-[#002b7f] text-slate-400 group-hover:text-white flex items-center justify-center transition-all duration-300 shadow-2xs group-hover:rotate-45">
+                  <ExternalLink className="w-3.5 h-3.5" />
                 </div>
-                <span className="text-[#002b7f] font-bold text-sm tracking-wider">{org.name}</span>
-                <span className="text-[10px] text-slate-500 mt-0.5">{org.desc}</span>
-              </div>
+
+                {/* Insignia / Tag institucional */}
+                <div className="mb-2 self-start">
+                  <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full border ${org.badgeColor}`}>
+                    {org.badge}
+                  </span>
+                </div>
+
+                {/* Contenedor del Escudo con efecto halo */}
+                <div className="w-20 h-20 sm:w-22 sm:h-22 mb-3.5 relative flex items-center justify-center p-2 rounded-xl bg-slate-50/60 group-hover:bg-white group-hover:shadow-md transition-all duration-300">
+                  <Image
+                    src={org.logo}
+                    alt={`Escudo oficial de ${org.name}`}
+                    width={76}
+                    height={76}
+                    className="object-contain group-hover:scale-110 transition-transform duration-300 filter drop-shadow-xs"
+                  />
+                </div>
+
+                {/* Título y Siglas */}
+                <span className="text-[#002b7f] font-extrabold text-sm tracking-wide group-hover:text-sky-700 transition-colors">
+                  {org.name}
+                </span>
+
+                {/* Subtítulo descriptivo */}
+                <span className="text-[11px] text-slate-500 font-medium mt-1 leading-snug line-clamp-2">
+                  {org.desc}
+                </span>
+
+                {/* Call to action sutil en hover */}
+                <div className="mt-3 pt-2.5 border-t border-slate-100 w-full flex items-center justify-center gap-1 text-[10px] font-bold text-sky-600 opacity-80 group-hover:opacity-100 group-hover:text-[#002b7f] transition-all">
+                  <span>Portal Oficial</span>
+                  <ExternalLink className="w-2.5 h-2.5" />
+                </div>
+              </a>
             ))}
           </div>
         </div>
