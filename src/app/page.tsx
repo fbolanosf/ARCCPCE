@@ -915,64 +915,69 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ==================== ALIANZAS INTERNACIONALES ==================== */}
-      <section id="alianzas" className="relative py-24 bg-gradient-to-b from-slate-50 via-sky-50/40 to-slate-50 border-t border-slate-200 overflow-hidden">
-        {/* Luces de fondo decorativas para profundidad visual */}
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-sky-200/30 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-blue-200/25 rounded-full blur-3xl pointer-events-none" />
+      {/* ==================== ALIANZAS INTERNACIONALES (PABELLÓN DIPLOMÁTICO EJECUTIVO) ==================== */}
+      <section id="alianzas" className="relative py-28 bg-[#030e26] text-white overflow-hidden">
+        {/* Malla de profundidad atmosférica y haces de luz sutiles */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(14,165,233,0.18),transparent_70%)] pointer-events-none" />
+        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-sky-500/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="inline-flex items-center gap-1.5 text-[#002b7f] text-xs font-bold uppercase tracking-wider bg-white/90 backdrop-blur-xs px-4 py-1.5 rounded-full border border-sky-200/70 shadow-xs">
-              <span className="w-2 h-2 rounded-full bg-[#002b7f] animate-pulse" />
-              Red de Colaboración e Incidencia
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-flex items-center gap-2 text-sky-300 text-xs font-bold uppercase tracking-[0.2em] bg-sky-950/80 px-4 py-1.5 rounded-full border border-sky-500/30 shadow-[0_0_15px_-3px_rgba(56,189,248,0.25)]">
+              <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-ping" />
+              Articulación Internacional de Alto Nivel
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 mt-4 tracking-tight">
+            <h2 className="text-3xl sm:text-5xl font-extrabold font-display text-white mt-4 tracking-tight drop-shadow-sm">
               Vínculos Regionales e Internacionales
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base mt-2.5 max-w-2xl mx-auto">
-              Articulación científica y estratégica con los máximos organismos rectores de la salud y el ejercicio profesional de la enfermería en el continente y a nivel global.
+            <p className="text-slate-300 text-sm sm:text-base mt-3 max-w-2xl mx-auto font-light leading-relaxed">
+              Alianzas estratégicas y convergencia científica con los organismos rectores de la salud pública y el ejercicio profesional de la enfermería panamericana y global.
             </p>
           </div>
 
-          {/* Barra Integrada Ejecutiva de Alianzas y Organismos Internacionales */}
-          <div className="bg-white rounded-3xl border border-slate-200/90 shadow-[0_10px_30px_-5px_rgba(0,43,127,0.06)] divide-y lg:divide-y-0 lg:divide-x divide-slate-100 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 overflow-hidden">
+          {/* Grid sin ventanas: Los escudos flotan con luz propia y tipografía de prestigio */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 items-stretch">
             {[
               {
                 id: "comisca",
                 logo: "/assets/logos/comisca.svg",
                 name: "COMISCA",
-                fullName: "Consejo de Ministros de Salud de CA y Rep. Dom.",
-                desc: "Consejo Ministros Salud CA",
+                fullName: "Consejo de Ministros de Salud de CA y República Dominicana",
+                desc: "Consejo de Ministros de Salud",
                 url: "https://www.sica.int/comisca/",
-                badge: "Regional CA",
+                scope: "Regional CA",
+                glow: "group-hover:drop-shadow-[0_0_20px_rgba(56,189,248,0.65)]",
               },
               {
                 id: "sica",
                 logo: "/assets/logos/sica.svg",
                 name: "SICA",
                 fullName: "Sistema de la Integración Centroamericana",
-                desc: "Sistema Integración CA",
+                desc: "Sistema Integración Regional",
                 url: "https://www.sica.int/",
-                badge: "Integración",
+                scope: "Integración",
+                glow: "group-hover:drop-shadow-[0_0_20px_rgba(59,130,246,0.65)]",
               },
               {
                 id: "ops",
                 logo: "/assets/logos/ops.svg",
                 name: "OPS / OMS",
                 fullName: "Organización Panamericana de la Salud",
-                desc: "Organización Panamericana",
+                desc: "Salud Pública Panamericana",
                 url: "https://www.paho.org/es",
-                badge: "Salud Global",
+                scope: "ONU / Salud",
+                glow: "group-hover:drop-shadow-[0_0_20px_rgba(16,185,129,0.65)]",
               },
               {
                 id: "cie",
                 logo: "/assets/logos/cie.svg",
                 name: "CIE • ICN",
                 fullName: "Consejo Internacional de Enfermeras (Ginebra)",
-                desc: "Consejo Internacional",
+                desc: "Consejo Internacional (Ginebra)",
                 url: "https://www.icn.ch/es",
-                badge: "Mundial",
+                scope: "Global",
+                glow: "group-hover:drop-shadow-[0_0_20px_rgba(245,158,11,0.65)]",
               },
               {
                 id: "feppen",
@@ -981,16 +986,18 @@ export default function HomePage() {
                 fullName: "Federación Panamericana de Profesionales de Enfermería",
                 desc: "Federación Panamericana",
                 url: "https://feppen.org/",
-                badge: "Panamericano",
+                scope: "Las Américas",
+                glow: "group-hover:drop-shadow-[0_0_20px_rgba(99,102,241,0.65)]",
               },
               {
                 id: "gpecac",
                 logo: "/assets/logos/gpecac.svg",
                 name: "GPECAC",
                 fullName: "Grupo Profesional de Enfermería Centroamérica y del Caribe",
-                desc: "Profesionales CA y Caribe",
+                desc: "Centroamérica y el Caribe",
                 url: "https://www.facebook.com/GPECAC/",
-                badge: "Centroamérica",
+                scope: "Caribe & CA",
+                glow: "group-hover:drop-shadow-[0_0_20px_rgba(244,63,94,0.65)]",
               },
             ].map((org) => (
               <a
@@ -999,41 +1006,43 @@ export default function HomePage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 title={`Visitar portal oficial de ${org.fullName}`}
-                className="group relative p-6 sm:p-7 flex flex-col items-center justify-between text-center transition-all duration-300 hover:bg-slate-50/80 cursor-pointer"
+                className="group relative flex flex-col items-center justify-between p-6 rounded-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer border border-transparent hover:border-sky-500/30 hover:bg-white/[0.03]"
               >
-                {/* Indicador de enlace externo discreto en esquina */}
-                <div className="absolute top-3 right-3 text-slate-300 group-hover:text-[#002b7f] transition-colors">
-                  <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100" />
-                </div>
+                {/* Resplandor radial de fondo que se despierta al hover */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-sky-500/0 via-sky-500/[0.04] to-sky-500/[0.08] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                {/* Insignia sobria institucional */}
-                <span className="text-[10px] font-bold tracking-wider uppercase text-slate-500 group-hover:text-[#002b7f] transition-colors mb-4">
-                  {org.badge}
+                {/* Tag de alcance institucional */}
+                <span className="text-[10px] font-semibold tracking-widest uppercase text-sky-400/80 group-hover:text-sky-300 transition-colors mb-4">
+                  {org.scope}
                 </span>
 
-                {/* Escudo flotante sin cajas ni bordes secundarios */}
-                <div className="w-24 h-24 relative flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-108">
+                {/* Escudo con efecto de iluminación volumétrica */}
+                <div className="w-24 h-24 sm:w-28 sm:h-28 relative flex items-center justify-center my-3">
+                  <div className="absolute inset-0 rounded-full bg-white/5 filter blur-lg opacity-40 group-hover:opacity-100 transition-opacity duration-500" />
                   <Image
                     src={org.logo}
                     alt={`Escudo de ${org.name}`}
-                    width={88}
-                    height={88}
-                    className="object-contain filter transition-all duration-300 group-hover:brightness-105"
+                    width={96}
+                    height={96}
+                    className={`object-contain transition-all duration-500 group-hover:scale-110 filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] ${org.glow}`}
                   />
                 </div>
 
-                {/* Denominación de la entidad */}
-                <div className="space-y-1 mt-auto">
-                  <span className="block text-[#002b7f] font-extrabold text-base tracking-wide group-hover:text-sky-700 transition-colors">
-                    {org.name}
-                  </span>
-                  <span className="block text-[11px] text-slate-500 font-medium leading-snug">
+                {/* Textos tipográficos de prestigio */}
+                <div className="mt-4 text-center z-10 space-y-1">
+                  <div className="flex items-center justify-center gap-1.5">
+                    <span className="text-white font-extrabold text-base sm:text-lg tracking-wide group-hover:text-sky-300 transition-colors">
+                      {org.name}
+                    </span>
+                    <ExternalLink className="w-3.5 h-3.5 text-sky-400/60 group-hover:text-sky-300 opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-y-0.5 group-hover:translate-x-0.5" />
+                  </div>
+                  <span className="block text-xs text-slate-400 font-light group-hover:text-slate-300 transition-colors leading-snug">
                     {org.desc}
                   </span>
                 </div>
 
-                {/* Barra de progreso inferior activa al pasar el ratón */}
-                <span className="absolute bottom-0 inset-x-6 h-0.5 bg-transparent group-hover:bg-[#002b7f] transition-colors duration-300" />
+                {/* Línea sutil de acento lumínico */}
+                <div className="w-8 h-0.5 mt-5 bg-slate-700/60 group-hover:w-16 group-hover:bg-gradient-to-r group-hover:from-transparent group-hover:via-sky-400 group-hover:to-transparent transition-all duration-500" />
               </a>
             ))}
           </div>
