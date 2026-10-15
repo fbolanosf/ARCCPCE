@@ -734,10 +734,10 @@ export default function HomePage() {
                 Memoria Histórica y Fotográfica
               </span>
               <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-slate-900">
-                Galería y Cintillo de Sesiones Solemnes
+                Galería de Sesiones Solemnes
               </h2>
               <p className="text-slate-500 text-sm mt-2 max-w-2xl">
-                Registro fotográfico de la asamblea constitutiva en San José, Costa Rica. Pase el cursor para pausar el cintillo o haga clic en cualquier fotografía para verla ampliada.
+                Registro fotográfico de la asamblea constitutiva en San José, Costa Rica. Pase el cursor para pausar o haga clic en cualquier fotografía para verla ampliada.
               </p>
             </div>
 
