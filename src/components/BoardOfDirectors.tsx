@@ -21,6 +21,87 @@ const BOARD_MEMBERS: BoardMember[] = [
   { role: "Vocal 2", name: "Dr. Marco Antonio Obando Rodríguez", badge: "Vocalía II" },
 ];
 
+interface RegionalRepresentative {
+  country: string;
+  flag: string;
+  representatives: Array<{
+    name: string;
+    role: string;
+    area: string;
+    institution: string;
+    email: string;
+  }>;
+}
+
+const REGIONAL_REPRESENTATIVES: RegionalRepresentative[] = [
+  {
+    country: "Costa Rica",
+    flag: "🇨🇷",
+    representatives: [
+      {
+        name: "Dr. José Eduardo Carvajal Obando",
+        role: "Presidente de la Junta Directiva (2026-2028)",
+        area: "Presidencia Fundacional & Dirección Regional",
+        institution: "Consejo Regional ARCCPCE • San José",
+        email: "presidencia@arccpce.org",
+      },
+      {
+        name: "Dra. Patricia Quesada Steller",
+        role: "Secretaria de la Junta Directiva (2026-2028)",
+        area: "Secretaría General & Enlace Gremial",
+        institution: "Consejo Regional ARCCPCE • San José",
+        email: "secretaria@arccpce.org",
+      },
+    ],
+  },
+  {
+    country: "Guatemala",
+    flag: "🇬🇹",
+    representatives: [
+      {
+        name: "Dra. Karen Lorena Dubon De Paz",
+        role: "Representante Oficial de Guatemala",
+        area: "Educación Médica, Simulación y Salud Pública",
+        institution: "Facultad de Ciencias Médicas USAC",
+        email: "guatemala@arccpce.org",
+      },
+      {
+        name: "Lic. Leticia De Aguinaga",
+        role: "Representante Oficial de Guatemala",
+        area: "Gestión Gremial y Práctica Clínica",
+        institution: "Colegio de Profesionales de Enfermería de Guatemala",
+        email: "guatemala@arccpce.org",
+      },
+    ],
+  },
+  {
+    country: "El Salvador",
+    flag: "🇸🇻",
+    representatives: [
+      {
+        name: "Mag. Cruz Barahona",
+        role: "Representante Oficial de El Salvador",
+        area: "Cuidados Críticos, Gestión en Salud y Práctica Avanzada",
+        institution: "Asociación de Enfermería de El Salvador",
+        email: "elsalvador@arccpce.org",
+      },
+    ],
+  },
+  {
+    country: "Honduras",
+    flag: "🇭🇳",
+    representatives: [
+      {
+        name: "Mag. Orbelia López",
+        role: "Representante Oficial de Honduras",
+        area: "Salud Pública & APS Comunitaria",
+        institution: "Colegio de Profesionales de Enfermería de Honduras",
+        email: "honduras@arccpce.org",
+      },
+    ],
+  },
+];
+
 export default function BoardOfDirectors() {
   return (
     <section id="junta-directiva" className="py-20 bg-slate-50 border-t border-slate-200 scroll-mt-20">
@@ -49,7 +130,7 @@ export default function BoardOfDirectors() {
         </div>
 
         {/* Bloque Principal: Fotografía Oficial + Miembros */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-12">
           {/* Fotografía Oficial de la Junta Directiva 2026 */}
           <div className="lg:col-span-6 bg-white p-4 sm:p-5 rounded-3xl border border-slate-200 shadow-sm">
             <div className="relative h-80 sm:h-96 rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 group">
@@ -118,6 +199,62 @@ export default function BoardOfDirectors() {
                 </div>
               );
             })}
+          </div>
+        </div>
+
+        {/* ==================== REPRESENTACIONES REGIONALES OFICIALES POR PAÍS ==================== */}
+        <div className="pt-8 border-t border-slate-200">
+          <div className="text-center max-w-2xl mx-auto mb-8">
+            <span className="text-[#002b7f] text-xs font-bold tracking-widest uppercase bg-sky-50 px-3.5 py-1 rounded-full border border-sky-100 inline-block mb-2">
+              Articulación Transfronteriza
+            </span>
+            <h3 className="text-2xl font-extrabold font-display text-slate-900">
+              Representaciones Regionales Oficiales
+            </h3>
+            <p className="text-slate-600 text-xs sm:text-sm mt-1.5">
+              Liderazgos gremiales y científicos acreditados en los países miembros de la red ARCCPCE.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {REGIONAL_REPRESENTATIVES.map((reg, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-xs hover:shadow-md hover:border-[#002b7f]/40 transition-all duration-300 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                    <div className="flex items-center gap-2">
+                      <span className="text-2xl drop-shadow-xs">{reg.flag}</span>
+                      <h4 className="font-extrabold text-sm text-[#002b7f] font-display">{reg.country}</h4>
+                    </div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200/60">
+                      Oficial
+                    </span>
+                  </div>
+
+                  <div className="space-y-3">
+                    {reg.representatives.map((rep, rIdx) => (
+                      <div key={rIdx} className="space-y-1">
+                        <h5 className="font-extrabold text-xs text-slate-900">{rep.name}</h5>
+                        <p className="text-[11px] font-semibold text-[#ce1126] leading-tight">{rep.role}</p>
+                        <p className="text-[11px] text-slate-500 leading-tight">{rep.area}</p>
+                        <p className="text-[10px] text-slate-400 italic leading-tight pt-0.5">{rep.institution}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-3 mt-3 border-t border-slate-100 text-[11px]">
+                  <a
+                    href={`mailto:${reg.representatives[0].email}`}
+                    className="text-[#0284c7] font-semibold hover:underline truncate block"
+                  >
+                    {reg.representatives[0].email}
+                  </a>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
