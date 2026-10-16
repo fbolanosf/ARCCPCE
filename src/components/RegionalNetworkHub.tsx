@@ -189,8 +189,8 @@ const REGIONAL_NODES: Record<string, HubCountry> = {
       {
         name: "Dra. Karen Lorena Dubon De Paz",
         role: "Representante Oficial de Guatemala",
-        specialty: "Educación Médica, Simulación y Salud Pública",
-        institution: "Delegación ARCCPCE Guatemala",
+        specialty: "Educación, Investigación, Innovación",
+        institution: "Universidad Mariano Gálvez de Guatemala",
         email: "guatemala@arccpce.org",
       },
       {

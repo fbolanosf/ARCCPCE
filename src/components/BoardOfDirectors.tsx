@@ -61,8 +61,8 @@ const REGIONAL_REPRESENTATIVES: RegionalRepresentative[] = [
       {
         name: "Dra. Karen Lorena Dubon De Paz",
         role: "Representante Oficial de Guatemala",
-        area: "Educación Médica, Simulación y Salud Pública",
-        institution: "Facultad de Ciencias Médicas USAC",
+        area: "Educación, Investigación, Innovación",
+        institution: "Universidad Mariano Gálvez de Guatemala",
         email: "guatemala@arccpce.org",
       },
       {
