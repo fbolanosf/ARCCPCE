@@ -66,7 +66,7 @@ const REGIONAL_REPRESENTATIVES: RegionalRepresentative[] = [
         email: "guatemala@arccpce.org",
       },
       {
-        name: "Lic. Leticia De Aguinaga",
+        name: "Lic. Leticia de Guinac",
         role: "Representante Oficial de Guatemala",
         area: "Gestión Gremial y Práctica Clínica",
         institution: "",

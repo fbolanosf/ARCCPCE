@@ -194,7 +194,7 @@ const REGIONAL_NODES: Record<string, HubCountry> = {
         email: "guatemala@arccpce.org",
       },
       {
-        name: "Lic. Leticia De Aguinaga",
+        name: "Lic. Leticia de Guinac",
         role: "Representante Oficial de Guatemala",
         specialty: "Gestión Gremial y Práctica Clínica",
         institution: "Delegación ARCCPCE Guatemala",
