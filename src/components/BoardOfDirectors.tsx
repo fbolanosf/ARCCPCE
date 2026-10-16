@@ -69,7 +69,7 @@ const REGIONAL_REPRESENTATIVES: RegionalRepresentative[] = [
         name: "Lic. Leticia De Aguinaga",
         role: "Representante Oficial de Guatemala",
         area: "Gestión Gremial y Práctica Clínica",
-        institution: "Colegio de Profesionales de Enfermería de Guatemala",
+        institution: "",
         email: "guatemala@arccpce.org",
       },
     ],
@@ -239,7 +239,9 @@ export default function BoardOfDirectors() {
                         <h5 className="font-extrabold text-xs text-slate-900">{rep.name}</h5>
                         <p className="text-[11px] font-semibold text-[#ce1126] leading-tight">{rep.role}</p>
                         <p className="text-[11px] text-slate-500 leading-tight">{rep.area}</p>
-                        <p className="text-[10px] text-slate-400 italic leading-tight pt-0.5">{rep.institution}</p>
+                        {rep.institution && (
+                          <p className="text-[10px] text-slate-400 italic leading-tight pt-0.5">{rep.institution}</p>
+                        )}
                       </div>
                     ))}
                   </div>
