@@ -81,8 +81,8 @@ const REGIONAL_REPRESENTATIVES: RegionalRepresentative[] = [
       {
         name: "Mag. Cruz Barahona",
         role: "Representante Oficial de El Salvador",
-        area: "Cuidados Críticos, Gestión en Salud y Práctica Avanzada",
-        institution: "Asociación de Enfermería de El Salvador",
+        area: "Gestión Gremial y Práctica Clínica",
+        institution: "",
         email: "elsalvador@arccpce.org",
       },
     ],
@@ -94,8 +94,8 @@ const REGIONAL_REPRESENTATIVES: RegionalRepresentative[] = [
       {
         name: "Mag. Orbelia López",
         role: "Representante Oficial de Honduras",
-        area: "Salud Pública & APS Comunitaria",
-        institution: "Colegio de Profesionales de Enfermería de Honduras",
+        area: "Educación, Investigación e Innovación",
+        institution: "Universidad Católica de Honduras",
         email: "honduras@arccpce.org",
       },
     ],

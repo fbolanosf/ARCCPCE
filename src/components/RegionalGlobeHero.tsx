@@ -219,7 +219,7 @@ const REGIONAL_DELEGATIONS: CountryDelegationData[] = [
     coordinator: {
       name: "Mag. Cruz Barahona",
       title: "Representante Oficial de El Salvador",
-      committee: "Comité de Cuidados Críticos, Urgencias y Articulación Gremial",
+      committee: "Gestión Gremial y Práctica Clínica",
       institution: "Delegación ARCCPCE El Salvador",
       email: "elsalvador@arccpce.org",
     },
@@ -238,8 +238,8 @@ const REGIONAL_DELEGATIONS: CountryDelegationData[] = [
     coordinator: {
       name: "Mag. Orbelia López",
       title: "Representante Oficial de Honduras",
-      committee: "Comité de Salud Pública y Gestión Comunitaria",
-      institution: "Colegio de Profesionales de Enfermería de Honduras",
+      committee: "Educación, Investigación e Innovación",
+      institution: "Universidad Católica de Honduras",
       email: "honduras@arccpce.org",
     },
     delegatesCount: 26,

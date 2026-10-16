@@ -217,7 +217,7 @@ const REGIONAL_NODES: Record<string, HubCountry> = {
       {
         name: "Mag. Cruz Barahona",
         role: "Representante Oficial de El Salvador",
-        specialty: "Cuidados Críticos, Gestión en Salud y Práctica Avanzada",
+        specialty: "Gestión Gremial y Práctica Clínica",
         institution: "Delegación ARCCPCE El Salvador",
         email: "elsalvador@arccpce.org",
       },
@@ -238,8 +238,8 @@ const REGIONAL_NODES: Record<string, HubCountry> = {
       {
         name: "Mag. Orbelia López",
         role: "Representante Oficial de Honduras",
-        specialty: "Salud Pública & APS Comunitaria",
-        institution: "Colegio de Profesionales de Enfermería de Honduras",
+        specialty: "Educación, Investigación e Innovación",
+        institution: "Universidad Católica de Honduras",
         email: "honduras@arccpce.org",
       },
     ],
