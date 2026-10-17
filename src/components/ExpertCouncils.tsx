@@ -62,6 +62,15 @@ const NATIONAL_EXPERTS: NationalExpert[] = [
       "Referente Nacional en Servicios Quirúrgicos y Cuidados Especializados",
     ],
   },
+  {
+    name: "Dra. Patricia Robles Yglesias",
+    profession: "Enfermera Profesional",
+    credentials: [
+      "Exdecana de la Facultad de Enfermería de la Universidad Iberoamericana (UNIBE)",
+      "Líder en Educación Superior y Formación Científica del Talento Humano en Enfermería",
+      "Asesora Académica y Referente en Docencia Universitaria en Ciencias de la Salud",
+    ],
+  },
 ];
 
 const INTERNATIONAL_EXPERTS: InternationalExpert[] = [
@@ -122,7 +131,7 @@ export default function ExpertCouncils() {
             Órganos Consultivos de Alto Nivel Científico
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 tracking-tight">
-            Consejos de Expertos de la Ciencia Enfermería
+            Consejo de Expertos de la Ciencia Enfermería
           </h2>
           <p className="text-slate-600 text-sm mt-3 leading-relaxed">
             Máxima instancia consultiva, deontológica y de asesoría estratégica de la ARCCPCE, integrada por figuras históricas y líderes del más alto calibre nacional e internacional.

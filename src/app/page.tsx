@@ -308,7 +308,7 @@ export default function HomePage() {
             <a href="#fines" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 font-semibold">Fines Estatutarios</a>
             <a href="#junta-directiva" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-[#002b7f] hover:bg-sky-50 font-bold">Mesa Directiva (2026-2028)</a>
             <a href="#socios-fundadores" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 font-semibold">Socios Fundadores</a>
-            <a href="#consejo-expertos" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-[#002b7f] hover:bg-sky-50 font-bold">Consejos de Expertos</a>
+            <a href="#consejo-expertos" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-[#002b7f] hover:bg-sky-50 font-bold">Consejo de Expertos</a>
             <a href="#galeria" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 font-semibold">Galería Solemne</a>
             <a href="#alianzas" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 font-semibold">Vínculos Regionales</a>
             <a href="#contacto" onClick={() => setMobileMenuOpen(false)} className="block text-center mt-3 bg-[#002b7f] text-white font-bold py-2.5 rounded-xl shadow">Afíliate Ahora</a>
@@ -827,7 +827,7 @@ export default function HomePage() {
       {/* ==================== SOCIOS FUNDADORES OFICIALES (19 DE MARZO DE 2026) ==================== */}
       <FoundingMembers />
 
-      {/* ==================== CONSEJOS DE EXPERTOS NACIONALES E INTERNACIONALES ==================== */}
+      {/* ==================== CONSEJO DE EXPERTOS NACIONALES E INTERNACIONALES ==================== */}
       <ExpertCouncils />
 
       {/* ==================== COMITÉS TÉCNICOS REGIONALES ==================== */}
@@ -1284,7 +1284,7 @@ export default function HomePage() {
                 <li><a href="#estacion-clinica" className="hover:text-[#eab308]">Herramientas Clínicas</a></li>
                 <li><a href="#junta-directiva" className="hover:text-[#eab308]">Mesa Directiva</a></li>
                 <li><a href="#socios-fundadores" className="hover:text-[#eab308]">Socios Fundadores</a></li>
-                <li><a href="#consejo-expertos" className="hover:text-[#eab308]">Consejos de Expertos</a></li>
+                <li><a href="#consejo-expertos" className="hover:text-[#eab308]">Consejo de Expertos</a></li>
                 <li><a href="#comites" className="hover:text-[#eab308]">Comités Técnicos</a></li>
                 <li><a href="#compartir" className="hover:text-[#eab308]">Código QR & Compartir</a></li>
                 <li><a href="#contacto" className="hover:text-[#eab308]">Afiliación & Contacto</a></li>

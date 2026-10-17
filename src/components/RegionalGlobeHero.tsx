@@ -198,7 +198,7 @@ const REGIONAL_DELEGATIONS: CountryDelegationData[] = [
     flag: "🇬🇹",
     status: "Delegación Nacional Oficial",
     coordinator: {
-      name: "Dra. Karen Lorena Dubon De Paz & Lic. Leticia de Guinac",
+      name: "Dra. Karen Lorena Dubon De Paz & Lic. Leticia Bacilia Gomez de Leon de Huinac",
       title: "Representación Regional de Guatemala",
       committee: "Comité de Investigación Científica, Docencia y Articulación Gremial",
       institution: "Delegación ARCCPCE Guatemala",
