@@ -111,16 +111,6 @@ const DEFAULT_NEWS: NewsItem[] = [
     videoId: "6ZfuNTqbHE8",
     date: "2026-03-10",
   },
-  {
-    id: "video-2",
-    title: '"En voz de Enfermería" el Dr. José Eduardo Carvajal Obando',
-    summary:
-      'Entrevista y mensaje especial del Dr. José Eduardo Carvajal Obando, Presidente de ARCCPCE, en el espacio "En voz de Enfermería", abordando los desafíos gremiales, la visibilidad científica y la autonomía del ejercicio profesional en la región.',
-    category: "video",
-    sourceName: "En voz de Enfermería / Facebook Video",
-    url: "https://www.facebook.com/share/v/1Ly2uiE5hH/",
-    date: "2026-10-23",
-  },
 ];
 
 type CategoryFilter = "all" | "institucional" | "facebook" | "ops" | "scielo" | "video";
