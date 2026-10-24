@@ -111,6 +111,16 @@ const DEFAULT_NEWS: NewsItem[] = [
     videoId: "6ZfuNTqbHE8",
     date: "2026-03-10",
   },
+  {
+    id: "video-2",
+    title: '"En voz de Enfermería" el Dr. José Eduardo Carvajal Obando',
+    summary:
+      'Entrevista y mensaje especial del Dr. José Eduardo Carvajal Obando, Presidente de ARCCPCE, en el espacio "En voz de Enfermería", abordando los desafíos gremiales, la visibilidad científica y la autonomía del ejercicio profesional en la región.',
+    category: "video",
+    sourceName: "En voz de Enfermería / Facebook Video",
+    url: "https://www.facebook.com/share/v/1Ly2uiE5hH/",
+    date: "2026-10-23",
+  },
 ];
 
 type CategoryFilter = "all" | "institucional" | "facebook" | "ops" | "scielo" | "video";
@@ -118,7 +128,13 @@ type CategoryFilter = "all" | "institucional" | "facebook" | "ops" | "scielo" | 
 export default function RegionalNewsHub() {
   const [filter, setFilter] = useState<CategoryFilter>("all");
   const [news, setNews] = useState<NewsItem[]>(DEFAULT_NEWS);
-  const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
+  const [activeVideo, setActiveVideo] = useState<{
+    id?: string;
+    url?: string;
+    title: string;
+    sourceName: string;
+    isFacebook?: boolean;
+  } | null>(null);
   const [previewImage, setPreviewImage] = useState<{ src: string; title: string } | null>(null);
 
   useEffect(() => {
@@ -135,7 +151,7 @@ export default function RegionalNewsHub() {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setActiveVideoId(null);
+        setActiveVideo(null);
         setPreviewImage(null);
       }
     };
@@ -382,10 +398,18 @@ export default function RegionalNewsHub() {
                       {item.sourceName}
                     </span>
 
-                    {isVideo && item.videoId ? (
+                    {isVideo ? (
                       <button
-                        onClick={() => setActiveVideoId(item.videoId || null)}
-                        className="inline-flex items-center gap-1 text-xs font-bold text-white bg-[#002b7f] hover:bg-[#001d57] px-3 py-1.5 rounded-lg transition-all shadow-sm"
+                        onClick={() =>
+                          setActiveVideo({
+                            id: item.videoId,
+                            url: item.url,
+                            title: item.title,
+                            sourceName: item.sourceName,
+                            isFacebook: item.url.includes("facebook.com"),
+                          })
+                        }
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-[#002b7f] hover:bg-[#001d57] px-3.5 py-1.5 rounded-lg transition-all shadow-sm cursor-pointer"
                       >
                         <Play className="w-3.5 h-3.5 fill-current text-sky-200" />
                         <span>Ver Sesión</span>
@@ -493,10 +517,10 @@ export default function RegionalNewsHub() {
       )}
 
       {/* Modal de Video Flotante Seguro */}
-      {activeVideoId && (
+      {activeVideo && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 animate-in fade-in duration-200"
-          onClick={() => setActiveVideoId(null)}
+          onClick={() => setActiveVideo(null)}
         >
           <div
             className="relative w-full max-w-4xl bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-2xl"
@@ -504,25 +528,66 @@ export default function RegionalNewsHub() {
           >
             <div className="flex items-center justify-between p-4 border-b border-slate-200 bg-slate-50">
               <span className="text-xs font-bold text-[#002b7f] uppercase tracking-wider flex items-center gap-2">
-                <Play className="w-4 h-4 fill-current text-[#002b7f]" /> Transmisión Oficial ARCCPCE / OPS
+                <Play className="w-4 h-4 fill-current text-[#002b7f]" /> {activeVideo.sourceName}
               </span>
               <button
-                onClick={() => setActiveVideoId(null)}
-                className="p-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-600 hover:text-slate-900 border border-slate-200 transition-colors"
+                onClick={() => setActiveVideo(null)}
+                className="p-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-600 hover:text-slate-900 border border-slate-200 transition-colors cursor-pointer"
                 aria-label="Cerrar reproductor"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="relative w-full aspect-video bg-black">
-              <iframe
-                src={`https://www.youtube-nocookie.com/embed/${activeVideoId}?autoplay=1&rel=0`}
-                title="Reproductor de Video Regional"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="absolute inset-0 w-full h-full border-0"
-              />
+            <div className="relative w-full aspect-video bg-black flex items-center justify-center">
+              {activeVideo.isFacebook && activeVideo.url ? (
+                <iframe
+                  src={`https://www.facebook.com/plugins/video.php?height=314&href=${encodeURIComponent(activeVideo.url)}&show_text=false&width=560&t=0`}
+                  title={activeVideo.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="absolute inset-0 w-full h-full border-0"
+                />
+              ) : activeVideo.id ? (
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${activeVideo.id}?autoplay=1&rel=0`}
+                  title={activeVideo.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="absolute inset-0 w-full h-full border-0"
+                />
+              ) : (
+                <div className="p-6 text-center text-white">
+                  <p className="text-sm mb-4">Reproducción externa disponible</p>
+                  {activeVideo.url && (
+                    <a
+                      href={activeVideo.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-[#1877f2] hover:bg-[#166fe5] text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all shadow-md"
+                    >
+                      <Facebook className="w-4 h-4" />
+                      <span>Ver directamente en Facebook</span>
+                    </a>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* Pie del Reproductor con enlace oficial */}
+            <div className="p-3.5 border-t border-slate-100 bg-white flex items-center justify-between flex-wrap gap-2 text-xs text-slate-600">
+              <span className="font-semibold text-slate-800 truncate max-w-lg">{activeVideo.title}</span>
+              {activeVideo.url && (
+                <a
+                  href={activeVideo.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-bold text-[#002b7f] hover:text-[#0284c7] flex items-center gap-1 hover:underline"
+                >
+                  <span>{activeVideo.isFacebook ? "Abrir en Facebook" : "Abrir en YouTube"}</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              )}
             </div>
           </div>
         </div>
