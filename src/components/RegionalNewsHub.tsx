@@ -22,6 +22,18 @@ import type { NewsItem } from "@/app/api/news/route";
 
 const DEFAULT_NEWS: NewsItem[] = [
   {
+    id: "fb-onehealth",
+    title: 'Cuidar la Vida en Todas sus Formas: Salud Pública, Ciencia Enfermería y Bienestar Animal bajo el enfoque de "Una Salud"',
+    summary:
+      "La Salud Pública también es cuidar la Salud Animal por eso tenemos que trabajar fuerte interinstitucional para desarrollar estrategias de convivencias humanas y animal. Nos vemos en la clase especial organizada por el Centro de Entrenamiento de Vida y Educación Continua SY.",
+    category: "facebook",
+    sourceName: "Página Oficial de Facebook ARCCPCE",
+    url: "https://www.facebook.com/profile.php?id=61576498572279",
+    date: "2026-10-23",
+    imageUrl: "/assets/images/salud-publica-salud-animal.jpg",
+    featured: true,
+  },
+  {
     id: "fb-1",
     title: "Constitución Oficial y Juramentación de la Junta Directiva de ARCCPCE",
     summary:
@@ -31,7 +43,7 @@ const DEFAULT_NEWS: NewsItem[] = [
     url: "https://www.facebook.com/profile.php?id=61576498572279",
     date: "2026-03-24",
     imageUrl: "/assets/images/equipo-clinico.jpeg",
-    featured: true,
+    featured: false,
   },
   {
     id: "fb-2",
