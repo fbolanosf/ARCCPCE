@@ -17,18 +17,20 @@ import {
   Sparkles,
   Facebook,
   RefreshCw,
+  ZoomIn,
+  Megaphone,
 } from "lucide-react";
 import type { NewsItem } from "@/app/api/news/route";
 
 const DEFAULT_NEWS: NewsItem[] = [
   {
-    id: "fb-onehealth",
+    id: "post-onehealth",
     title: 'Cuidar la Vida en Todas sus Formas: Salud Pública, Ciencia Enfermería y Bienestar Animal bajo el enfoque de "Una Salud"',
     summary:
-      "La Salud Pública también es cuidar la Salud Animal por eso tenemos que trabajar fuerte interinstitucional para desarrollar estrategias de convivencias humanas y animal. Nos vemos en la clase especial organizada por el Centro de Entrenamiento de Vida y Educación Continua SY.",
-    category: "facebook",
-    sourceName: "Página Oficial de Facebook ARCCPCE",
-    url: "https://www.facebook.com/profile.php?id=61576498572279",
+      "La Salud Pública también es cuidar la Salud Animal por eso tenemos que trabajar fuerte interinstitucional para desarrollar estrategias de convivencias humanas y animal. Nos vemos.",
+    category: "institucional",
+    sourceName: "Comunicado Oficial de Presidencia ARCCPCE",
+    url: "#comunicado-onehealth",
     date: "2026-10-23",
     imageUrl: "/assets/images/salud-publica-salud-animal.jpg",
     featured: true,
@@ -111,12 +113,13 @@ const DEFAULT_NEWS: NewsItem[] = [
   },
 ];
 
-type CategoryFilter = "all" | "facebook" | "ops" | "scielo" | "video";
+type CategoryFilter = "all" | "institucional" | "facebook" | "ops" | "scielo" | "video";
 
 export default function RegionalNewsHub() {
   const [filter, setFilter] = useState<CategoryFilter>("all");
   const [news, setNews] = useState<NewsItem[]>(DEFAULT_NEWS);
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
+  const [previewImage, setPreviewImage] = useState<{ src: string; title: string } | null>(null);
 
   useEffect(() => {
     fetch("/api/news")
@@ -133,6 +136,7 @@ export default function RegionalNewsHub() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setActiveVideoId(null);
+        setPreviewImage(null);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -193,10 +197,11 @@ export default function RegionalNewsHub() {
           </div>
         </div>
 
-        {/* Pestañas de Filtro Interactivas con Facebook */}
+        {/* Pestañas de Filtro Interactivas */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
           {[
             { id: "all", label: "Todos los Contenidos", icon: Newspaper },
+            { id: "institucional", label: "Comunicados Oficiales", icon: Megaphone },
             { id: "facebook", label: "Publicaciones Facebook ARCCPCE", icon: Facebook },
             { id: "ops", label: "Noticias OPS/OMS", icon: Globe2 },
             { id: "scielo", label: "Investigación SciELO", icon: BookOpen },
@@ -228,13 +233,29 @@ export default function RegionalNewsHub() {
             <div className="lg:col-span-7 bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-sky-300 transition-all duration-300 group">
               <div>
                 {featuredItem.imageUrl && (
-                  <div className="relative w-full h-56 sm:h-64 rounded-2xl overflow-hidden mb-6 border border-slate-200">
+                  <div
+                    onClick={() =>
+                      featuredItem.imageUrl &&
+                      setPreviewImage({
+                        src: featuredItem.imageUrl,
+                        title: featuredItem.title,
+                      })
+                    }
+                    className="relative w-full h-72 sm:h-80 md:h-96 rounded-2xl overflow-hidden mb-6 border border-slate-200 bg-amber-50/50 cursor-pointer group/img flex items-center justify-center shadow-inner"
+                    title="Haga clic para ver el afiche completo en alta resolución"
+                  >
                     <Image
                       src={featuredItem.imageUrl}
                       alt={featuredItem.title}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="object-contain p-2 group-hover/img:scale-[1.02] transition-transform duration-300"
                     />
+                    <div className="absolute inset-0 bg-slate-900/0 group-hover/img:bg-slate-900/20 transition-colors flex items-center justify-center">
+                      <span className="opacity-0 group-hover/img:opacity-100 transition-opacity bg-slate-900/85 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-lg flex items-center gap-2 backdrop-blur-xs">
+                        <ZoomIn className="w-4 h-4 text-amber-300" />
+                        <span>Ver Afiche Completo</span>
+                      </span>
+                    </div>
                   </div>
                 )}
 
@@ -255,19 +276,54 @@ export default function RegionalNewsHub() {
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between flex-wrap gap-3">
                 <span className="text-xs text-slate-500 font-semibold flex items-center gap-1">
                   <Sparkles className="w-3.5 h-3.5 text-[#c49a45]" /> Cobertura Sanitaria Regional
                 </span>
-                <a
-                  href={featuredItem.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-white bg-[#002b7f] hover:bg-[#001d57] px-4 py-2.5 rounded-xl transition-all shadow-sm"
-                >
-                  <span>{featuredItem.category === 'facebook' ? 'Ver Publicación en Facebook' : 'Leer Documento Oficial'}</span>
-                  <ExternalLink className="w-4 h-4 text-sky-200" />
-                </a>
+                <div className="flex items-center gap-2">
+                  {featuredItem.imageUrl && (
+                    <button
+                      onClick={() =>
+                        featuredItem.imageUrl &&
+                        setPreviewImage({
+                          src: featuredItem.imageUrl,
+                          title: featuredItem.title,
+                        })
+                      }
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-3.5 py-2.5 rounded-xl transition-all shadow-xs cursor-pointer"
+                    >
+                      <ZoomIn className="w-4 h-4 text-[#002b7f]" />
+                      <span>Ver Afiche Completo</span>
+                    </button>
+                  )}
+                  {featuredItem.category === "facebook" ? (
+                    <a
+                      href={featuredItem.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-white bg-[#1877f2] hover:bg-[#166fe5] px-4 py-2.5 rounded-xl transition-all shadow-sm"
+                    >
+                      <Facebook className="w-4 h-4" />
+                      <span>Ver en Facebook</span>
+                      <ExternalLink className="w-4 h-4 text-blue-200" />
+                    </a>
+                  ) : featuredItem.category !== "institucional" ? (
+                    <a
+                      href={featuredItem.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-white bg-[#002b7f] hover:bg-[#001d57] px-4 py-2.5 rounded-xl transition-all shadow-sm"
+                    >
+                      <span>Leer Documento Oficial</span>
+                      <ExternalLink className="w-4 h-4 text-sky-200" />
+                    </a>
+                  ) : (
+                    <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#002b7f] bg-sky-50 px-3.5 py-2 rounded-xl border border-sky-100">
+                      <Megaphone className="w-4 h-4 text-[#ce1126]" />
+                      <span>Difusión Oficial ARCCPCE</span>
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
           )}
@@ -380,6 +436,61 @@ export default function RegionalNewsHub() {
           </a>
         </div>
       </div>
+
+      {/* Modal de Imagen / Afiche Completo en Alta Resolución */}
+      {previewImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 backdrop-blur-md p-3 sm:p-6 animate-in fade-in duration-200"
+          onClick={() => setPreviewImage(null)}
+        >
+          <div
+            className="relative w-full max-w-3xl max-h-[92vh] bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-2xl flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Cabecera del Visor */}
+            <div className="flex items-center justify-between p-4 border-b border-slate-100 bg-slate-50/80 shrink-0">
+              <span className="text-xs font-bold text-[#002b7f] uppercase tracking-wider flex items-center gap-2">
+                <Megaphone className="w-4 h-4 text-[#ce1126]" /> Afiche Oficial • Visualización Completa
+              </span>
+              <button
+                onClick={() => setPreviewImage(null)}
+                className="p-1.5 rounded-full bg-white hover:bg-slate-100 text-slate-600 hover:text-slate-900 border border-slate-200 transition-colors cursor-pointer"
+                aria-label="Cerrar visor de afiche"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Contenedor de la Imagen Íntegra */}
+            <div className="relative flex-1 overflow-auto p-3 sm:p-5 flex items-center justify-center bg-slate-100/50">
+              <div className="relative w-full max-w-lg aspect-[3/4] sm:aspect-[4/5] max-h-[75vh]">
+                <Image
+                  src={previewImage.src}
+                  alt={previewImage.title}
+                  fill
+                  className="object-contain rounded-xl drop-shadow-md"
+                  priority
+                />
+              </div>
+            </div>
+
+            {/* Pie de Visor */}
+            <div className="p-3.5 border-t border-slate-100 bg-white flex items-center justify-between flex-wrap gap-2 text-xs text-slate-600 shrink-0">
+              <span className="font-medium truncate max-w-md">{previewImage.title}</span>
+              <a
+                href={previewImage.src}
+                download="Afiche_Una_Salud_ARCCPCE.jpg"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-bold text-[#002b7f] hover:underline flex items-center gap-1"
+              >
+                <span>Abrir archivo original</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Modal de Video Flotante Seguro */}
       {activeVideoId && (
