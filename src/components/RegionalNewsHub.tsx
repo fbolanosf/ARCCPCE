@@ -124,11 +124,13 @@ const DEFAULT_NEWS: NewsItem[] = [
   },
 ];
 
+import { useContent } from "@/context/ContentContext";
+
 type CategoryFilter = "all" | "institucional" | "facebook" | "ops" | "scielo" | "video";
 
 export default function RegionalNewsHub() {
   const [filter, setFilter] = useState<CategoryFilter>("all");
-  const [news, setNews] = useState<NewsItem[]>(DEFAULT_NEWS);
+  const { news } = useContent();
   const [activeVideo, setActiveVideo] = useState<{
     id?: string;
     url?: string;
@@ -137,17 +139,6 @@ export default function RegionalNewsHub() {
     isFacebook?: boolean;
   } | null>(null);
   const [previewImage, setPreviewImage] = useState<{ src: string; title: string } | null>(null);
-
-  useEffect(() => {
-    fetch("/api/news")
-      .then((res) => res.json())
-      .then((res) => {
-        if (res && res.data && Array.isArray(res.data) && res.data.length > 0) {
-          setNews(res.data);
-        }
-      })
-      .catch(() => {});
-  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

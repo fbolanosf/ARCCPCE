@@ -117,6 +117,8 @@ const jsonLdData = {
   ],
 };
 
+import { ContentProvider } from "@/context/ContentContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -131,7 +133,9 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.variable} ${montserrat.variable} ${playfair.variable} bg-slate-50 text-slate-800 font-sans antialiased selection:bg-[#002b7f] selection:text-white`}>
-        {children}
+        <ContentProvider>
+          {children}
+        </ContentProvider>
       </body>
     </html>
   );

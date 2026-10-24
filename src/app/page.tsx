@@ -61,7 +61,10 @@ const GALLERY_IMAGES = [
   { src: "/assets/images/equipo-clinico.jpeg", title: "Comisiones de Trabajo Científico", tag: "Ciencia" },
 ];
 
+import { useContent } from "@/context/ContentContext";
+
 export default function HomePage() {
+  const { siteContent } = useContent();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selectedGalleryIndex, setSelectedGalleryIndex] = useState<number | null>(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -733,9 +736,9 @@ export default function HomePage() {
               <div className="w-12 h-12 rounded-xl bg-sky-100 text-[#002b7f] flex items-center justify-center">
                 <Eye className="w-6 h-6" />
               </div>
-              <h3 className="text-2xl font-bold font-display text-slate-900">Nuestra Visión</h3>
+              <h3 className="text-2xl font-bold font-display text-slate-900">{siteContent.vision.title}</h3>
               <p className="text-slate-600 leading-relaxed text-sm">
-                Que ARCCPCE sea el referente regional en el impulso de acciones colaborativas científico-educativas, fortalecimiento del liderazgo transformacional y gobernanza sólida en la Enfermería, orientados a la salud integral, sostenibilidad ambiental y adopción ética de la transformación digital.
+                {siteContent.vision.description}
               </p>
             </div>
 
@@ -743,9 +746,9 @@ export default function HomePage() {
               <div className="w-12 h-12 rounded-xl bg-rose-100 text-[#ce1126] flex items-center justify-center">
                 <Target className="w-6 h-6" />
               </div>
-              <h3 className="text-2xl font-bold font-display text-slate-900">Nuestra Misión</h3>
+              <h3 className="text-2xl font-bold font-display text-slate-900">{siteContent.mission.title}</h3>
               <p className="text-slate-600 leading-relaxed text-sm">
-                Impulsar el desarrollo de la Enfermería en Centroamérica y el Caribe mediante la colaboración científica y educativa, el liderazgo gremial y la promoción de la salud pública, la prevención de enfermedades crónicas y el bienestar de nuestras comunidades.
+                {siteContent.mission.description}
               </p>
             </div>
           </div>
@@ -1288,6 +1291,15 @@ export default function HomePage() {
                 <li><a href="#comites" className="hover:text-[#eab308]">Comités Técnicos</a></li>
                 <li><a href="#compartir" className="hover:text-[#eab308]">Código QR & Compartir</a></li>
                 <li><a href="#contacto" className="hover:text-[#eab308]">Afiliación & Contacto</a></li>
+                <li className="pt-2 border-t border-white/10">
+                  <a
+                    href="/admin/"
+                    className="inline-flex items-center gap-1.5 text-sky-300 hover:text-white font-bold transition-colors"
+                  >
+                    <ShieldCheck className="w-3.5 h-3.5 text-amber-300" />
+                    <span>Panel de Control (CMS)</span>
+                  </a>
+                </li>
               </ul>
             </div>
 
