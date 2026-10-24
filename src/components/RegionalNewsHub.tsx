@@ -36,6 +36,17 @@ const DEFAULT_NEWS: NewsItem[] = [
     featured: true,
   },
   {
+    id: "ops-epa-2026",
+    title: "Ampliación del ámbito de práctica de la enfermería: Formación, regulación y mercado de trabajo",
+    summary:
+      "Estudio comparado de la OPS en Brasil, Chile, Colombia, Costa Rica y México. Los hallazgos confirman que la atención primaria de salud concentra el mayor potencial para el desempeño de la enfermería de práctica avanzada (EPA), ampliando el acceso, reduciendo costos y elevando la calidad asistencial.",
+    category: "ops",
+    sourceName: "PAHO-WHO / Publicación Oficial",
+    url: "https://iris.paho.org/items/9b7fa6eb-7fea-4124-9e13-3e8d6a258daa",
+    date: "2026-10-20",
+    imageUrl: "/assets/images/ampliacion-ambito-practica-enfermeria-ops.png",
+  },
+  {
     id: "fb-1",
     title: "Constitución Oficial y Juramentación de la Junta Directiva de ARCCPCE",
     summary:
@@ -376,6 +387,33 @@ export default function RegionalNewsHub() {
                       {item.summary}
                     </p>
 
+                    {item.imageUrl && (
+                      <div
+                        onClick={() =>
+                          item.imageUrl &&
+                          setPreviewImage({
+                            src: item.imageUrl,
+                            title: item.title,
+                          })
+                        }
+                        className="relative w-full h-36 rounded-xl overflow-hidden mb-3 border border-slate-200 bg-sky-50/50 cursor-pointer group/cardimg flex items-center justify-center"
+                        title="Clic para ver la imagen completa"
+                      >
+                        <Image
+                          src={item.imageUrl}
+                          alt={item.title}
+                          fill
+                          className="object-contain p-1 group-hover/cardimg:scale-[1.02] transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-slate-900/0 group-hover/cardimg:bg-slate-900/20 transition-colors flex items-center justify-center">
+                          <span className="opacity-0 group-hover/cardimg:opacity-100 transition-opacity bg-slate-900/85 text-white text-[11px] font-bold px-2.5 py-1 rounded-lg shadow-sm flex items-center gap-1.5 backdrop-blur-xs">
+                            <ZoomIn className="w-3.5 h-3.5 text-amber-300" />
+                            <span>Ver imagen</span>
+                          </span>
+                        </div>
+                      </div>
+                    )}
+
                     {item.doi && (
                       <div className="text-[11px] font-mono text-slate-500 mb-3 flex items-center gap-1">
                         <FileText className="w-3 h-3 text-[#002b7f]" /> DOI: <span className="text-slate-700 font-semibold">{item.doi}</span>
@@ -384,37 +422,56 @@ export default function RegionalNewsHub() {
                   </div>
 
                   <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
-                    <span className="text-[11px] text-slate-500 font-medium truncate max-w-[180px]">
+                    <span className="text-[11px] text-slate-500 font-medium truncate max-w-[170px]">
                       {item.sourceName}
                     </span>
 
-                    {isVideo ? (
-                      <button
-                        onClick={() =>
-                          setActiveVideo({
-                            id: item.videoId,
-                            url: item.url,
-                            title: item.title,
-                            sourceName: item.sourceName,
-                            isFacebook: item.url.includes("facebook.com"),
-                          })
-                        }
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-[#002b7f] hover:bg-[#001d57] px-3.5 py-1.5 rounded-lg transition-all shadow-sm cursor-pointer"
-                      >
-                        <Play className="w-3.5 h-3.5 fill-current text-sky-200" />
-                        <span>Ver Sesión</span>
-                      </button>
-                    ) : (
-                      <a
-                        href={item.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs font-bold text-[#002b7f] hover:text-[#0284c7] transition-colors"
-                      >
-                        <span>{isFacebook ? "Abrir Post" : isSciELO ? "Acceder al Paper" : "Detalles"}</span>
-                        <ChevronRight className="w-3.5 h-3.5" />
-                      </a>
-                    )}
+                    <div className="flex items-center gap-2">
+                      {item.imageUrl && (
+                        <button
+                          onClick={() =>
+                            item.imageUrl &&
+                            setPreviewImage({
+                              src: item.imageUrl,
+                              title: item.title,
+                            })
+                          }
+                          className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-600 hover:text-[#002b7f] bg-slate-100 hover:bg-slate-200 px-2.5 py-1.5 rounded-lg transition-colors cursor-pointer"
+                          title="Ver imagen"
+                        >
+                          <ZoomIn className="w-3 h-3" />
+                          <span>Afiche</span>
+                        </button>
+                      )}
+
+                      {isVideo ? (
+                        <button
+                          onClick={() =>
+                            setActiveVideo({
+                              id: item.videoId,
+                              url: item.url,
+                              title: item.title,
+                              sourceName: item.sourceName,
+                              isFacebook: item.url.includes("facebook.com"),
+                            })
+                          }
+                          className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-[#002b7f] hover:bg-[#001d57] px-3.5 py-1.5 rounded-lg transition-all shadow-sm cursor-pointer"
+                        >
+                          <Play className="w-3.5 h-3.5 fill-current text-sky-200" />
+                          <span>Ver Sesión</span>
+                        </button>
+                      ) : (
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-xs font-bold text-[#002b7f] hover:text-[#0284c7] transition-colors"
+                        >
+                          <span>{isFacebook ? "Abrir Post" : item.category === "ops" ? "Ver en OPS IRIS" : isSciELO ? "Acceder al Paper" : "Detalles"}</span>
+                          <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               );

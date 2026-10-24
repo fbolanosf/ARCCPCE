@@ -31,6 +31,16 @@ const VERIFIED_NEWS: NewsItem[] = [
     featured: true,
   },
   {
+    id: 'ops-epa-2026',
+    title: 'Ampliación del ámbito de práctica de la enfermería: Formación, regulación y mercado de trabajo',
+    summary: 'Estudio comparado de la OPS en Brasil, Chile, Colombia, Costa Rica y México. Los hallazgos confirman que la atención primaria de salud concentra el mayor potencial para el desempeño de la enfermería de práctica avanzada (EPA), ampliando el acceso, reduciendo costos y elevando la calidad asistencial.',
+    category: 'ops',
+    sourceName: 'PAHO-WHO / Publicación Oficial',
+    url: 'https://iris.paho.org/items/9b7fa6eb-7fea-4124-9e13-3e8d6a258daa',
+    date: '2026-10-20',
+    imageUrl: '/assets/images/ampliacion-ambito-practica-enfermeria-ops.png',
+  },
+  {
     id: 'fb-1',
     title: 'Constitución Oficial y Juramentación de la Junta Directiva de ARCCPCE',
     summary: 'La Asociación Regional Centroamericana y Caribe de Profesionales de la Ciencia Enfermería inicia formalmente su misión histórica de articulación gremial, científica y sociopolítica desde San José, Costa Rica para toda la región.',
